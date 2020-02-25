@@ -14,6 +14,10 @@ class ExhibitionsController < ApplicationController
     @exhibitions = Exhibition.all
   end
 
+  def update
+
+  end
+
   def show
   end
 
