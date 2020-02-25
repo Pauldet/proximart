@@ -10,4 +10,10 @@ class Exhibition < ApplicationRecord
   def full_address
     address_name
   end
+
+
+  include PgSearch
+  pg_search_scope :search_by_title_and_syllabus, against: [ :title, :category, :lead_text, :tags, :description, :date_start]
+
 end
+
