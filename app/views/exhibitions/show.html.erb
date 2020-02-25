@@ -1,0 +1,5 @@
+<h1> <%= @exhibition.title  %></h1>
+
+<% @visits.each do |visit|%>
+<%= visit.information %>
+<% end %>
