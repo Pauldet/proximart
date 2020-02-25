@@ -17,6 +17,8 @@ class ExhibitionsController < ApplicationController
   def show
 
     @visits = @exhibition.visits
+
+    @participation = @exhibition.participations
   end
 
 private

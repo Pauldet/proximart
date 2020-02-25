@@ -1,0 +1,7 @@
+<h1>Hello</h1>
+
+<% @exhibitions.each do |exhibition| %>
+  <%= link_to exhibition_path(exhibition) do %>
+    <p><%= exhibition.title %></p>
+  <% end %>
+<% end %>

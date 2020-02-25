@@ -1,4 +1,4 @@
 class Participation < ApplicationRecord
-  belongs_to :users
-  belongs_to :exhibitions
+  belongs_to :user
+  belongs_to :exhibition
 end
