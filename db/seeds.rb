@@ -12,10 +12,15 @@ require 'open-uri'
 require 'faker'
 
 User.destroy_all
+Visit.destroy_all
 Exhibition.destroy_all
+# Exhibition.destroy_all
 ## Create users
  'Creating 5 fake users...'
 user_array = [1,2,3,4,5]
+
+
+# Creating USER
 
 user_array.each do |i|
   user_email = "#{i}@test.com"
@@ -27,6 +32,13 @@ user_array.each do |i|
   user.save!
 end
 
+#####
+
+# Exhibitions
+
+#####
+
+
 puts "creating 1 exhib"
 
 extensive_url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=400&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
@@ -37,32 +49,6 @@ exhibitions = JSON.parse(exhib_serialized)
 #puts exhibitions
 exhibitions["records"].each do |exhib|
   fields = exhib["fields"]
-
-# puts latitude = fields["lat_lon"][0].present? ? exhib["fields"]["lat_lon"][0] : nil
-# puts longitude = fields["lat_lon"][1].present? ? exhib["fields"]["lat_lon"][1] : nil
-# puts address_street = fields["address_street"].present? ? fields["address_street"] : "Unknown"
-# puts category = fields["category"].present? ? fields["category"] : "Unknown"
-# puts title = fields["title"].present? ? fields["title"] : "Unknown"
-# puts date_start = fields["date_start"].present? ? fields["date_start"] : nil
-# puts date_end = fields["date_end"].present? ? fields["date_end"] : nil
-# puts occurences = fields["occurrences"].present? ? fields["occurrences"] : "Unknown" #TBC
-# puts contact_url = fields["contact_url"].present? ? fields["contact_url"] : "Unknown"
-# puts address_name = fields["address_name"].present? ? fields["address_name"] : "Unknown"
-# puts contact_twitter = fields["contact_twitter"].present? ? fields["contact_twitter"] : "Unknown" #TBC
-# puts contact_phone = fields["contact_phone"].present? ? fields["contact_phone"] : "Unknown" #TBS
-# puts description = fields["description"].present? ? fields["description"] : "Unknown"
-# puts tags = fields["tags"].present? ? fields["tags"] : "Unknown"
-# puts contact_mail = fields["contact_mail"].present? ? fields["contact_mail"] : "Unknown" #TBC
-# puts lead_text = fields["lead_text"].present? ? fields["lead_text"] : "Unknown"
-# puts cover_url = fields["cover_url"].present? ? fields["cover_url"] : "Unknown"
-# puts contact_facebook = fields["contact_facebook"].present? ? fields["contact_facebook"] : "Unknown" #TBC
-# puts cover_credit = fields["cover_credit"].present? ? fields["cover_credit"] : "Unknown"
-# puts address_city = fields["address_city"].present? ? fields["address_city"] : "Unknown"
-# puts price_detail = fields["price_detail"].present? ? fields["price_detail"] : "Unknown"
-# puts price_type = fields["price_type"].present? ? fields["price_type"] : "Unknown"
-# puts date_description = fields["date_description"].present? ? fields["date_description"] : "Unknown"
-# puts address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Unknown"
-# puts external_id = fields["id"].present? ? fields["id"].to_i : nil
 
  latitude = fields["lat_lon"][0].present? ? exhib["fields"]["lat_lon"][0] : nil
  longitude = fields["lat_lon"][1].present? ? exhib["fields"]["lat_lon"][1] : nil
@@ -90,39 +76,6 @@ exhibitions["records"].each do |exhib|
  address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Unknown"
  puts external_id = fields["id"].present? ? fields["id"].to_i : nil
 
-  # if Exhibition.where(external_id: external_id) ? "a" : "b"
-  #   @exhibition_array = Exhibition.where(external_id: external_id)
-  #   @exhibition = @exhibition_array[0]
-  #   @exhibition.update(
-  #   latitude:latitude,
-  #   longitude: longitude,
-  #   address_street: address_street,
-  #   category: category,
-  #   title: title,
-  #   date_start: date_start,
-  #   date_end: date_end,
-  #   occurences: occurences,
-  #   contact_url: contact_url,
-  #   address_name: address_name,
-  #   contact_twitter: contact_twitter,
-  #   contact_phone: contact_phone,
-  #   description: description,
-  #   tags: tags,
-  #   contact_mail: contact_mail,
-  #   lead_text: lead_text,
-  #   cover_url: cover_url,
-  #   contact_facebook: contact_facebook,
-  #   cover_credit: cover_credit,
-  #   address_city: address_city,
-  #   price_detail: price_detail,
-  #   price_type: price_type,
-  #   date_description: date_description,
-  #   address_zipcode: address_zipcode)
-  #   puts @exhibition
-  #   puts @exhibition.valid?
-  #   puts "test true"
-
-  # else
     exhibition_params = {
       latitude:latitude,
       longitude: longitude,
@@ -151,13 +104,57 @@ exhibitions["records"].each do |exhib|
       external_id: external_id
     }
     Exhibition.find_or_initialize_by(exhibition_params).save
-    # if Exhibition.where(external_id: external_id).exists?
-    #   Exhibition.find_by(external_id: external_id).update exhibition_params
-    # else
-    #   Exhibition.new exhibition_params
-    # end
-  # end
 
 end
 
+
+
+#####
+
+# Creating visit
+exhibs = Exhibition.all
+
+exhibs.each do |ex|
+  2.times do
+    date = Faker::Date.forward(days: 10)
+    information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
+    visit = Visit.new(date: date, information: information, exhibitions_id: ex.id)
+    visit.save!
+  end
+
+  1.times do
+    information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
+    date = Faker::Date.backward(days: 10)
+    visit = Visit.new(date: date, information: information, exhibitions_id: ex.id)
+    visit.save!
+  end
+end
+
+
+# create_table "visits", force: :cascade do |t|
+#     t.date "date"
+#     t.text "information"
+#     t.bigint "exhibitions_id", null: false
+#     t.datetime "created_at", precision: 6, null: false
+#     t.datetime "updated_at", precision: 6, null: false
+#     t.index ["exhibitions_id"], name: "index_visits_on_exhibitions_id"
+#   end
+
+#####
+
+#####
+
+# Creating Subscriptions
+
+#####
+
+
+# create_table "subscriptions", force: :cascade do |t|
+#     t.boolean "subscribed"
+#     t.bigint "users_id", null: false
+#     t.bigint "visits_id", null: false
+#     t.datetime "created_at", precision: 6, null: false
+#     t.datetime "updated_at", precision: 6, null: false
+#     t.index ["users_id"], name: "index_subscriptions_on_users_id"
+#     t.index ["visits_id"], name: "index_subscriptions_on_visits_id"
 

@@ -1,12 +1,67 @@
-.navbar-lewagon {
+.nav-bar {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   background: white;
+  border-bottom: 1px solid $light-gray;
+  a {
+    color: #402D2D;
+  }
+  .dropdown-menu {
+    transform: translate3d(-124px, 60px, 0px) !important;
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+
+
+.nav-bar-side {
+  width: 25vw;
+
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+
+.nav-bar-expand-sm {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100%;
+}
+
+
+
+
+//----------- responsive -------------//
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .nav-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .nav-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .nav-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .nav-bar {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .nav-bar {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
