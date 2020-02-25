@@ -1,5 +1,6 @@
 class Exhibition < ApplicationRecord
   include ActiveModel::Dirty
+
   has_many :participations
   has_many :visits
   has_one_attached :photo
@@ -9,7 +10,4 @@ class Exhibition < ApplicationRecord
   def full_address
     address_name
   end
-
-
-
 end
