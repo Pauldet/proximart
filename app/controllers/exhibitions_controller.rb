@@ -63,6 +63,7 @@ class ExhibitionsController < ApplicationController
     @visits = @exhibition.visits
 
     @participation = @exhibition.participations
+
   end
 
 private

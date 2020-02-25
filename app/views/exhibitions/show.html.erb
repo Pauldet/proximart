@@ -1,5 +1,20 @@
 <h1> <%= @exhibition.title  %></h1>
+<p><%= @exhibition.lead_text %></p>
+<p><%= @exhibition.address_street %></p>
+<p><%= @exhibition.category %></p>
+<p><%= @exhibition.price_detail %></p>
+<p><%= @exhibition.date_description %></p>
+<p><%= @exhibition.tags %></p>
+<p><%= @exhibition.description %></p>
 
 <% @visits.each do |visit|%>
-<%= visit.information %>
+  <%= visit.information %>
 <% end %>
+
+<p>Intéressé,faites le savoir en créant un rendez vous!</p>
+<button class="btn-primary">J'y vais</button>
+
+<p>Vous êtes allez à l'expo, partagez votre avis avec la communauté</p>
+<button class="btn-primary">Laisser un avis</button>
+
+<h1></h1>
