@@ -20,7 +20,7 @@ const initLetters = () => {
       delay: (el, i) => 150 + 25 * i
     }).add({
       targets: '.moving-letters',
-      opacity: 0,
+      opacity: 1,
       duration: 1000,
       easing: "easeOutExpo",
       delay: 1000
