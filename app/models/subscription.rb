@@ -1,4 +1,4 @@
 class Subscription < ApplicationRecord
-  belongs_to :users
-  belongs_to :visits
+  belongs_to :user
+  belongs_to :visit
 end

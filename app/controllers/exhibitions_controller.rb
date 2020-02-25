@@ -2,7 +2,7 @@ class ExhibitionsController < ApplicationController
   before_action :find_exhibition, only: :show
 
   def new
-    @exhibition = Exhibition.new
+    @exhibition = Exhibition.new()
   end
 
   def create
@@ -27,6 +27,10 @@ class ExhibitionsController < ApplicationController
   end
 
   def show
+
+    @visits = @exhibition.visits
+
+    @participation = @exhibition.participations
   end
 
 private
