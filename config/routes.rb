@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   end
   get '/visits/', to: 'visits#show'
 
+
 end
