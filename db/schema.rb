@@ -68,12 +68,12 @@ ActiveRecord::Schema.define(version: 2020_02_25_145302) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.bigint "visits_id", null: false
-    t.bigint "users_id", null: false
+    t.bigint "visit_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_messages_on_users_id"
-    t.index ["visits_id"], name: "index_messages_on_visits_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["visit_id"], name: "index_messages_on_visit_id"
   end
 
   create_table "participations", force: :cascade do |t|
@@ -81,22 +81,22 @@ ActiveRecord::Schema.define(version: 2020_02_25_145302) do
     t.float "rating"
     t.date "date"
     t.boolean "interested"
-    t.bigint "users_id", null: false
-    t.bigint "exhibitions_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "exhibition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exhibitions_id"], name: "index_participations_on_exhibitions_id"
-    t.index ["users_id"], name: "index_participations_on_users_id"
+    t.index ["exhibition_id"], name: "index_participations_on_exhibition_id"
+    t.index ["user_id"], name: "index_participations_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
     t.boolean "subscribed"
-    t.bigint "users_id", null: false
-    t.bigint "visits_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "visit_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_subscriptions_on_users_id"
-    t.index ["visits_id"], name: "index_subscriptions_on_visits_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+    t.index ["visit_id"], name: "index_subscriptions_on_visit_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -117,18 +117,18 @@ ActiveRecord::Schema.define(version: 2020_02_25_145302) do
   create_table "visits", force: :cascade do |t|
     t.date "date"
     t.text "information"
-    t.bigint "exhibitions_id", null: false
+    t.bigint "exhibition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exhibitions_id"], name: "index_visits_on_exhibitions_id"
+    t.index ["exhibition_id"], name: "index_visits_on_exhibition_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "messages", "users", column: "users_id"
-  add_foreign_key "messages", "visits", column: "visits_id"
-  add_foreign_key "participations", "exhibitions", column: "exhibitions_id"
-  add_foreign_key "participations", "users", column: "users_id"
-  add_foreign_key "subscriptions", "users", column: "users_id"
-  add_foreign_key "subscriptions", "visits", column: "visits_id"
-  add_foreign_key "visits", "exhibitions", column: "exhibitions_id"
+  add_foreign_key "messages", "users"
+  add_foreign_key "messages", "visits"
+  add_foreign_key "participations", "exhibitions"
+  add_foreign_key "participations", "users"
+  add_foreign_key "subscriptions", "users"
+  add_foreign_key "subscriptions", "visits"
+  add_foreign_key "visits", "exhibitions"
 end
