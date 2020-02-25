@@ -1,4 +1,4 @@
 class Message < ApplicationRecord
-  belongs_to :visits
-  belongs_to :users
+  belongs_to :visit
+  belongs_to :user
 end
