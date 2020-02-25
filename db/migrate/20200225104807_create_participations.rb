@@ -5,8 +5,8 @@ class CreateParticipations < ActiveRecord::Migration[6.0]
       t.float :rating
       t.date :date
       t.boolean :interested
-      t.references :users, null: false, foreign_key: true
-      t.references :exhibitions, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
+      t.references :exhibition, null: false, foreign_key: true
 
       t.timestamps
     end
