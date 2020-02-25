@@ -90,7 +90,7 @@ exhibitions["records"].each do |exhib|
  address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Unknown"
  puts external_id = fields["id"].present? ? fields["id"].to_i : nil
 
-  # if Exhibition.where(external_id: external_id)
+  # if Exhibition.where(external_id: external_id) ? "a" : "b"
   #   @exhibition_array = Exhibition.where(external_id: external_id)
   #   @exhibition = @exhibition_array[0]
   #   @exhibition.update(
@@ -123,7 +123,7 @@ exhibitions["records"].each do |exhib|
   #   puts "test true"
 
   # else
-    @exhibition = Exhibition.new(
+    exhibition_params = {
       latitude:latitude,
       longitude: longitude,
       address_street: address_street,
@@ -148,10 +148,14 @@ exhibitions["records"].each do |exhib|
       price_type: price_type,
       date_description: date_description,
       address_zipcode: address_zipcode,
-      external_id: external_id)
-    puts @exhibition.valid?
-    puts @exhibition
-    @exhibition.save!
+      external_id: external_id
+    }
+    Exhibition.find_or_initialize_by(exhibition_params).save
+    # if Exhibition.where(external_id: external_id).exists?
+    #   Exhibition.find_by(external_id: external_id).update exhibition_params
+    # else
+    #   Exhibition.new exhibition_params
+    # end
   # end
 
 end
