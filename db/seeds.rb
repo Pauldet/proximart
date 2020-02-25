@@ -15,7 +15,7 @@ User.destroy_all
 Exhibition.destroy_all
 ## Create users
  'Creating 5 fake users...'
-# user_array = [1,2,3,4,5]
+user_array = [1,2,3,4,5]
 
 user_array.each do |i|
   user_email = "#{i}@test.com"
