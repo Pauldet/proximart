@@ -1,6 +1,6 @@
 class ExhibitionsController < ApplicationController
+  before_action :find_exhibition, only: :show
 
-    before_action :find_exhibition, only: :show
   def new
     @exhibition = Exhibition.new
   end
@@ -12,6 +12,14 @@ class ExhibitionsController < ApplicationController
 
   def index
     @exhibitions = Exhibition.all
+    @exhibitions = Exhibition.geocoded
+
+    @markers = @exhibitions.map do |exhibition|
+      {
+        lat: exhibition.latitude,
+        lng: exhibition.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })      }
+    end
   end
 
   def update
