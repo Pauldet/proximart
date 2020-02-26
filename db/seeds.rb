@@ -11,6 +11,7 @@ require 'json'
 require 'open-uri'
 require 'faker'
 
+Subscription.destroy_all
 User.destroy_all
 Visit.destroy_all
 Exhibition.destroy_all
@@ -27,8 +28,8 @@ user_array.each do |i|
   username = Faker::GreekPhilosophers.name+"#{i}"
   bio = Faker::Hipster.paragraph_by_chars(characters: 256, supplemental: false)
   user = User.new(email: user_email, password: '123456', phone_number:'+33695141564', bio: bio, username: username)
-  # file = URI.open('https://source.unsplash.com/100x100/?avatar')
-  # user.avatar.attach(io: file, filename: "avatar#{i}", content_type: 'image/png')
+  file = URI.open("https://source.unsplash.com/300x200/?avatar")
+  user.avatar.attach(io: file, filename: "avatar#{i}", content_type: 'image/png')
   user.save!
 end
 
@@ -39,7 +40,7 @@ end
 #####
 
 
-puts "creating 1 exhib"
+puts "creating 2 exhib"
 
 extensive_url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=400&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
 url = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=2&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
@@ -74,7 +75,7 @@ exhibitions["records"].each do |exhib|
  price_type = fields["price_type"].present? ? fields["price_type"] : "Unknown"
  date_description = fields["date_description"].present? ? fields["date_description"] : "Unknown"
  address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Unknown"
- puts external_id = fields["id"].present? ? fields["id"].to_i : nil
+ external_id = fields["id"].present? ? fields["id"].to_i : nil
 
     exhibition_params = {
       latitude:latitude,
@@ -104,6 +105,10 @@ exhibitions["records"].each do |exhib|
       external_id: external_id
     }
     Exhibition.find_or_initialize_by(exhibition_params).save
+    exhibition = Exhibition.find_by(external_id: external_id)
+    photo_file = URI.open(cover_url)
+    exhibition.photo.attach(io: photo_file, filename: "#{external_id}_cover")
+    exhibition.save!
 
 end
 
@@ -112,6 +117,10 @@ end
 #####
 
 # Creating visit
+
+#####
+
+puts "creating 3 visits / exhib"
 exhibs = Exhibition.all
 
 exhibs.each do |ex|
@@ -131,30 +140,47 @@ exhibs.each do |ex|
 end
 
 
-# create_table "visits", force: :cascade do |t|
-#     t.date "date"
-#     t.text "information"
-#     t.bigint "exhibitions_id", null: false
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
-#     t.index ["exhibitions_id"], name: "index_visits_on_exhibitions_id"
-#   end
 
 #####
 
-#####
-
-# Creating Subscriptions
+# Creating Subscription
 
 #####
 
+puts "creating 2 subscriber per visit"
 
-# create_table "subscriptions", force: :cascade do |t|
-#     t.boolean "subscribed"
-#     t.bigint "users_id", null: false
-#     t.bigint "visits_id", null: false
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
-#     t.index ["users_id"], name: "index_subscriptions_on_users_id"
-#     t.index ["visits_id"], name: "index_subscriptions_on_visits_id"
+
+visits = Visit.all
+users = User.all
+subscriptions = Subscription.all
+user1 = users.sample(1)
+new_users = users - user1
+user2 = new_users.sample(1)
+puts user1.class
+puts user1
+puts user1.first
+
+visits.each do |visit|
+  # unless subscriptions.where(user_id: user1.first.id, visit_id: visit.id)
+    sub1 = Subscription.new(
+      subscribed: "true",
+      user_id: user1.first.id,
+      visit_id: visit.id
+      )
+    sub1.save!
+  # else
+  #   puts "Subscirption for user 1 already exit"
+  # end
+   # unless subscriptions.where(user_id: user2.first.id, visit_id: visit.id)
+    sub2 = Subscription.new(
+      subscribed: "true",
+      user_id: user2.first.id,
+      visit_id: visit.id
+      )
+    sub2.save!
+  # end
+
+end
+
+
 
