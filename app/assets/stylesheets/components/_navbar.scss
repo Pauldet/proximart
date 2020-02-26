@@ -1,7 +1,7 @@
 .nav-bar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  // justify-content: space-between;
   background: white;
   border-bottom: 1px solid $light-gray;
   a {
@@ -10,16 +10,32 @@
   .dropdown-menu {
     transform: translate3d(0px, 60px, 0px) !important;
   }
+  .navbar-left, .navbar-right {
+    width: 70px;
+  }
+  .navbar-center {
+    flex-grow: 1;
+  }
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-.navbar-nav {
-  margin-left: -16px;
-}
+.navbar-left button:focus {
+  outline: none;
 
-.nav-bar-side {
-  width: 25vw;
 
 }
+// .navbar-nav {
+//   margin-left: -16px;
+// }
+
+// .nav-bar-side {
+//   width: 25vw;
+
+// }
 
 
 .nav-bar-expand-sm {
@@ -32,6 +48,7 @@
 .list-group-item {
   padding: 0;
   border: none;
+
 }
 
 
