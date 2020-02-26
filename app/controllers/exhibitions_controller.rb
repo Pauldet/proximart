@@ -1,6 +1,17 @@
 class ExhibitionsController < ApplicationController
   before_action :find_exhibition, only: :show
 
+
+
+def show
+    @visits = @exhibition.visits
+    # @futur_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now =< :date) We need to add the logic of future and past events
+    # @past_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now >= :date)
+
+
+  end
+
+
   def new
     @exhibition = Exhibition.new()
   end
@@ -58,13 +69,6 @@ class ExhibitionsController < ApplicationController
 
   end
 
-  def show
-
-    @visits = @exhibition.visits
-
-    @participation = @exhibition.participations
-
-  end
 
 private
 
