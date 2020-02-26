@@ -1,0 +1,25 @@
+.card_exhibition {
+  border: 1px solid #bac6d3;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 50vw;
+  margin: 5vw;
+  box-shadow: 3px 0 10px rgba(100,100,100,0.2);
+}
+
+.carrousel-items {
+  display: flex;
+  padding: 10rem 0;
+  width: 100px;
+
+}
+
+.card_exhibition > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+
+

@@ -7,6 +7,11 @@
 <p><%= @exhibition.tags %></p>
 <p><%= @exhibition.description %></p>
 
+<% if @exhibition.photo.attached?  %>
+  <%= cl_image_tag @exhibition.photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
+
 <% @visits.each do |visit|%>
   <%= visit.information %>
 <% end %>
