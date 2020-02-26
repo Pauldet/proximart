@@ -1,10 +1,21 @@
 <%= render 'shared/map' %>
 
 
-<h1>Hello</h1>
+<div class="carrousel-items">
+  <% @exhibitions.each do |exhibition| %>
+    <%= link_to exhibition_path(exhibition) do  %>
+      <div class="carrousel-item">
+        <div class="card_exhibition">
+          <div class="carrousel-img">
+            <% if exhibition.photo.attached?  %>
+              <%= cl_image_tag exhibition.photo.key, height: 100, width: 250, crop: :fill %>
+            <% end %>
+          </div>
+          <P><%= exhibition.title %></p>
+          <P><%= exhibition.category %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
-<% @exhibitions.each do |exhibition| %>
-  <%= link_to exhibition_path(exhibition) do %>
-    <p><%= exhibition.title %></p>
-  <% end %>
-<% end %>

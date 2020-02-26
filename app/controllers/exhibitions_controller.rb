@@ -30,7 +30,6 @@ def show
         lat: exhibition.latitude,
         lng: exhibition.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
-
       }
     end
   end
