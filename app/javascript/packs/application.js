@@ -16,5 +16,8 @@ initBToX();
 import { initMapbox } from '../plugins/init_mapbox';
 initMapbox();
 
-import {show} from '../plugins/init_showsections'
+import {show} from '../plugins/init_showsections';
 show();
+
+import {hearting} from '../plugins/init_hearting';
+hearting();
