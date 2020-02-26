@@ -62,8 +62,14 @@ class ExhibitionsController < ApplicationController
 
     @visits = @exhibition.visits
 
-    @participation = @exhibition.participations
-
+    @participations = @exhibition.participations
+    # Used to calculate average rating of the exhbition but should be in the participation controller at the end of the create and edit method
+    # if @participations.length > 0
+    #   @average_rating = @participations.sum(0.0) / @participations.length
+    #   @average_rating = @average_rating.truncate(2)
+    # else
+    #   @average_rating = 0
+    # end
   end
 
 private
