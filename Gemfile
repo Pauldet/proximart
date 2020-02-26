@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.6.5'
 
-gem 'geocoder'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'jbuilder', '~> 2.0'
@@ -19,6 +18,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'cloudinary', '~> 1.12.0'
 gem 'pg_search'
+gem 'geocoder'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
