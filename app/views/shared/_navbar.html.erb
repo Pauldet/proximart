@@ -1,57 +1,53 @@
-<div class="nav-bar-side d-flex justify-content-end">
-  <div class="nav-bar-collapse">
-    <ul class="navbar-nav mr-auto list-group-horizontal">
-      <li class="nav-item active">
-      </li>
-      <li class="nav-item">
-        <div class="btn-group">
-          <button type="button" class="btn btn-empty btn-navbar mx-1 list-group-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <!-- test burger to X moving-->
-            <div class="nav-icon">
-              <div>
-
+<div class="nav-bar">
+  <div class="nav-bar-side d-flex flex-column justify-content-around">
+    <div class="nav-bar-collapse">
+      <ul class="navbar-nav list-group-horizontal">
+        <li class="nav-item active">
+        </li>
+        <li class="nav-item">
+          <div class="btn-group">
+            <button type="button" class="list-group-item mx-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <!-- test burger to X moving-->
+              <div class="nav-icon">
+                <div class="burger-menu">
+                </div>
+              </div>
+            </button>
+            <div class="dropdown-menu">
+              <%= link_to "menu1", "#", class: "btn btn-empty mx-1 list-group-item btn-navbar" %>
+                <a class="dropdown-item" href="/user">Mon Profile</a>
+                <a class="dropdown-item" href="#">Ma Vie 👌</a>
+                <a class="dropdown-item" href="/users/edit">Mon Combat 🚀</a>
+              <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/users/sign_out" data-method= "delete">Log Out</a>
               </div>
             </div>
-          </button>
-          <div class="dropdown-menu mr-5">
-            <%= link_to "menu1", "#", class: "btn btn-empty mx-1 list-group-item btn-navbar" %>
-            <a class="dropdown-item" href="/user">Mon Profile</a>
-            <a class="dropdown-item" href="#">Menu 2</a>
-            <a class="dropdown-item" href="/users/edit">Edit account info
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/users/sign_out" data-method= "delete">Log Out</a>
-          </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </div>
-
-
-</div>
 
 <!-- logo start -->
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="moving-letters pt-4 flex-start" type="submit">
-    <%= link_to root_path do %>
-      <h1 class="pb-4" style="font-size: 32px">
-        <span class="text-wrapper">
-          <span class="letters">Proxim'Art</span>
-          <span class="line"></span>
-        </span>
-      </h1>
-    <% end %>
+  <div class="navbar navbar-expand-sm d-flex flex-column justify-content-around">
+    <div class="moving-letters pt-1 flex-start" type="submit">
+      <%= link_to root_path do %>
+        <h1 class="pb-4" style="font-size: 32px">
+          <span class="text-wrapper">
+            <span class="letters">Proxim'Art</span>
+            <span class="line"></span>
+          </span>
+        </h1>
+      <% end %>
+    </div>
   </div>
-<!-- logo end -->
-
 
 <!-- avatar -->
-  <div class="avatar">
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+  <div class="avatar mt-2 flex-column justify-content-around">
+    <%= image_tag "NicoM.jpeg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
   </div>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li class="nav-item active">
           <%= link_to "Home", "#", class: "nav-link" %>
@@ -75,7 +71,7 @@
     </ul>
   </div>
 </div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-
-
 
