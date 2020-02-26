@@ -19,6 +19,7 @@ class ExhibitionsController < ApplicationController
         lat: exhibition.latitude,
         lng: exhibition.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
+
       }
     end
   end
@@ -62,6 +63,7 @@ class ExhibitionsController < ApplicationController
     @visits = @exhibition.visits
 
     @participation = @exhibition.participations
+
   end
 
 private
