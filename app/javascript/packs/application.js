@@ -16,3 +16,5 @@ initBToX();
 import { initMapbox } from '../plugins/init_mapbox';
 initMapbox();
 
+import {show} from '../plugins/init_showsections'
+show();

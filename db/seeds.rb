@@ -27,7 +27,9 @@ user_array.each do |i|
   username = Faker::GreekPhilosophers.name+"#{i}"
   bio = Faker::Hipster.paragraph_by_chars(characters: 256, supplemental: false)
   user = User.new(email: user_email, password: '123456', phone_number:'+33695141564', bio: bio, username: username)
+
   file = URI.open("https://source.unsplash.com/300x200/?avatar")
+
   user.avatar.attach(io: file, filename: "avatar#{i}", content_type: 'image/png')
   user.save!
 end

@@ -1,0 +1,14 @@
+.heart {
+  color: #c6c6c4;
+  position:absolute;
+  right: 2vw;
+  bottom: 1vh;
+  font-size: 25px;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.heart :hover {
+  color:#ea2c5f;
+  font-size:30px;
+}

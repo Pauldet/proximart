@@ -1,20 +1,71 @@
-<h1> <%= @exhibition.title  %></h1>
-<p><%= @exhibition.lead_text %></p>
-<p><%= @exhibition.address_street %></p>
-<p><%= @exhibition.category %></p>
-<p><%= @exhibition.price_detail %></p>
-<p><%= @exhibition.date_description %></p>
-<p><%= @exhibition.tags %></p>
-<p><%= @exhibition.description %></p>
+<div class="main-container">
+  <div class="cover-picture">
+    <div class="heart">
+      <i class="fas fa-heart"></i>
+    </div>
+  </div>
 
-<% @visits.each do |visit|%>
-  <%= visit.information %>
-<% end %>
+  <div class="below-cover-picure-container">
+    <h3><%= @exhibition.title  %></h3>
 
-<p>Intéressé,faites le savoir en créant un rendez vous!</p>
-<button class="btn-primary">J'y vais</button>
+    <% @average_rating.to_i.times do  %>
+      <span class="glyphicon glyphicon-star"></span>
+    <% end %>
+    <%= @average_rating %>
+    <p><%= @exhibition.lead_text %></p>
+    <div class="show-section">
+      <div class="section-title">
+        <h6>Infos pratiques</h6>
+        <div class="chevron">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+      <div class="section-content d-none" id="infos-pratiques">
+        <p>Où:<%= @exhibition.address_street %></p>
+        <p>Combien :<%= @exhibition.price_detail %></p>
+        <p>Quand :<%= @exhibition.date_description %></p>
+      </div>
+    </div>
+    <div class="show-section">
+      <div class="section-title" >
+        <h6>Résumé</h6>
+      </div>
+        <p class="description"><%= @exhibition.description %></p>
+        <p class="extend-text">Lire plus <i class="fas fa-chevron-right"></i></p>
+    </div>
+    <div class="show-section">
+      <div class="section-title">
+        <h6>Les visites à venir</h6>
+        <div class="chevron">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+      <div class="section-content d-none">
+        <% @visits.each do |visit|%>
+          <%= visit.information %>
+        <% end %>
+      </div>
+    </div>
+    <p>Intéressé,faites le savoir en créant un rendez vous!</p>
+    <button class="btn-primary">J'y vais</button>
+    <div class="show-section">
+      <div class="section-title">
+        <h6>Avis</h6>
+        <div class="chevron">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+      <div class="section-content d-none">
+        <% @participations.each do |participation|%>
+          <%= participation.review_content %>
+        <% end %>
+      </div>
+    </div>
 
-<p>Vous êtes allez à l'expo, partagez votre avis avec la communauté</p>
-<button class="btn-primary">Laisser un avis</button>
 
-<h1></h1>
+    <p>Vous êtes allez à l'expo, partagez votre avis avec la communauté</p>
+    <button class="btn-primary">Laisser un avis</button>
+  </div>
+</div>
+
+
