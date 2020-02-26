@@ -4,7 +4,10 @@ class VisitsController < ApplicationController
 
 
   def show
-
+    @visit = Visit.find(params[:id])
+    @message = Message.new
+    @message.visit = @visit
+    @message.user = current_user
   end
 
   def create

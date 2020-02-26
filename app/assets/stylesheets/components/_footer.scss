@@ -11,10 +11,15 @@
   height: 55px;
   padding: 0px 50px;
   color: rgba(0,0,0,0.3);
+  position: fixed;
+  left: 0;
+  right:0;
 }
+
 .footer-links {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .footer-links a {
   color: $green;

@@ -16,7 +16,7 @@ initBToX();
 import { initMapbox } from '../plugins/init_mapbox';
 initMapbox();
 
-import {show} from '../plugins/init_showsections'
+import {show} from '../plugins/init_showsections';
 show();
 
 
@@ -34,3 +34,4 @@ mobiscroll.scrollview('.demo-card', {
     itemWidth: 134,
     snap: false
 });
+

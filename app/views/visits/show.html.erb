@@ -1,2 +1,52 @@
-<h1>Visits#show</h1>
-<p>Find me in app/views/visits/show.html.erb</p>
+<div>
+  <div class= "cover-picture-visit">
+    <p> This is the div for the cover picture</p>
+  </div>
+  </div>
+      <div class = "details-visit">
+        <p>heure</p>
+        <p>adresse</p>
+        <p>up to 10 avatars</p>
+        <p>first two and X-2 other participants</p>
+      </div>
+
+      <div class = "share-join-column">
+        <div>
+        <%= link_to "icone Whatsapp" ,visit_path  %>
+        <%= link_to "Fb" , visit_path  %>
+        </div>
+
+        <div>
+          <%= link_to "Rejoindre cette visite", visit_path  %>
+        </div>
+      </div>
+  <div>
+
+  <div class= "information-visit">
+    <p><%= @visit.information %></p>
+  </div>
+
+
+
+
+
+
+<div class= "past-messages">
+    <div id="messages" data-visit-id="<%= @visit.id %>">
+      <% @visit.messages.each do |message| %>
+      <%= render partial:'messages/message', locals: { message: @message }  %>
+      <% end %>
+    </div>
+  </div>
+
+
+
+  <div class= "message-creation">
+  <%= simple_form_for [ @visit, @message ] do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message ##" %>
+    <%= f.button :submit, 'Envoyer' %>
+  <% end %>
+  </div>
+
+
+</div>

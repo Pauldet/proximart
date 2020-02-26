@@ -1,12 +1,20 @@
+
 <div class="main-container">
+<%# if @exhibition.photo.attached?  %>
+  <%#= cl_image_tag @exhibition.photo.key, height: 300, width: 400, crop: :fill %>
+<%# end %>
   <div class="cover-picture">
-    <div class="heart">
-      <i class="fas fa-heart"></i>
+    <div class="heart-button row">
+      <div class="heart">
+        <i class="fas fa-heart pr-1"></i>
+      </div>
+      <span>Enregistrer</span>
     </div>
   </div>
 
   <div class="below-cover-picure-container">
     <h3><%= @exhibition.title  %></h3>
+
 
     <% @average_rating.to_i.times do  %>
       <span class="glyphicon glyphicon-star"></span>
@@ -67,5 +75,16 @@
     <button class="btn-primary">Laisser un avis</button>
   </div>
 </div>
+
+<div>
+  <ul>
+    <% @visits.each do |visit|%>
+      <%= link_to "#{@exhibition.title} - #{visit.date}", visit_path(id: visit.id)  %>
+    <% end %>
+  </ul>
+</div>
+
+<p>Intéressé,faites le savoir en créant un rendez vous!</p>
+<button class="btn-primary">J'y vais</button>
 
 

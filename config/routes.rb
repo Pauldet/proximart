@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :exhibitions, only: [:show, :index, :new, :create] do
     resources :visits, only: [ :new, :create]
-    resources :participations, only: [:create, :new, :update, :edit, :destroy, :index]
   end
-  get '/visits/', to: 'visits#show'
+  resources :visits, only: [:show] do
+    resources :participations, only: [:create, :new, :update, :edit, :destroy, :index]
+    resources :messages, only: :create
+  end
 
 
 end
