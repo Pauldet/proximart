@@ -11,6 +11,7 @@ require 'json'
 require 'open-uri'
 require 'faker'
 
+
 Subscription.destroy_all
 User.destroy_all
 Visit.destroy_all
@@ -64,7 +65,7 @@ exhibitions["records"].each do |exhib|
  address_name = fields["address_name"].present? ? fields["address_name"] : "Unknown"
  contact_twitter = fields["contact_twitter"].present? ? fields["contact_twitter"] : "Unknown" #TBC
  contact_phone = fields["contact_phone"].present? ? fields["contact_phone"] : "Unknown" #TBS
- description = fields["description"].present? ? fields["description"] : "Unknown"
+ description = fields["description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["description"]) : "Unknown"
  tags = fields["tags"].present? ? fields["tags"] : "Unknown"
  contact_mail = fields["contact_mail"].present? ? fields["contact_mail"] : "Unknown" #TBC
  lead_text = fields["lead_text"].present? ? fields["lead_text"] : "Unknown"
