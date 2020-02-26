@@ -1,0 +1,42 @@
+.section-content p {
+  margin-bottom: 0px;
+}
+
+.show-section {
+  margin-bottom: 1vh;
+  position: relative;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 5vw;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+#chevron {
+  position:absolute;
+
+}
+
+.description {
+  margin-bottom: 0px;
+  overflow: hidden;
+  max-height: 100px;
+
+  &.out {
+    max-height: 100%;
+  }
+}
+
+.extend-text {
+  font-weight:bold;
+}
+
+h6 {
+  font-family: "Spartan";
+  font-weight: bold;
+ }

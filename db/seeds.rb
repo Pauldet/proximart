@@ -11,7 +11,9 @@ require 'json'
 require 'open-uri'
 require 'faker'
 
+
 Message.destroy_all
+
 Subscription.destroy_all
 User.destroy_all
 Visit.destroy_all
@@ -28,7 +30,9 @@ user_array.each do |i|
   username = Faker::GreekPhilosophers.name+"#{i}"
   bio = Faker::Hipster.paragraph_by_chars(characters: 256, supplemental: false)
   user = User.new(email: user_email, password: '123456', phone_number:'+33695141564', bio: bio, username: username)
+
   file = URI.open("https://source.unsplash.com/300x200/?avatar")
+
   user.avatar.attach(io: file, filename: "avatar#{i}", content_type: 'image/png')
   user.save!
 end
@@ -63,7 +67,7 @@ exhibitions["records"].each do |exhib|
  address_name = fields["address_name"].present? ? fields["address_name"] : "Unknown"
  contact_twitter = fields["contact_twitter"].present? ? fields["contact_twitter"] : "Unknown" #TBC
  contact_phone = fields["contact_phone"].present? ? fields["contact_phone"] : "Unknown" #TBS
- description = fields["description"].present? ? fields["description"] : "Unknown"
+ description = fields["description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["description"]) : "Unknown"
  tags = fields["tags"].present? ? fields["tags"] : "Unknown"
  contact_mail = fields["contact_mail"].present? ? fields["contact_mail"] : "Unknown" #TBC
  lead_text = fields["lead_text"].present? ? fields["lead_text"] : "Unknown"

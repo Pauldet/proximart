@@ -7,7 +7,7 @@ def show
     @visits = @exhibition.visits
     # @futur_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now =< :date) We need to add the logic of future and past events
     # @past_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now >= :date)
-
+    @participations = @exhibition.participations
 
   end
 
