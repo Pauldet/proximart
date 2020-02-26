@@ -8,6 +8,7 @@
   <div class="below-cover-picure-container">
     <h3><%= @exhibition.title  %></h3>
 
+
     <% @average_rating.to_i.times do  %>
       <span class="glyphicon glyphicon-star"></span>
     <% end %>
@@ -67,5 +68,16 @@
     <button class="btn-primary">Laisser un avis</button>
   </div>
 </div>
+
+<div>
+  <ul>
+    <% @visits.each do |visit|%>
+      <%= link_to "#{@exhibition.title} - #{visit.date}", visit_path(id: visit.id)  %>
+    <% end %>
+  </ul>
+</div>
+
+<p>Intéressé,faites le savoir en créant un rendez vous!</p>
+<button class="btn-primary">J'y vais</button>
 
 

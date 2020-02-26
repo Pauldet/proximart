@@ -1,6 +1,17 @@
 class ExhibitionsController < ApplicationController
   before_action :find_exhibition, only: :show
 
+
+
+def show
+    @visits = @exhibition.visits
+    # @futur_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now =< :date) We need to add the logic of future and past events
+    # @past_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now >= :date)
+    @participations = @exhibition.participations
+
+  end
+
+
   def new
     @exhibition = Exhibition.new()
   end
@@ -58,19 +69,6 @@ class ExhibitionsController < ApplicationController
 
   end
 
-  def show
-
-    @visits = @exhibition.visits
-
-    @participations = @exhibition.participations
-    # Used to calculate average rating of the exhbition but should be in the participation controller at the end of the create and edit method
-    # if @participations.length > 0
-    #   @average_rating = @participations.sum(0.0) / @participations.length
-    #   @average_rating = @average_rating.truncate(2)
-    # else
-    #   @average_rating = 0
-    # end
-  end
 
 private
 

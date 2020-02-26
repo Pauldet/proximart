@@ -1,0 +1,12 @@
+<div class="message-container">
+  <i class="author">
+    <% if @message.created_at  %>
+      <span><%= @message.user.username %> <%= @message.content %></</span>
+      <small><%= @message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+    <% else %>
+    <%= @message.user.created_at %>
+
+    <% end %>
+  </i>
+  <p><%= @message.content %>  <%= @message.content %></p>
+</div>
