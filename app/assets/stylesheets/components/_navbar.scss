@@ -8,7 +8,7 @@
     color: #402D2D;
   }
   .dropdown-menu {
-    transform: translate3d(-124px, 60px, 0px) !important;
+    transform: translate3d(0px, 60px, 0px) !important;
   }
 }
 
@@ -27,7 +27,9 @@
   width: 100%;
 }
 
-
+.list-group-item {
+  padding: 0;
+}
 
 
 //----------- responsive -------------//
