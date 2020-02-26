@@ -1,5 +1,5 @@
 <div class="nav-bar">
-  <div class="nav-bar-side d-flex flex-column justify-content-around">
+  <div class="navbar-left d-flex justify-content-around">
     <div class="nav-bar-collapse">
       <ul class="navbar-nav list-group-horizontal">
         <li class="nav-item active">
@@ -28,7 +28,7 @@
   </div>
 
 <!-- logo start -->
-  <div class="navbar navbar-expand-sm d-flex flex-column justify-content-around">
+  <div class="navbar navbar-center navbar-expand-sm d-flex flex-column justify-content-around">
     <div class="moving-letters pt-1 flex-start" type="submit">
       <%= link_to root_path do %>
         <h1 class="pb-4" style="font-size: 32px">
@@ -42,10 +42,13 @@
   </div>
 
 <!-- avatar -->
-  <div class="avatar mt-2 flex-column justify-content-around">
+  <div class="navbar-right avatar">
     <%= image_tag "NicoM.jpeg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
   </div>
+<!--  -->
+
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav">
       <% if user_signed_in? %>
