@@ -12,7 +12,9 @@
   }
 }
 
-
+.navbar-nav {
+  margin-left: -16px;
+}
 
 .nav-bar-side {
   width: 25vw;
@@ -29,6 +31,7 @@
 
 .list-group-item {
   padding: 0;
+  border: none;
 }
 
 

@@ -1,7 +1,7 @@
 <div class="nav-bar">
   <div class="nav-bar-side d-flex flex-column justify-content-around">
     <div class="nav-bar-collapse">
-      <ul class="navbar-nav mr-auto list-group-horizontal">
+      <ul class="navbar-nav list-group-horizontal">
         <li class="nav-item active">
         </li>
         <li class="nav-item">
@@ -28,7 +28,7 @@
   </div>
 
 <!-- logo start -->
-  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon flex-column justify-content-around">
+  <div class="navbar navbar-expand-sm d-flex flex-column justify-content-around">
     <div class="moving-letters pt-1 flex-start" type="submit">
       <%= link_to root_path do %>
         <h1 class="pb-4" style="font-size: 32px">
@@ -40,8 +40,6 @@
       <% end %>
     </div>
   </div>
-<!-- logo end -->
-
 
 <!-- avatar -->
   <div class="avatar mt-2 flex-column justify-content-around">
@@ -49,7 +47,7 @@
 
   </div>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li class="nav-item active">
           <%= link_to "Home", "#", class: "nav-link" %>
