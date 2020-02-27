@@ -3,7 +3,7 @@ import consumer from "./consumer";
 
 const messagesContainer = document.getElementById('messages');
 if (messagesContainer) {
-  const id = messagesContainer.dataset.chatroomId;
+  const id = messagesContainer.dataset.visitId;
 
   consumer.subscriptions.create({ channel: "VisitChannel", id: id }, {
     received(data) {
@@ -12,4 +12,3 @@ if (messagesContainer) {
     },
   });
 }
-
