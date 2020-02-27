@@ -22,6 +22,8 @@ show();
 initMapbox();
 initFlatpickr();
 
+import {hearting} from '../plugins/init_hearting';
+hearting();
 
 // other scroller
 

@@ -67,7 +67,8 @@ exhibitions["records"].each do |exhib|
  address_name = fields["address_name"].present? ? fields["address_name"] : "Unknown"
  contact_twitter = fields["contact_twitter"].present? ? fields["contact_twitter"] : "Unknown" #TBC
  contact_phone = fields["contact_phone"].present? ? fields["contact_phone"] : "Unknown" #TBS
- description = fields["description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["description"]) : "Unknown"
+ # description = fields["description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["description"]) : "Unknown"
+ description = fields["description"].present? ? fields["description"] : "Unknown"
  tags = fields["tags"].present? ? fields["tags"] : "Unknown"
  contact_mail = fields["contact_mail"].present? ? fields["contact_mail"] : "Unknown" #TBC
  lead_text = fields["lead_text"].present? ? fields["lead_text"] : "Unknown"
@@ -77,7 +78,8 @@ exhibitions["records"].each do |exhib|
  address_city = fields["address_city"].present? ? fields["address_city"] : "Unknown"
  price_detail = fields["price_detail"].present? ? fields["price_detail"] : "Unknown"
  price_type = fields["price_type"].present? ? fields["price_type"] : "Unknown"
- date_description = fields["date_description"].present? ?ActionView::Base.full_sanitizer.sanitize(fields["date_description"]) : "Unknown"
+ # date_description = fields["date_description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["date_description"]) : "Unknown"
+ date_description = fields["date_description"].present? ? fields["date_description"] : "Unknown"
  address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Unknown"
  external_id = fields["id"].present? ? fields["id"].to_i : nil
 

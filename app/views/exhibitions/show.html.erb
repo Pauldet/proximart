@@ -1,9 +1,9 @@
 
 <div class="main-container">
-<%# if @exhibition.photo.attached?  %>
-  <%#= cl_image_tag @exhibition.photo.key, height: 300, width: 400, crop: :fill %>
-<%# end %>
   <div class="cover-picture">
+    <% if @exhibition.photo.attached?  %>
+      <%= cl_image_tag @exhibition.photo.key, :transformation => { :width => 375, :fetch_format=>:auto, :crop => :scale }%>
+    <% end %>
     <div class="heart-button row">
       <div class="heart">
         <i class="fas fa-heart pr-1"></i>
@@ -14,8 +14,6 @@
 
   <div class="below-cover-picure-container">
     <h3><%= @exhibition.title  %></h3>
-
-
     <% @average_rating.to_i.times do  %>
       <span class="glyphicon glyphicon-star"></span>
     <% end %>
@@ -29,17 +27,10 @@
         </div>
       </div>
       <div class="section-content d-none" id="infos-pratiques">
-        <p>Où:<%= @exhibition.address_street %></p>
-        <p>Combien :<%= @exhibition.price_detail %></p>
-        <p>Quand :<%= @exhibition.date_description %></p>
+        <p><i class="fas fa-map-marker-alt"></i><%= " "+@exhibition.address_street %></p>
+        <p><i class="fas fa-euro-sign"></i><%= " "+@exhibition.price_detail %></p>
+        <p><%= @exhibition.date_description.html_safe %></p>
       </div>
-    </div>
-    <div class="show-section">
-      <div class="section-title" >
-        <h6>Résumé</h6>
-      </div>
-        <p class="description"><%= @exhibition.description %></p>
-        <p class="extend-text">Lire plus <i class="fas fa-chevron-right"></i></p>
     </div>
     <div class="show-section">
       <div class="section-title">
@@ -50,12 +41,19 @@
       </div>
       <div class="section-content d-none">
         <% @visits.each do |visit|%>
-          <%= visit.information %>
+          <%= visit.date %>
         <% end %>
       </div>
+      <p>Intéressé,faites le savoir en créant un rendez vous!</p>
+      <button class="btn-primary">J'y vais</button>
     </div>
-    <p>Intéressé,faites le savoir en créant un rendez vous!</p>
-    <button class="btn-primary">J'y vais</button>
+    <div class="show-section">
+      <div class="section-title" >
+        <h6>Détails</h6>
+      </div>
+        <div class="description"><%= @exhibition.description.html_safe %></div>
+        <p class="extend-text">Lire plus <i class="fas fa-chevron-right"></i></p>
+    </div>
     <div class="show-section">
       <div class="section-title">
         <h6>Avis</h6>
@@ -76,15 +74,14 @@
   </div>
 </div>
 
-<div>
-  <ul>
-    <% @visits.each do |visit|%>
-      <%= link_to "#{@exhibition.title} - #{visit.date}", visit_path(id: visit.id)  %>
-    <% end %>
-  </ul>
-</div>
+    <div>
+      <ul>
+        <% @visits.each do |visit|%>
+          <%= link_to "#{@exhibition.title} - #{visit.date}", visit_path(id: visit.id)  %>
+        <% end %>
+      </ul>
+    </div>
 
-<p>Intéressé,faites le savoir en créant un rendez vous!</p>
-<button class="btn-primary">J'y vais</button>
+
 
 
