@@ -2,24 +2,25 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 
-// Home made plugins
-
-import { show } from '../plugins/init_showsections';
-import { initMapbox } from '../plugins/init_mapbox';
-import initLetters from "../plugins/init_letters";
-import initBToX from "../plugins/init_btox";
-
 // Externals lib
 
 import "bootstrap";
 
-// Calls methods
+// Home made plugins
 
+import { show } from '../plugins/init_showsections';
+import { initMapbox } from '../plugins/init_mapbox';
+import { initLetters } from "../plugins/init_letters";
+import { initBToX} from "../plugins/init_btox";
+import { initFlatpickr } from "../plugins/init_flatpickr";
+
+// Calls methods
 
 initLetters();
 initBToX();
 show();
 initMapbox();
+initFlatpickr();
 
 
 // other scroller

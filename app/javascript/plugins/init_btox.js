@@ -4,4 +4,4 @@ const initBToX = () => {
 
 }
 
-export default initBToX;
+export {initBToX};

@@ -1,0 +1,19 @@
+<div class="form-group">
+  <label class="control-label check_boxes optional">Tags</label>
+  <input type="hidden" name="post[tags][]" value="">
+
+
+
+  <div class="tag-choices">
+    <% tags.each do |tag| %>
+      <input hidden type="checkbox" value="<%= tag %>" name="filter[tags][]" id="post_tags_<%= tag %>">
+      <label class="tag-choice" for="post_tags_<%= tag %>">
+        <%= tag %>
+      </label>
+    <% end %>
+
+  </div>
+
+
+
+</div>

@@ -22,8 +22,8 @@ def show
   end
 
   def index
-    @exhibitions = Exhibition.all
     @exhibitions = Exhibition.geocoded
+    @tags = @exhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq
 
     @markers = @exhibitions.map do |exhibition|
       {

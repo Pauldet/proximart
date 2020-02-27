@@ -3,3 +3,89 @@
 border-radius:    20px;
 
 }
+
+.btn-empty {
+    color: $btn-full;
+    border-color: $btn-full;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    padding: 8px;
+      &:hover {
+        color: white;
+        background-color: $btn-full;
+        border-color: $btn-full;
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    a {
+      color: $btn-full;
+    }
+}
+
+
+.btn-full {
+  color: white;
+  background-color: $btn-full;
+  border-color: $btn-full;
+  border-radius: 4px;
+  padding: 8px 24px;
+    &:hover {
+          color: $btn-full;
+          background-color: #FFFFFF;
+        }
+}
+
+
+.btn-empty-poa {
+    color: $btn-full;
+    border-color: $btn-full;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    padding: 0px 16px;
+    z-index: 999;
+    margin: 4px 0px;
+      &:hover {
+        color: white;
+        background-color: $btn-full;
+        border-color: $btn-full;
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    a {
+      color: $btn-full;
+    }
+}
+
+
+.btn-full-poa {
+  color: white;
+  background-color: $btn-full;
+  border-color: $btn-full;
+  border-radius: 2px;
+  padding: 4px 16px;
+    &:hover {
+          color: $btn-full;
+          background-color: #FFFFFF;
+        }
+}
+
+
+.btn-search {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #1EDD88;
+  transition: background 0.3s ease;
+    &:hover {
+      background: #1BCB7F;
+      color: white;
+    }
+}
+
+
+
+
