@@ -28,9 +28,9 @@
         </div>
       </div>
       <div class="section-content d-none" id="infos-pratiques">
-        <p><i class="fas fa-map-marker-alt"></i><%= " "+@exhibition.address_street %></p>
-        <p><i class="fas fa-euro-sign"></i><%= " "+@exhibition.price_detail %></p>
-        <p><%= @exhibition.date_description.html_safe %></p>
+        <p><i class="fas fa-map-marker-alt"></i><%= @exhibition.address_street %></p>
+        <p><i class="fas fa-euro-sign"></i><%= @exhibition.price_detail %></p>
+        <p><i class="far fa-calendar-check"></i><%=@exhibition.date_description.html_safe %></p>
       </div>
     </div>
     <div class="show-section">
