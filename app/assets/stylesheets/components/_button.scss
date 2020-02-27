@@ -2,3 +2,14 @@
   background: $blue;
   border-radius: 5px;
 }
+
+.btn-primary a{
+  color: white;
+}
+
+.btn-new {
+  background: $blue;
+  color: white !important;
+  font-weight: bold;
+  text-decoration: none;
+}

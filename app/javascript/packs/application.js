@@ -22,7 +22,9 @@ show();
 initMapbox();
 
 import {hearting} from '../plugins/init_hearting';
-hearting();
+const heart = document.querySelector('.heart');
+if (heart) {
+hearting();}
 
 // other scroller
 
