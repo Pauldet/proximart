@@ -32,3 +32,5 @@ class VisitsController < ApplicationController
     params.require(:visit).permit(:date, :information)
   end
 end
+
+
