@@ -13,17 +13,24 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { initLetters } from "../plugins/init_letters";
 import { initBToX} from "../plugins/init_btox";
 import { initFlatpickr } from "../plugins/init_flatpickr";
+import { initHearting } from '../plugins/init_hearting';
 
 // Calls methods
+if (document.querySelector('.moving-letters')) {
+  initLetters();
 
-initLetters();
+}
+
+
 initBToX();
 show();
 initMapbox();
 initFlatpickr();
 
-import {hearting} from '../plugins/init_hearting';
-hearting();
+if (document.querySelector('.heart')) {
+  initHearting();
+
+}
 
 // other scroller
 
