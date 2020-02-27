@@ -16,9 +16,51 @@
 
 .card-presentation {
 
+}
+.cards-visit {
 
 }
 
 .card-visit {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  padding-bottom: 1vh;
+  height:12vh;
+  margin-right: 2vh;
+  // box-shadow: 2px 2px 8px rgba(100,100,100,0.2);
+  display: flex;
+  // border-bottom: 1px solid rgba(100,100,100,0.2);
+  align-items:center;
+  a {
+    color: gray;
+  }
 
+  .month {
+    font-weight:bold;
+    font-family: "Poppins"
+  }
+  .day-of-month {
+    font-weight:bold;
+    font-family: "Poppins"
+  }
+  .user-count {
+    font-size: 12px;
+  }
+}
+.card-visit-date {
+  justify-content:space-around;
+  width: 16vw;
+}
+
+.card-visit-content {
+  display:flex;
+  flex-direction:column;
+  flex-grow:1;
+}
+
+.card-visit-join {
+  padding-right:1vw;
+}
+.card-separator {
+  width:70vw;
 }

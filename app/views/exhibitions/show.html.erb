@@ -13,7 +13,8 @@
   </div>
 
   <div class="below-cover-picure-container">
-    <h3><%= @exhibition.title  %></h3>
+    <h3 class="text-center"><%= @exhibition.title  %></h3>
+    <hr class="card-separator">
     <% @average_rating.to_i.times do  %>
       <span class="glyphicon glyphicon-star"></span>
     <% end %>
@@ -40,12 +41,38 @@
         </div>
       </div>
       <div class="section-content d-none">
-        <% @visits.each do |visit|%>
-          <%= visit.date %>
-        <% end %>
+        <p class="">Cette expo vous intéresse? <br>N'y allez pas seul !<br>Rejoignez une visite ou créer en une.</p>
+          <div class= "cards-visit">
+            <% @visits.each do |visit|%>
+                <div class="card-visit">
+                  <div class="card-visit-date">
+                    <span class="day-of-month"><%= visit.date.mday %></span>
+                    <span class="month"><%= fr_month_short(visit.date.mon) %></span>
+                    <span class="day-of-week"><%= fr_jour_short(visit.date.cwday) %></span>
+                  </div>
+                  <div class="card-visit-content">
+                    <span class="visit-hour">18h00</span>
+                    <span class ="user-count"><%= visit.subscriptions.count %> utilisateurs y vont</span>
+                    <% visit.subscriptions.each do |subscription| %>
+                      <%= User.find(subscription.user_id).username %>
+                    <% end %>
+                  </div>
+                  <div class="card-visit-join">
+                    <%= link_to visit_path(id: visit.id) do %>
+                      <button class="btn-action-visit"></i> Rejoindre</button>
+                    <% end %>
+                  </div>
+                </div>
+                <hr class="card-separator">
+            <% end %>
+          </div>
+        <div class="text-center">
+          <%= link_to new_exhibition_visit_path(@exhibition) do  %>
+            <button class="btn-primary"> Créer un rendez-vous!</button>
+          <% end %>
+        </div>
       </div>
-      <p>Intéressé,faites le savoir en créant un rendez vous!</p>
-      <button class="btn-primary">J'y vais</button>
+
     </div>
     <div class="show-section">
       <div class="section-title" >
@@ -69,18 +96,13 @@
     </div>
 
 
-    <p>Vous êtes allez à l'expo, partagez votre avis avec la communauté</p>
-    <button class="btn-primary">Laisser un avis</button>
+    <p>Vous êtes allez à l'expo ? Partagez votre avis avec la communauté</p>
+    <div class="text-center">
+      <button class="btn-primary">Laisser un avis</button>
+    </div>
   </div>
 </div>
 
-    <div>
-      <ul>
-        <% @visits.each do |visit|%>
-          <%= link_to "#{@exhibition.title} - #{visit.date}", visit_path(id: visit.id)  %>
-        <% end %>
-      </ul>
-    </div>
 
 
 
