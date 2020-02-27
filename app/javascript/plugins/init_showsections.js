@@ -5,9 +5,7 @@ const show = () => {
 
   titles.forEach(title => {
     const chevron = document.querySelector('.section-title .chevron');
-    console.log(title)
     title.addEventListener('click', (event) => {
-      console.log(event.currentTarget);
       const content = event.currentTarget.parentElement.querySelector('.section-content')
       content.classList.toggle('d-none');
       const chevron = event.currentTarget.parentElement.querySelector('.section-title .chevron')
