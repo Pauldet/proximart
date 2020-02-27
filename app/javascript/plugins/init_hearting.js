@@ -1,4 +1,4 @@
-const hearting = () => {
+const initHearting = () => {
   const heart = document.querySelector('.heart')
 
   heart.addEventListener('click', (event) => {
@@ -6,4 +6,4 @@ const hearting = () => {
   });
 };
 
-export {hearting};
+export {initHearting};

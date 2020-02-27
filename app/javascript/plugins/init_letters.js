@@ -27,4 +27,4 @@ const initLetters = () => {
     });
 }
 
-export default initLetters;
+export {initLetters};

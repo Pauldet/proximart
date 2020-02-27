@@ -2,29 +2,36 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 
-// Home made plugins
-
-import { show } from '../plugins/init_showsections';
-import { initMapbox } from '../plugins/init_mapbox';
-import initLetters from "../plugins/init_letters";
-import initBToX from "../plugins/init_btox";
-
 // Externals lib
 
 import "bootstrap";
 
+// Home made plugins
+
+import { show } from '../plugins/init_showsections';
+import { initMapbox } from '../plugins/init_mapbox';
+import { initLetters } from "../plugins/init_letters";
+import { initBToX} from "../plugins/init_btox";
+import { initFlatpickr } from "../plugins/init_flatpickr";
+import { initHearting } from '../plugins/init_hearting';
+
 // Calls methods
+if (document.querySelector('.moving-letters')) {
+  initLetters();
+
+}
 
 
-initLetters();
 initBToX();
 show();
 initMapbox();
+initFlatpickr();
 
-import {hearting} from '../plugins/init_hearting';
-const heart = document.querySelector('.heart');
-if (heart) {
-hearting();}
+if (document.querySelector('.heart')) {
+  initHearting();
+
+}
+
 
 // other scroller
 
