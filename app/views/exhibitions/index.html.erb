@@ -8,13 +8,17 @@
         <div class="card_exhibition">
           <div class="carrousel-img">
             <% if exhibition.photo.attached?  %>
-              <%= cl_image_tag exhibition.photo.key, height: 200, width: 300, crop: :fill %>
+              <%= cl_image_tag exhibition.photo.key, height: 200, width: 360, crop: :fill %>
             <% end %>
           </div>
-          <P><%= exhibition.title %></p>
+          <h1><%= exhibition.title %></h1>
+          <P class="star"> * * * * 4.5 </p>
+          <P class="category"><%= exhibition.category %></p>
+          <P class="lead_text"><%= exhibition.lead_text %></p>
         </div>
       <% end %>
     <% end %>
   </div>
 </div>
+
 
