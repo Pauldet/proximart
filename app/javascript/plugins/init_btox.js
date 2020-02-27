@@ -1,7 +1,5 @@
 const initBToX = () => {
 
-
-
 }
 
 export {initBToX};
