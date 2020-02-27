@@ -77,7 +77,7 @@ exhibitions["records"].each do |exhib|
  address_city = fields["address_city"].present? ? fields["address_city"] : "Unknown"
  price_detail = fields["price_detail"].present? ? fields["price_detail"] : "Unknown"
  price_type = fields["price_type"].present? ? fields["price_type"] : "Unknown"
- date_description = fields["date_description"].present? ? fields["date_description"] : "Unknown"
+ date_description = fields["date_description"].present? ?ActionView::Base.full_sanitizer.sanitize(fields["date_description"]) : "Unknown"
  address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Unknown"
  external_id = fields["id"].present? ? fields["id"].to_i : nil
 
