@@ -10,7 +10,7 @@
 .section-title {
   display: flex;
   justify-content: space-between;
-  padding-right: 5vw;
+  padding-right: 10vw;
 }
 
 .rotate {
@@ -36,7 +36,19 @@
   font-weight:bold;
 }
 
+
 h6 {
   font-family: "Spartan";
   font-weight: bold;
+ }
+
+ .description {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Spartan";
+    font-size: smaller;
+    font-weight: bold;
+  }
+  p {
+    margin-bottom: 3px
+   }
  }

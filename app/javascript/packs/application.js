@@ -21,6 +21,8 @@ initBToX();
 show();
 initMapbox();
 
+import {hearting} from '../plugins/init_hearting';
+hearting();
 
 // other scroller
 

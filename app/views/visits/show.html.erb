@@ -1,7 +1,9 @@
 <div>
-  <div class= "cover-picture-visit">
-    <p> This is the div for the cover picture</p>
+  <div class="main-container">
+    <div class="cover-picture">
+    </div>
   </div>
+
   </div>
       <div class = "details-visit">
         <p>heure</p>
@@ -28,25 +30,25 @@
 
 
 
-
+ <div class= "message-creation">
+  <%= simple_form_for [ @visit, @message ] do |f| %>
+    <%= f.input :content, label: false, placeholder: "Write your message here" %>
+    <%= f.button :submit, 'Envoyer' %>
+  <% end %>
+  </div>
 
 
 <div class= "past-messages">
     <div id="messages" data-visit-id="<%= @visit.id %>">
       <% @visit.messages.each do |message| %>
-      <%= render partial:'messages/message', locals: { message: @message }  %>
+      <%= render partial:'messages/message', locals: { message: message } %>
       <% end %>
     </div>
   </div>
 
 
 
-  <div class= "message-creation">
-  <%= simple_form_for [ @visit, @message ] do |f| %>
-    <%= f.input :content, label: false, placeholder: "Message ##" %>
-    <%= f.button :submit, 'Envoyer' %>
-  <% end %>
-  </div>
+
 
 
 </div>

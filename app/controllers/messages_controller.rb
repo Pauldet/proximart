@@ -7,16 +7,17 @@ def create
     @message.visit = @visit
     @message.user = current_user
     @message.save!
-    # if @message.save
-    #   redirect_to visit_path(@visit)
-    # else
-    #   redirect_to visit_path(@visit) #render "chatrooms/show"
-    # end
+    if @message.save
+      message = @message
+      VisitChannel.broadcast_to(
+        @visit,
+        render_to_string(partial: "messages/message", locals: { message: message })
+        )
+      redirect_to visit_path(@visit)
+    else
+    redirect_to visit_path(@visit) #render "chatrooms/show"
+    end
 
-    VisitChannel.broadcast_to(
-      @visit,
-      render_to_string(partial: "messages/message", locals: { message: @message })
-      )
 end
 
 private
