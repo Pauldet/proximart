@@ -18,19 +18,20 @@ import { initHearting } from '../plugins/init_hearting';
 // Calls methods
 if (document.querySelector('.moving-letters')) {
   initLetters();
-
 }
 
+if (document.querySelector('.datepicke')) {
+  initFlatpickr();
+}
+
+if (document.querySelector('.heart')) {
+  initHearting();
+}
 
 initBToX();
 show();
 initMapbox();
-initFlatpickr();
 
-if (document.querySelector('.heart')) {
-  initHearting();
-
-}
 
 
 // other scroller
