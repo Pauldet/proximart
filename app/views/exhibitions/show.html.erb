@@ -6,9 +6,9 @@
     <% end %>
     <div class="heart-button row">
       <div class="heart">
-        <i class="fas fa-heart pr-1"></i>
+        <i class="fas fa-heart"></i>
       </div>
-      <span>Enregistrer</span>
+      <!-- <span>Enregistrer</span> -->
     </div>
   </div>
 
@@ -19,7 +19,7 @@
       <span class="glyphicon glyphicon-star"></span>
     <% end %>
     <%= @average_rating %>
-    <p><%= @exhibition.lead_text %></p>
+    <p id="lead-text"><%= @exhibition.lead_text %></p>
     <div class="show-section">
       <div class="section-title">
         <h6>Infos pratiques</h6>
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="section-content d-none" id="infos-pratiques">
-        <p><i class="fas fa-map-marker-alt"></i><%= @exhibition.address_street %></p>
+        <p><i class="fas fa-map-marker-alt"></i><%= "#{@exhibition.address_street}, #{@exhibition.address_city}" %></p>
         <p><i class="fas fa-euro-sign"></i><%= @exhibition.price_detail %></p>
         <p><i class="far fa-calendar-check"></i><%=@exhibition.date_description.html_safe %></p>
       </div>
@@ -40,27 +40,34 @@
           <i class="fas fa-chevron-right"></i>
         </div>
       </div>
-      <div class="section-content d-none">
-        <p class="">Cette expo vous intéresse? <br>N'y allez pas seul !<br>Rejoignez une visite ou créer en une.</p>
+      <div class="section-content d-none pl-2">
+        <p class="">Cette expo vous intéresse? <br>N'y allez pas seul !</p>
           <div class= "cards-visit">
             <% @visits.each do |visit|%>
+              <%= link_to visit_path(id: visit.id) do %>
                 <div class="card-visit">
                   <div class="card-visit-date">
                     <span class="day-of-month"><%= visit.date.mday %></span>
                     <span class="month"><%= fr_month_short(visit.date.mon) %></span>
                     <span class="day-of-week"><%= fr_jour_short(visit.date.cwday) %></span>
                   </div>
-                  <div class="card-visit-content">
-                    <span class="visit-hour">18h00</span>
-                    <span class ="user-count"><%= visit.subscriptions.count %> utilisateurs y vont</span>
-                    <% visit.subscriptions.each do |subscription| %>
-                      <%= User.find(subscription.user_id).username %>
-                    <% end %>
+                  <div class="card-visit-hour">
+                    <p class="visit-hour">18h00</p>
                   </div>
-                  <div class="card-visit-join">
-                    <%= link_to visit_path(id: visit.id) do %>
-                      <button class="btn-action-visit"></i> Rejoindre</button>
-                    <% end %>
+                  <div class="card-visit-content">
+                    <div class="mini-avatars">
+                      <% if visit.subscriptions.count <= 3 %>
+                        <% visit.subscriptions.each do |subscription| %>
+                          <span class="mini-avatar"><%=  image_tag(User.find(subscription.user_id).avatar) %></span>
+                          <% end %>
+                      <% else %>
+                          <% visit.subscriptions.sample(3).each do |subscription| %>
+                          <span class="mini-avatar"><%=  image_tag(User.find(subscription.user_id).avatar) %></span>
+                        <% end %>
+                      <% end %>
+                    </div>
+                      <span class =""><%= visit.subscriptions.count %> utilisateurs y vont</span>
+              <% end %>
                   </div>
                 </div>
                 <hr class="card-separator">

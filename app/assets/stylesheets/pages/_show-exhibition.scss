@@ -50,8 +50,11 @@ h6 {
     font-weight: bold;
   }
   p {
-    margin-bottom: 3px
+    margin-bottom: 3px;
+    text-align:justify;
    }
+  padding-right:2vw;
+  padding-left:2vw;
  }
 
 #infos-pratiques  {
@@ -60,3 +63,9 @@ h6 {
   }
   padding-left: 2vw;
 }
+#lead-text {
+  text-align:justify;
+  padding-right: 2vw;
+  padding-left: 2vw;
+}
+
