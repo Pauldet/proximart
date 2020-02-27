@@ -1,33 +1,34 @@
 .card_exhibition {
   border: 1px solid #bac6d3;
-  padding: 0;
-  margin: 2vw;
+  margin: 10vw;
   box-shadow: 3px 0 10px rgba(100,100,100,0.2);
-  justify-content: center;
   border-radius: 5px;
+  width: 300px;
+
 }
 
 .card_exhibition > p {
-  font-size: 20px;
-  padding-top: 20px;
-  padding-left: 20px;
+  font-size: 14px;
+  margin: 10px;
+  color: black;
 }
 
 
 .card_exhibition > h1 {
-  font-size: 15px;
+  color: black;
+  font-size: 14px;
   font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
 }
 .carrousel-items {
-  display: flex;
   justify-content: center;
 }
 
 .carrousel-img {
-  height: 200px;
+  height: 180px;
   width: 100%;
   object-fit: cover;
-  padding: 0;
   overflow: hidden;
 }
 
@@ -35,15 +36,17 @@
   justify-content: center;
 }
 
-.category {
-  margin: 0px;
+.container{
+position:relative;
 }
 
-.lead_text{
-  // margin: 50px;
-  padding: 40px;
-}
 .star{
-  margin: 0px;
+  margin: 10px;
 }
 
+.img_marker2 {
+  position: absolute;
+  font-size: 15px;
+  bottom: 1px;
+  right: 20px;
+}

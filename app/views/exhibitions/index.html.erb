@@ -1,6 +1,5 @@
 <%= render 'shared/map' %>
 
-<%= render 'shared/scrolling-cards' %>
 <div class="carrousel-items">
   <% @exhibitions.each do |exhibition| %>
     <%= link_to exhibition_path(exhibition) do  %>
@@ -8,13 +7,18 @@
         <div class="card_exhibition">
           <div class="carrousel-img">
             <% if exhibition.photo.attached?  %>
-              <%= cl_image_tag exhibition.photo.key, height: 200, width: 360, crop: :fill %>
+              <%= cl_image_tag exhibition.photo.key, height: 180, width: 300, crop: :fill %>
             <% end %>
           </div>
-          <h1><%= exhibition.title %></h1>
-          <P class="star"> * * * * 4.5 </p>
-          <P class="category"><%= exhibition.category %></p>
-          <P class="lead_text"><%= exhibition.lead_text %></p>
+            <h1><%= exhibition.title %></h1>
+            <div class="container">
+              <div class="star"> * * * * 4.5
+              </div>
+                <div class="img_marker2">
+                    <i class="fas fa-map-marker-alt">200 m</i>
+                </div>
+            </div>
+          <P><%= exhibition.lead_text %></p>
         </div>
       <% end %>
     <% end %>
