@@ -9,6 +9,7 @@ def show
     # @past_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now >= :date)
     @participations = @exhibition.participations
 
+
   end
 
 
@@ -68,7 +69,6 @@ def show
 
   end
 
-
 private
 
   def find_exhibition
@@ -78,4 +78,5 @@ private
   def exhibition_params
     params.require(:exhibition).permit(:address_street, :latitude, :longitude, :category, :title, :date_start, :date_end, :occurences, :contact_url, :address_name, :contact_twitter, :contact_phone, :description, :tags, :contact_mail, :lead_text, :contact_facebook, :cover_credit, :address_city, :price_detail, :price_type, :date_description, :address_zipcode, :external_id)
   end
+
 end

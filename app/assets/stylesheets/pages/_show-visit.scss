@@ -1,0 +1,54 @@
+
+.background-white  {
+  background-color: white;
+}
+
+
+.background-border-bot {
+  border-bottom: 1px solid rgba(100,100,100,0.3);
+
+}
+
+.color-blue {
+  color : $green;
+  opacity: 0.8;
+  font-size:16px;
+}
+
+.light-po {
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+
+.icone-share {
+  font-size: 24px;
+}
+
+.title-visit h4{
+  padding-top: 0.5rem;
+  font-size: 20px;
+}
+
+.main-card-visit {
+    margin-bottom: 1em;
+   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.information-visit {
+  padding-top:0.5em ;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  font-size: 14px;
+  font-weight: lighter;
+  padding-bottom: 1em ;
+  margin-bottom: 1em;
+}
+
+.information-visit p{
+  margin-bottom: 0;
+}
+
+
+.share-join-column {
+  margin-bottom: 1em;
+}

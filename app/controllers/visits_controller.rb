@@ -5,6 +5,7 @@ class VisitsController < ApplicationController
 
   def show
     @visit = Visit.find(params[:id])
+    @exhibition = @visit.exhibition
     @message = Message.new
     @message.visit = @visit
     @message.user = current_user
@@ -32,3 +33,5 @@ class VisitsController < ApplicationController
     params.require(:visit).permit(:date, :information)
   end
 end
+
+
