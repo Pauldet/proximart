@@ -1,19 +1,12 @@
-<h2>nothing scrollllll</h2>
 
 <div class="card-presentation">
-  <% Exhibition.all.each do |exhibition| %>
-  <p><%= exhibition.title %></p>
-  <p><%= exhibition.tags %></p>
+  <%# Exhibition.all.each do |exhibition| %>
+  <p><%#= exhibition.title %></p>
+  <p><%#= exhibition.tags %></p>
   <%#= cl_image_path exhibition.photo %>
 
-  <% end %>
+  <%# end %>
 </div>
-
-
-
-
-
-
 
 
 <div class="scrolling-div">
@@ -24,10 +17,27 @@
 
       <li class="mbsc-cloak">
           <div class="mbsc-card-content">
-              <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-              <div class="mbsc-card-title">Title</div>
-              <div class="mbsc-card-subtitle">Sub title</div>
-              <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
+              <div class="carrousel-items">
+                <% @exhibitions.each do |exhibition| %>
+                  <%= link_to exhibition_path(exhibition) do  %>
+                    <div class="carrousel-item">
+                      <div class="card_exhibition">
+                        <div class="carrousel-img md-img" draggable="false">
+                          <% if exhibition.photo.attached?  %>
+                            <%= cl_image_tag exhibition.photo.key, height: 100, width: 250, crop: :fill %>
+                          <% end %>
+                        </div>
+                        <div class="mbsc-card-title">
+                          <P><%= exhibition.title %></p>
+                        </div>
+                        <div class="mbsc-card-subtitle">
+                          <P><%= exhibition.category %></p>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
           </div>
       </li>
 
@@ -71,7 +81,7 @@
 
 
 <!-- other scroller -->
-<div class="md-cards">
+<!-- <div class="md-cards">
     <div class="md-card-cont">
         <h3>New & Updated Games</h3>
         <ul class="demo-card mbsc-cloak">
@@ -200,4 +210,4 @@
             </li>
         </ul>
     </div>
-</div>
+</div> -->

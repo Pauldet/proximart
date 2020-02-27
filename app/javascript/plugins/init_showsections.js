@@ -24,7 +24,8 @@ export {show};
 const extend = document.querySelector('.extend-text');
 const description = document.querySelector('.description')
 
-if (extend) {
+
+if (extend !== null) {
   extend.addEventListener('click', (event)=> {
     description.classList.toggle('out');
   });

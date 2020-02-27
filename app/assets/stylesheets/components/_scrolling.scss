@@ -3,7 +3,6 @@
 }
 
 .scrolling-div {
-
   .app {
     padding: var(--gutter) 0;
     display: grid;
@@ -36,14 +35,13 @@
     margin-bottom: calc(-.25 * var(--gutter));
   }
 
-  .hs:before,
-  .hs:after {
+  .hs:before, .hs:after {
     content: '';
     width: 10px;
   }
 
 
-  /* Demo styles */
+ // Demo styles // //
 
   html,
   body {
@@ -104,81 +102,81 @@
 
 // other scroller
 
-.md-cards h3 {
-    padding: .5em;
-    margin: 0;
-}
+// .md-cards h3 {
+//     padding: .5em;
+//     margin: 0;
+// }
 
-.md-img {
-    pointer-events: none;
-    border-radius: 8px;
-}
+// .md-img {
+//     pointer-events: none;
+//     border-radius: 8px;
+// }
 
-.demo-card .mbsc-card-title {
-    font-size: 14px;
-    padding-top: 8px;
-    margin: 0;
-}
+// .demo-card .mbsc-card-title {
+//     font-size: 14px;
+//     padding-top: 8px;
+//     margin: 0;
+// }
 
-.md-rank {
-    font-size: 12px;
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-}
+// .md-rank {
+//     font-size: 12px;
+//     position: absolute;
+//     bottom: 8px;
+//     left: 8px;
+// }
 
-// code
+// // code
 
-.md-cards h3 {
-    padding: .5em;
-    margin: 0;
-}
-
-
-
-.demo-card .mbsc-scv-item {
-    padding: 0 0 2em 0;
-    -webkit-box-pack: start;
-    -moz-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-justify-content: flex-start;
-    justify-content: flex-start;
-}
-
-.demo-card .mbsc-card-content {
-    padding: 8px;
-}
+// .md-cards h3 {
+//     padding: .5em;
+//     margin: 0;
+// }
 
 
 
-.md-img {
-    pointer-events: none;
-    border-radius: 8px;
-}
+// .demo-card .mbsc-scv-item {
+//     padding: 0 0 2em 0;
+//     -webkit-box-pack: start;
+//     -moz-box-pack: start;
+//     -webkit-justify-content: flex-start;
+//     -ms-justify-content: flex-start;
+//     justify-content: flex-start;
+// }
 
-.demo-card .mbsc-card-title {
-    font-size: 14px;
-    padding-top: 8px;
-    margin: 0;
-}
-
-
-
-.demo-card .mbsc-card-subtitle {
-    font-size: 11px;
-    padding-top: 3px;
-    margin: 0;
-}
-
-.demo-card .mbsc-ic {
-    padding-left: 3px;
-}
+// .demo-card .mbsc-card-content {
+//     padding: 8px;
+// }
 
 
 
-.md-rank {
-    font-size: 12px;
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-}
+// .md-img {
+//     pointer-events: none;
+//     border-radius: 8px;
+// }
+
+// .demo-card .mbsc-card-title {
+//     font-size: 14px;
+//     padding-top: 8px;
+//     margin: 0;
+// }
+
+
+
+// .demo-card .mbsc-card-subtitle {
+//     font-size: 11px;
+//     padding-top: 3px;
+//     margin: 0;
+// }
+
+// .demo-card .mbsc-ic {
+//     padding-left: 3px;
+// }
+
+
+
+// .md-rank {
+//     font-size: 12px;
+//     position: absolute;
+//     bottom: 8px;
+//     left: 8px;
+// }
