@@ -8,12 +8,16 @@
 }
 
 .card_exhibition > p {
-  font-size: 10px;
-  font-weight: bold;
+  font-size: 20px;
   padding-top: 20px;
   padding-left: 20px;
 }
 
+
+.card_exhibition > h1 {
+  font-size: 15px;
+  font-weight: bold;
+}
 .carrousel-items {
   display: flex;
   justify-content: center;
@@ -31,7 +35,15 @@
   justify-content: center;
 }
 
+.category {
+  margin: 0px;
+}
 
-
-
+.lead_text{
+  // margin: 50px;
+  padding: 40px;
+}
+.star{
+  margin: 0px;
+}
 
