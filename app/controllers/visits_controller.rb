@@ -11,6 +11,7 @@ class VisitsController < ApplicationController
     @message.user = current_user
     @subscriptions = @visit.subscriptions
     @current_user = current_user
+    @sub = @subscriptions.where(user_id: @current_user.id).first
   end
 
   def create
