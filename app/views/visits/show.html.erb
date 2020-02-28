@@ -5,74 +5,70 @@
     <%= cl_image_tag @exhibition.photo.key, :transformation => { :width => 375, :fetch_format=>:auto, :crop => :scale }%>
     <% end %>
   </div>
-  <div class="main-card-visit background-white" >
-    <div class="background-border-bot text-center title-visit">
-      <h4><%= @exhibition.title %></h4>
-    </div>
-    <div class="d-flex mt-2 ">
-      <div class = "details-visit flex-column px-2 col-8 light-po">
-        <div class ="d-flex" >
-          <i class="fa ffar fa-clock color-blue"> </i> <%= @visit.date%> 16:00
-        </div>
-        <div>
-          <i class="fas fa-map-marker-alt mt-2 color-blue"></i> <%= @exhibition.address_street+"," %> <%= @exhibition.address_city %>
-        </div>
-        <br>
-        <div>
-          <p>Avatar</p>
-        </div>
-        <p>first two and X-2 other participants</p>
+    <div class="main-card-visit background-white" >
+      <div class=" text-center title-visit">
+        <h3><%= @exhibition.title %></h3>
+         <hr class="card-separator">
       </div>
-      <div class = "share-join-column d-flex flex-column col-4 justify-content-between ">
-        <div class = "d-flex justify-content-between">
+      <div class="d-flex mt-2 ">
+        <div class = "details-visit flex-column px-2 col-8 light-po">
+          <div class ="d-flex" >
+            <i class="fa ffar fa-clock color-blue"> </i> <%= @visit.date%> 16:00
+          </div>
           <div>
-              <%= link_to visit_path do %>
-                <i class="fab fa-whatsapp icone-share"> </i>
+            <i class="fas fa-map-marker-alt mt-2 color-blue"></i> <%= @exhibition.address_street+"," %> <%= @exhibition.address_city %>
+          </div>
+          <br>
+          <div>
+            <p>Avatar</p>
+          </div>
+          <p>first two and X-2 other participants</p>
+        </div>
+        <div class = "share-join-column d-flex flex-column col-4 justify-content-between ">
+          <div class = "d-flex justify-content-between">
+            <div>
+                <%= link_to visit_path do %>
+                  <i class="fab fa-whatsapp icone-share"> </i>
+                <% end %>
+            </div>
+            <div>
+               <%= link_to visit_path do %>
+                <i class="fab fa-facebook-square icone-share"></i>
               <% end %>
+            </div>
+            <div>
+              <%= link_to visit_path do %>
+                <i class="fab fa-twitter icone-share"></i>
+              <% end %>
+            </div>
           </div>
-          <div>
-             <%= link_to visit_path do %>
-              <i class="fab fa-facebook-square icone-share"></i>
-            <% end %>
+          <div class = "text-center btn-primary">
+            <%= link_to "Rejoindre", visit_path  %>
           </div>
-          <div>
-            <%= link_to visit_path do %>
-              <i class="fab fa-twitter icone-share"></i>
-            <% end %>
-          </div>
-        </div>
-        <div class = "text-center btn-primary">
-          <%= link_to "Rejoindre", visit_path  %>
         </div>
       </div>
     </div>
-  </div>
-  <div class= "information-visit background-white px-2">
-    <div>
-      <p><%= @visit.information %></p>
+    <div class= "information-visit background-white px-2">
+      <div>
+        <p><%= @visit.information %></p>
+      </div>
     </div>
-  </div>
 
 
-  <div class= "message-creation">
-    <%= simple_form_for [ @visit, @message ] do |f| %>
-      <%= f.input :content, label: false, placeholder: "Write your message here" %>
-      <%= f.button :submit, 'Envoyer' %>
-    <% end %>
-  </div>
-
-
-<div class= "past-messages">
-    <div id="messages" data-visit-id="<%= @visit.id %>">
-      <% @visit.messages.each do |message| %>
-      <%= render partial:'messages/message', locals: { message: message } %>
+    <div class= "message-creation">
+      <%= simple_form_for [ @visit, @message ] do |f| %>
+        <%= f.input :content, label: false, placeholder: "Write your message here" %>
+        <%= f.button :submit, 'Envoyer' %>
       <% end %>
     </div>
-  </div>
 
 
-
-
-
+  <div class= "past-messages ">
+      <div id="messages" data-visit-id="<%= @visit.id %>">
+        <% @visit.messages.each do |message| %>
+        <%= render partial:'messages/message', locals: { message: message } %>
+        <% end %>
+      </div>
+    </div>
 
 </div>
