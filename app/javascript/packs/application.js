@@ -20,7 +20,7 @@ if (document.querySelector('.moving-letters')) {
   initLetters();
 }
 
-if (document.querySelector('.datepicke')) {
+if (document.querySelector('.datepicker')) {
   initFlatpickr();
 }
 
