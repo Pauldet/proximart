@@ -9,6 +9,8 @@ class VisitsController < ApplicationController
     @message = Message.new
     @message.visit = @visit
     @message.user = current_user
+    @subscriptions = @visit.subscriptions
+    @current_user = current_user
   end
 
   def create
