@@ -52,7 +52,7 @@
                     <span class="day-of-week"><%= fr_jour_short(visit.date.cwday) %></span>
                   </div>
                   <div class="card-visit-hour">
-                    <p class="visit-hour">18h00</p>
+                    <p class="visit-hour"><%= visit.meeting_hour.hour %>H<%= visit.meeting_hour.min %></p>
                   </div>
                   <div class="card-visit-content">
                     <div class="mini-avatars">

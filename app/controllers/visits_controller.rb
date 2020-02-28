@@ -30,7 +30,7 @@ class VisitsController < ApplicationController
   end
 
   def visit_params
-    params.require(:visit).permit(:date, :information)
+    params.require(:visit).permit(:date, :information, :meeting_hour)
   end
 end
 

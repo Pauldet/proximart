@@ -133,14 +133,18 @@ exhibs.each do |ex|
   2.times do
     date = Faker::Date.forward(days: 10)
     information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
-    visit = Visit.new(date: date, information: information, exhibition_id: ex.id)
+    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
+    meeting_hour = Time.parse(time.split(" ").last)
+    visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end
 
   1.times do
     information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
     date = Faker::Date.backward(days: 10)
-    visit = Visit.new(date: date, information: information, exhibition_id: ex.id)
+    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
+    meeting_hour = Time.parse(time.split(" ").last)
+    visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end
 end
