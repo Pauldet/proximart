@@ -14,12 +14,11 @@
   <div class="below-cover-picure-container">
     <h3 class="text-center"><%= @exhibition.title  %></h3>
     <hr class="card-separator">
-    <div class="ratings">
-      <%= @average_rating %>
-      <p><%= @ratings_count %> avis donnés</p>
+    <div class="ratings pl-2">
       <% @average_rating.to_i.times do  %>
-        <span class="glyphicon glyphicon-star"></span>
+        <i class="fas fa-star" id="stars"></i>
       <% end %>
+      <span><%= "(#{@ratings_count})" %></span>
     </div>
     <p id="lead-text"><%= @exhibition.lead_text %></p>
     <div class="show-section">
@@ -102,7 +101,10 @@
         <div class="card-avis">
           <p class="avatar"><%=  image_tag(participation.user.avatar) %></p>
           <div class="review">
-            <span><%= participation.rating %></span>
+            <!-- <span><%= participation.rating %></span> -->
+            <% participation.rating.to_i.times do  %>
+              <i class="fas fa-star" id="stars"></i>
+            <% end %>
             <span><%= participation.review_content %></span>
           </div>
         </div>
