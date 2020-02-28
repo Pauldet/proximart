@@ -203,10 +203,10 @@ end
 
 #####
 
-puts "creating 5 reviews per exhibition"
+puts "creating between 3 and 10 reviews per exhibition"
 
 exhibs.each do |exhib|
-  5.times do
+  Random.new.rand(3..10).times do
     date = Faker::Date.backward(days: 20)
     review_content = Faker::Quote.famous_last_words
     rating = Random.new.rand(0..5)

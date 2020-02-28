@@ -1,5 +1,6 @@
 .section-content {
   margin-bottom: 0px;
+  flex-direction:column;
 }
 
 .show-section {
@@ -71,4 +72,9 @@ h6 {
 
 .extend-text {
   padding-left: 2vw;
+}
+
+#avis {
+  padding-left: 2vw;
+  display:flex;
 }
