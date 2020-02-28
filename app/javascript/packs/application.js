@@ -9,7 +9,7 @@ import "bootstrap";
 // Home made plugins
 
 import { show } from '../plugins/init_showsections';
-import { initMapbox } from '../plugins/init_mapbox';
+import { getLocation } from '../plugins/init_mapbox';
 import { initLetters } from "../plugins/init_letters";
 import { initBToX} from "../plugins/init_btox";
 import { initFlatpickr } from "../plugins/init_flatpickr";
@@ -30,7 +30,7 @@ if (document.querySelector('.heart')) {
 
 initBToX();
 show();
-initMapbox();
+getLocation();
 
 
 
