@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :participations, only: [ :new, :create, :update, :edit, :destroy, :index]
   end
   resources :visits, only: [:show] do
-    resources :subscriptions, only: [:create, :new, :update, :edit, :destroy, :index]
+    resources :subscriptions, only: [:create, :new, :update, :edit, :destroy]
     resources :messages, only: :create
   end
 

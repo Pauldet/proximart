@@ -49,9 +49,16 @@
               <% end %>
             </div>
           </div>
-          <div class = "text-center btn-primary">
-            <%= link_to "Rejoindre", visit_path  %>
-          </div>
+
+          <%if @sub %>
+            <div class = "text-center btn-primary">
+              <%= link_to "Quitter",visit_subscription_path(@visit, @sub), method: :delete %>
+            </div>
+          <% else %>
+            <div class = "text-center btn-primary">
+              <%= link_to "Rejoindre",visit_subscriptions_path(@visit), method: :post %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
