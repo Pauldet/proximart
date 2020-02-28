@@ -13,7 +13,7 @@ require 'faker'
 
 
 Message.destroy_all
-
+Participation.destroy_all
 Subscription.destroy_all
 # User.destroy_all
 Visit.destroy_all
