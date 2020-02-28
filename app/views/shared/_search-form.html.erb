@@ -1,21 +1,31 @@
 <div class="container-search-bar">
   <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+
     <div class="search-form-control form-group">
-      <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+      <input class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="Picasso..." />
       <button name="button" type="submit" class="btn btn-full">
         <i class="fas fa-search"></i>
       </button>
     </div>
 
-    <div class="dates-form">
-      <div class="mr-1">
-        <%= f.input :start_date, as: :string, required: false, label: false, input_html: {class: "datepicker"}, placeholder: 'Quand?'
-        %>
+    <div class="d-flex align-items-center">
+      <div class="dates-form">
+        <div class="mr-1">
+          <%= f.input :start_date, as: :string, required: false, label: false, input_html: {class: "datepicker"}, placeholder: 'Aujourd\'hui?' %>
+        </div>
       </div>
-    </div>
 
-    <div class="select-distance">
-      <%= f.input :distance, collection: [ ['2km', 2], ['5km', 5], ['10km', 10]  ], required: false, label: false  %>
+      <div class="select-distance">
+        <%#= f.input :distance, collection: [ ['2km', 2], ['5km', 5], ['10km', 10]  ], required: false, label: false, placeholder: 'Distance' %>
+        <div class="d-flex justify-content-center my-4">
+          <label for="customRange1"></label>
+          <span class="font-weight-bold indigo-text mr-2 mt-1">300m</span>
+          <input type="range" class="custom-range" min="300" max="5000" id="customRange1">
+          <span class="font-weight-bold indigo-text ml-2 mt-1">5km</span>
+
+        </div>
+      </div>
+
     </div>
 
     <div class="select-tags">
@@ -29,11 +39,11 @@
             </label>
           <% end %>
 
-        </div>
+      </div>
+    </div>
 
   <% end %>
 
 
 </div>
-
 
