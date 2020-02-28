@@ -1,7 +1,7 @@
 <%= render 'shared/map' %>
 <%= render 'shared/search-form', tags: @tags %>
 
-<div class="carrousel-items">
+<div class="carrousel-items justify-content-around">
   <% @exhibitions.each do |exhibition| %>
     <%= link_to exhibition_path(exhibition) do  %>
       <div class="carrousel-item">

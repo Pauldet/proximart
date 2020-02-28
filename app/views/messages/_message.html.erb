@@ -1,14 +1,30 @@
-<div class="message-container">
+<div class="message-container notification">
   <i class="author">
+    <div class="avatar-large">
+    <% if message.user.avatar.attached?  %>
+    <%= cl_image_tag message.user.avatar.key =%>
+    <% end %>
+    </div>
+
     <% if message.created_at  %>
+    <div class="notification-content"> </div>
       <span><%= message.user.username %> <%= message.content %></</span>
     <%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+    </div>
     <% else %>
     <%= message.user.created_at %>
-     <span><%= message.user.username %> <%= message.content %></</span>
+     <span> <%= message.content %></</span>
 
     <% end %>
   </i>
-  <p> <%= message.content %></p>
 </div>
 
+
+<!--
+<div class="notification">
+  <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+  <div class="notification-content">
+    <p><small>14th January</small></p>
+    <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+  </div>
+ -->
