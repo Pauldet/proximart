@@ -44,8 +44,9 @@
 <!-- avatar -->
   <div class="navbar-right avatar">
     <% #raise %>
+    <% if @current_user  %>
     <%= image_tag current_user.avatar , class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-
+    <% end %>
   </div>
 <!--  -->
 
