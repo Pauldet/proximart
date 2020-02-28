@@ -13,28 +13,30 @@ require 'faker'
 
 
 Message.destroy_all
-
+Participation.destroy_all
 Subscription.destroy_all
 User.destroy_all
 Visit.destroy_all
 Exhibition.destroy_all
 # Exhibition.destroy_all
 ## Create users
- 'Creating 5 fake users...'
-user_array = [1,2,3,4,5]
+
+if User.count < 15
+  puts 'Creating 10 fake users...'
+  user_array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 
-# Creating USER
-user_array.each do |i|
-  user_email = "#{i}@test.com"
-  username = Faker::GreekPhilosophers.name+"#{i}"
-  bio = Faker::Hipster.paragraph_by_chars(characters: 256, supplemental: false)
-  user = User.new(email: user_email, password: '123456', phone_number:'+33695141564', bio: bio, username: username)
-
-  file = URI.open("https://source.unsplash.com/300x200/?avatar")
-
-  user.avatar.attach(io: file, filename: "avatar#{i}", content_type: 'image/png')
-  user.save!
+  # Creating USER
+  user_array.each do |i|
+    user_email = "#{i}@test.com"
+    username = Faker::GreekPhilosophers.name+"#{i}"
+    bio = Faker::Hipster.paragraph_by_chars(characters: 256, supplemental: false)
+    user = User.new(email: user_email, password: '123456', phone_number:'+33695141564', bio: bio, username: username)
+    path = "app/assets/images/#{i}.jpg"
+    file = File.open(path)
+    user.avatar.attach(io: file, filename: "avatar#{i}")
+    user.save!
+    end
 end
 
 #####
@@ -44,10 +46,10 @@ end
 #####
 
 
-puts "creating 2 exhib"
+puts "creating 30 exhib"
 
 extensive_url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=400&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
-url = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=10&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
+url = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=30&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
 
 exhib_serialized = open(url).read
 exhibitions = JSON.parse(exhib_serialized)
@@ -126,21 +128,26 @@ end
 
 #####
 
-puts "creating 3 visits / exhib"
+puts "creating 2 to 5 visits / exhib"
 exhibs = Exhibition.all
 
 exhibs.each do |ex|
-  2.times do
+  random_number = [1,2,3,4].sample(1)
+  random_number[0].times do
     date = Faker::Date.forward(days: 10)
     information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
-    visit = Visit.new(date: date, information: information, exhibition_id: ex.id)
+    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
+    meeting_hour = Time.parse(time.split(" ").last)
+    visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end
 
   1.times do
     information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
     date = Faker::Date.backward(days: 10)
-    visit = Visit.new(date: date, information: information, exhibition_id: ex.id)
+    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
+    meeting_hour = Time.parse(time.split(" ").last)
+    visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end
 end
@@ -153,7 +160,7 @@ end
 
 #####
 
-puts "creating 2 subscriber per visit"
+puts "creating 2 subscribers per visit"
 
 
 visits = Visit.all
@@ -162,11 +169,14 @@ subscriptions = Subscription.all
 user1 = users.sample(1)
 new_users = users - user1
 user2 = new_users.sample(1)
-puts user1.class
-puts user1
-puts user1.first
 
 visits.each do |visit|
+
+user1 = users.sample(1)
+new_users = users - user1
+user2 = new_users.sample(1)
+
+
   # unless subscriptions.where(user_id: user1.first.id, visit_id: visit.id)
     sub1 = Subscription.new(
       subscribed: "true",
@@ -185,8 +195,28 @@ visits.each do |visit|
       )
     sub2.save!
   # end
-
 end
+
+#####
+
+# Creating Participation
+
+#####
+
+puts "creating between 3 and 10 reviews per exhibition"
+
+exhibs.each do |exhib|
+  Random.new.rand(3..10).times do
+    date = Faker::Date.backward(days: 20)
+    review_content = Faker::Quote.famous_last_words
+    rating = Random.new.rand(0..5)
+    interested = Faker::Boolean.boolean
+    user = User.all.sample
+    participation = Participation.new(date: date, review_content: review_content, rating: rating, interested: interested, exhibition_id: exhib.id, user_id: user.id)
+    participation.save!
+  end
+end
+
 
 
 

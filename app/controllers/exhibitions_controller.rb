@@ -8,8 +8,15 @@ def show
     # @futur_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now =< :date) We need to add the logic of future and past events
     # @past_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now >= :date)
     @participations = @exhibition.participations
-
-
+    @ratings_count = 0
+    sum = 0
+    @participations.each do |participation|
+      sum += participation.rating
+      @ratings_count += 1
+    end
+    if @ratings_count != 0
+      @average_rating = sum.fdiv(@ratings_count).truncate(2)
+    end
   end
 
 
@@ -76,7 +83,7 @@ private
   end
 
   def exhibition_params
-    params.require(:exhibition).permit(:address_street, :latitude, :longitude, :category, :title, :date_start, :date_end, :occurences, :contact_url, :address_name, :contact_twitter, :contact_phone, :description, :tags, :contact_mail, :lead_text, :contact_facebook, :cover_credit, :address_city, :price_detail, :price_type, :date_description, :address_zipcode, :external_id)
+    params.require(:exhibition).permit(:address_street, :latitude, :longitude, :category, :title, :date_start, :date_end, :occurences, :contact_url, :address_name, :contact_twitter, :contact_phone, :description, :tags, :contact_mail, :lead_text, :contact_facebook, :cover_credit, :address_city, :price_detail, :price_type, :date_description, :address_zipcode, :external_id,:average_rating, :ratings_count)
   end
 
 end

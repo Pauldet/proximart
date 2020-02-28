@@ -2,14 +2,12 @@
 <%= render 'shared/search-form', tags: @tags %>
 
 
-<%#= render 'shared/scrolling-cards' %>
-<div class="nico-cards">
-  <div class="carrousel-items justify-content-around">
+<div class="container_card">
+  <div class="exhibitions-items">
     <% @exhibitions.each do |exhibition| %>
       <%= link_to exhibition_path(exhibition) do  %>
-        <div class="carrousel-item">
           <div class="card_exhibition">
-            <div class="carrousel-img">
+            <div class="card-img">
               <% if exhibition.photo.attached?  %>
                 <%= cl_image_tag exhibition.photo.key, height: 180, width: 300, crop: :fill %>
               <% end %>
@@ -25,10 +23,7 @@
             <P><%= exhibition.lead_text %></p>
           </div>
         <% end %>
-      <% end %>
-    </div>
+    <% end %>
   </div>
-
 </div>
-
 

@@ -11,19 +11,26 @@
          <hr class="card-separator">
       </div>
       <div class="d-flex mt-2 ">
-        <div class = "details-visit flex-column px-2 col-8 light-po">
-          <div class ="d-flex" >
-            <i class="fa ffar fa-clock color-blue"> </i> <%= @visit.date%> 16:00
-          </div>
+        <div class = "details-visit flex-column px-2 col-8 share-join-column">
           <div>
-            <i class="fas fa-map-marker-alt mt-2 color-blue"></i> <%= @exhibition.address_street+"," %> <%= @exhibition.address_city %>
+          <p><i class="fa ffar fa-clock"> </i> <%= @visit.date%> 16:00</p>
+          <p><i class="fas fa-map-marker-alt"></i> <%= @exhibition.address_street+"," %> <%= @exhibition.address_city %></p>
           </div>
-          <br>
-          <div>
-            <p>Avatar</p>
+          <div class="card-visit-content px-2">
+            <div class="mini-avatars">
+              <% if @visit.subscriptions.count <= 3 %>
+                <% @visit.subscriptions.each do |subscription| %>
+                  <span class="mini-avatar"><%=  image_tag(User.find(subscription.user_id).avatar) %></span>
+                <% end %>
+              <% else %>
+                <% @visit.subscriptions.sample(3).each do |subscription| %>
+                  <span class="mini-avatar"><%=  image_tag(User.find(subscription.user_id).avatar)%> +<%= @visit.subscriptions.count - 3%> </span>
+                <% end %>
+              <% end %>
+            </div>
           </div>
-          <p>first two and X-2 other participants</p>
         </div>
+
         <div class = "share-join-column d-flex flex-column col-4 justify-content-between ">
           <div class = "d-flex justify-content-between">
             <div>
@@ -55,12 +62,6 @@
     </div>
 
 
-    <div class= "message-creation">
-      <%= simple_form_for [ @visit, @message ] do |f| %>
-        <%= f.input :content, label: false, placeholder: "Write your message here" %>
-        <%= f.button :submit, 'Envoyer' %>
-      <% end %>
-    </div>
 
 
   <div class= "past-messages ">
@@ -70,5 +71,21 @@
         <% end %>
       </div>
     </div>
+
+<%if @subscriptions.where(user_id: @current_user.id).first%>
+    <div class= "message-creation sticky-bottom">
+      <%= simple_form_for [ @visit, @message ] do |f| %>
+        <div class='d-flex'>
+          <div class="flex-grow-1 ">
+            <%= f.input :content, label: false, placeholder: "Participer à la conversation..." %>
+          </div>
+        <div>
+        <%= f.button :submit, 'Envoyer', class: 'btn-primary py-3' %>
+        </div>
+        </div>
+      <% end %>
+    </div>
+<% end %>
+
 
 </div>

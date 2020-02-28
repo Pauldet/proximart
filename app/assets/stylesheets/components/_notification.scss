@@ -17,6 +17,12 @@
   line-height: 1.4;
 }
 
+p.notification-time {
+  color: rgba(150,150,150,0.8);
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
 .notification small {
   color: #999999;
   font-weight: bold;
@@ -39,4 +45,9 @@
 
 .notification .notification-actions a:hover {
   color: #555555;
+}
+
+.sticky-bottom {
+   position: sticky;
+    bottom: 0;
 }

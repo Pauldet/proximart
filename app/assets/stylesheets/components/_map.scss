@@ -1,19 +1,27 @@
 .mapboxgl-popup {
-  width: 300px;
+  width: 200px;
   height: 100px;
-
 }
 
 .mapboxgl-popup-content {
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
+text-align: center;
+font-family: 'Open Sans', sans-serif;
+color: $blue;
+font-weight: bold;
+padding-left: 0;
+padding-right: 0;
+padding-bottom: 0;
+padding-top: 0;
 }
 
 .container_marker p {
-padding-top: 10px;
+padding-top: 0;
+margin:0;
+width: 200px;
 }
 .img_marker{
-  padding:0px 0px 0px;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 a.mapboxgl-ctrl-logo {

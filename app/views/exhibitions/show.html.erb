@@ -8,17 +8,19 @@
       <div class="heart">
         <i class="fas fa-heart"></i>
       </div>
-      <!-- <span>Enregistrer</span> -->
     </div>
   </div>
 
   <div class="below-cover-picure-container">
     <h3 class="text-center"><%= @exhibition.title  %></h3>
     <hr class="card-separator">
-    <% @average_rating.to_i.times do  %>
-      <span class="glyphicon glyphicon-star"></span>
-    <% end %>
-    <%= @average_rating %>
+    <div class="ratings">
+      <%= @average_rating %>
+      <p><%= @ratings_count %> avis donnés</p>
+      <% @average_rating.to_i.times do  %>
+        <span class="glyphicon glyphicon-star"></span>
+      <% end %>
+    </div>
     <p id="lead-text"><%= @exhibition.lead_text %></p>
     <div class="show-section">
       <div class="section-title">
@@ -52,17 +54,17 @@
                     <span class="day-of-week"><%= fr_jour_short(visit.date.cwday) %></span>
                   </div>
                   <div class="card-visit-hour">
-                    <p class="visit-hour">18h00</p>
+                    <p class="visit-hour"><%= visit.meeting_hour.hour %>H<%= visit.meeting_hour.min %></p>
                   </div>
                   <div class="card-visit-content">
                     <div class="mini-avatars">
                       <% if visit.subscriptions.count <= 3 %>
                         <% visit.subscriptions.each do |subscription| %>
-                          <span class="mini-avatar"><%=  image_tag(User.find(subscription.user_id).avatar) %></span>
+                          <span class="mini-avatar"><%=  image_tag(subscription.user.avatar) %></span>
                           <% end %>
                       <% else %>
                           <% visit.subscriptions.sample(3).each do |subscription| %>
-                          <span class="mini-avatar"><%=  image_tag(User.find(subscription.user_id).avatar) %></span>
+                          <span class="mini-avatar"><%=  image_tag(subscription.user.avatar) %></span>
                         <% end %>
                       <% end %>
                     </div>
@@ -86,7 +88,7 @@
         <h6>Détails</h6>
       </div>
         <div class="description"><%= @exhibition.description.html_safe %></div>
-        <p class="extend-text">Lire plus <i class="fas fa-chevron-right"></i></p>
+          <p class="extend-text">Lire plus <i class="fas fa-chevron-right"></i></p>
     </div>
     <div class="show-section">
       <div class="section-title">
@@ -95,9 +97,15 @@
           <i class="fas fa-chevron-right"></i>
         </div>
       </div>
-      <div class="section-content d-none">
+      <div class="section-content d-none" id="avis">
         <% @participations.each do |participation|%>
-          <%= participation.review_content %>
+        <div class="card-avis">
+          <p class="avatar"><%=  image_tag(participation.user.avatar) %></p>
+          <div class="review">
+            <span><%= participation.rating %></span>
+            <span><%= participation.review_content %></span>
+          </div>
+        </div>
         <% end %>
       </div>
     </div>
@@ -105,7 +113,9 @@
 
     <p>Vous êtes allez à l'expo ? Partagez votre avis avec la communauté</p>
     <div class="text-center">
-      <button class="btn-primary">Laisser un avis</button>
+      <%= link_to new_exhibition_participation_path(@exhibition) do  %>
+        <button class="btn-primary">Laisser un avis</button>
+      <% end %>
     </div>
   </div>
 </div>

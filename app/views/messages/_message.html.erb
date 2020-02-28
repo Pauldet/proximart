@@ -1,22 +1,28 @@
 <div class="message-container notification">
-  <i class="author">
-    <div class="avatar-large">
-    <% if message.user.avatar.attached?  %>
-    <%= cl_image_tag message.user.avatar.key =%>
-    <% end %>
-    </div>
-
+  <div class= "d-flex">
+    <i class="author">
+      <div class ="d-flex flex-column"> </div>
+        <div class="avatar-large">
+        <% if message.user.avatar.attached?  %>
+        <%= cl_image_tag message.user.avatar.key =%>
+        <% end %>
+        </div>
+        <div>
+          <span><%= message.user.username %></span>
+        </div>
+      </div>
+    </i>
     <% if message.created_at  %>
-    <div class="notification-content"> </div>
-      <span><%= message.user.username %> <%= message.content %></</span>
-    <%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-    </div>
-    <% else %>
-    <%= message.user.created_at %>
-     <span> <%= message.content %></</span>
-
+      <div class="align-self-start">
+        <p class="notification-content notification-time ">
+          <%= message.created_at.strftime("%a %b %e at %l:%M%p") %>
+        </p>
+        <p class="notification-content">
+           <%= message.content %>
+        </p>
+      </div>
     <% end %>
-  </i>
+  </div>
 </div>
 
 
