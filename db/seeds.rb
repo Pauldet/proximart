@@ -189,8 +189,28 @@ visits.each do |visit|
       )
     sub2.save!
   # end
-
 end
+
+#####
+
+# Creating Participation
+
+#####
+
+puts "creating 5 reviews per exhibition"
+
+exhibs.each do |exhib|
+  5.times do
+    date = Faker::Date.backward(days: 20)
+    review_content = Faker::Quote.famous_last_words
+    rating = Random.new.rand(0..5)
+    interested = Faker::Boolean.boolean
+    user = User.all.sample
+    participation = Participation.new(date: date, review_content: review_content, rating: rating, interested: interested, exhibition_id: exhib.id, user_id: user.id)
+    participation.save!
+  end
+end
+
 
 
 

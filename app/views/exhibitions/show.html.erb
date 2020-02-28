@@ -8,7 +8,6 @@
       <div class="heart">
         <i class="fas fa-heart"></i>
       </div>
-      <!-- <span>Enregistrer</span> -->
     </div>
   </div>
 
@@ -86,7 +85,7 @@
         <h6>Détails</h6>
       </div>
         <div class="description"><%= @exhibition.description.html_safe %></div>
-        <p class="extend-text">Lire plus <i class="fas fa-chevron-right"></i></p>
+          <p class="extend-text">Lire plus <i class="fas fa-chevron-right"></i></p>
     </div>
     <div class="show-section">
       <div class="section-title">
@@ -105,7 +104,9 @@
 
     <p>Vous êtes allez à l'expo ? Partagez votre avis avec la communauté</p>
     <div class="text-center">
-      <button class="btn-primary">Laisser un avis</button>
+      <%= link_to new_exhibition_participation_path(@exhibition) do  %>
+        <button class="btn-primary">Laisser un avis</button>
+      <% end %>
     </div>
   </div>
 </div>

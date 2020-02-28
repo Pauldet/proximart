@@ -8,8 +8,15 @@ def show
     # @futur_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now =< :date) We need to add the logic of future and past events
     # @past_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now >= :date)
     @participations = @exhibition.participations
-
-
+    @ratings_count = 0
+    sum = 0
+    @participations.each do |participation|
+      sum += participation.rating
+      @ratings_count += 1
+    end
+    if @ratings_count != 0
+      @average_rating = sum.fdiv(@ratings_count).truncate(2)
+    end
   end
 
 
