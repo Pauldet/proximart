@@ -136,14 +136,18 @@ exhibs.each do |ex|
   random_number[0].times do
     date = Faker::Date.forward(days: 10)
     information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
-    visit = Visit.new(date: date, information: information, exhibition_id: ex.id)
+    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
+    meeting_hour = Time.parse(time.split(" ").last)
+    visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end
 
   1.times do
     information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
     date = Faker::Date.backward(days: 10)
-    visit = Visit.new(date: date, information: information, exhibition_id: ex.id)
+    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
+    meeting_hour = Time.parse(time.split(" ").last)
+    visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end
 end
@@ -191,8 +195,28 @@ user2 = new_users.sample(1)
       )
     sub2.save!
   # end
-
 end
+
+#####
+
+# Creating Participation
+
+#####
+
+puts "creating 5 reviews per exhibition"
+
+exhibs.each do |exhib|
+  5.times do
+    date = Faker::Date.backward(days: 20)
+    review_content = Faker::Quote.famous_last_words
+    rating = Random.new.rand(0..5)
+    interested = Faker::Boolean.boolean
+    user = User.all.sample
+    participation = Participation.new(date: date, review_content: review_content, rating: rating, interested: interested, exhibition_id: exhib.id, user_id: user.id)
+    participation.save!
+  end
+end
+
 
 
 
