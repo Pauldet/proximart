@@ -16,11 +16,10 @@
       </div>
 
       <div class="select-distance">
-        <%#= f.input :distance, collection: [ ['2km', 2], ['5km', 5], ['10km', 10]  ], required: false, label: false, placeholder: 'Distance' %>
         <div class="d-flex justify-content-center my-4">
           <label for="customRange1"></label>
           <span class="font-weight-bold indigo-text mr-2 mt-1">500m</span>
-          <input type="range" class="custom-range" min="500" max="10000" step="500" value="1000" id="customRange1" name="distanceRange">
+          <input type="range" class="custom-range" min="500" max="10000" step="500" id="customRange1" name="distanceRange" value= <%= @maxdistance*1000 %>
           <span class="font-weight-bold indigo-text ml-2 mt-1">10km</span>
         </div>
       </div>
