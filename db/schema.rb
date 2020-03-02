@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_03_02_105037) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +69,15 @@ ActiveRecord::Schema.define(version: 2020_03_02_105037) do
     t.float "average_rating"
     t.integer "ratings_count"
     t.string "full_address"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "exhibition_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exhibition_id"], name: "index_likes_on_exhibition_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -128,6 +139,8 @@ ActiveRecord::Schema.define(version: 2020_03_02_105037) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "likes", "exhibitions"
+  add_foreign_key "likes", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "messages", "visits"
   add_foreign_key "participations", "exhibitions"

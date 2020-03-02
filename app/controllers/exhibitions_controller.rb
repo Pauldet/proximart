@@ -1,5 +1,5 @@
 class ExhibitionsController < ApplicationController
-  before_action :find_exhibition, only: :show
+  before_action :find_exhibition, only: [:show, :like]
 
 
 
@@ -19,6 +19,15 @@ def show
     end
   end
 
+def like
+  exhibition_like = current_user.likes.find_by(exhibition_id: @exhibition.id)
+  if exhibition_like
+    exhibition_like.destroy
+  else
+    Like.create(exhibition: @exhibition, user: current_user)
+  end
+  redirect_to exhibition_path(@exhibition)
+end
 
   def new
     @exhibition = Exhibition.new()

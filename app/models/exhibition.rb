@@ -6,6 +6,7 @@ class Exhibition < ApplicationRecord
 
   has_many :participations
   has_many :visits
+  has_many :likes
   has_one_attached :photo
 
   include Geocoder::Store::ActiveRecord

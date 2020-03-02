@@ -6,11 +6,15 @@ Rails.application.routes.draw do
   resources :exhibitions, only: [:show, :index, :new, :create] do
     resources :visits, only: [ :new, :create]
     resources :participations, only: [ :new, :create, :update, :edit, :destroy, :index]
+    resources :likes, only: [:new, :create, :destroy, :show, :index]
+    member do
+      get 'like', to: 'exhibitions#like'
+    end
   end
   resources :visits, only: [:show] do
     resources :subscriptions, only: [:create, :new, :update, :edit, :destroy]
     resources :messages, only: :create
   end
-
+  # resources :likes, only: [:index]
   resources :participations, only: [:show]
 end
