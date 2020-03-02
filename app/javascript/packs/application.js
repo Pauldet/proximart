@@ -34,6 +34,8 @@ getLocation();
 
 
 
+
+
 // other scroller
 
 // mobiscroll.card('.demo-card li', {

@@ -39,7 +39,7 @@
                 <% end %>
             </div>
             <div>
-               <%= link_to visit_path do %>
+               <%= link_to "https://www.facebook.com/sharer.php?u=#{request.original_url}" do %>
                 <i class="fab fa-facebook-square icone-share"></i>
               <% end %>
             </div>
@@ -79,7 +79,7 @@
       </div>
     </div>
 
-<%if @subscriptions.where(user_id: @current_user.id).first%>
+<%if user_signed_in? && @subscriptions.where(user_id: @current_user.id).first%>
     <div class= "message-creation sticky-bottom">
       <%= simple_form_for [ @visit, @message ] do |f| %>
         <div class='d-flex'>

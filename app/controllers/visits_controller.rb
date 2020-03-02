@@ -1,5 +1,5 @@
 class VisitsController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: [:show]
   before_action :find_visit, only: :show
 
 
@@ -11,7 +11,10 @@ class VisitsController < ApplicationController
     @message.user = current_user
     @subscriptions = @visit.subscriptions
     @current_user = current_user
-    @sub = @subscriptions.where(user_id: @current_user.id).first
+
+    if user_signed_in?
+      @sub = @subscriptions.where(user_id: @current_user.id).first
+    end
   end
 
   def create
