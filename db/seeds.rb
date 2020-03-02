@@ -39,11 +39,11 @@ if User.count < 15
     end
 end
 
-#####
+# #####
 
-# Exhibitions
+# # Exhibitions
 
-#####
+# #####
 
 
 puts "creating 30 exhib"
@@ -125,11 +125,11 @@ end
 
 
 
-#####
+# #####
 
-# Creating visit
+# # Creating visit
 
-#####
+# #####
 
 puts "creating 2 to 5 visits / exhib"
 exhibs = Exhibition.all
@@ -159,11 +159,11 @@ end
 
 
 
-#####
+# #####
 
-# Creating Subscription
+# # Creating Subscription
 
-#####
+# #####
 
 puts "creating 2 subscribers per visit"
 
@@ -202,11 +202,11 @@ user2 = new_users.sample(1)
   # end
 end
 
-#####
+####
 
 # Creating Participation
 
-#####
+####
 
 puts "creating between 3 and 10 reviews per exhibition"
 

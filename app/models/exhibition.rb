@@ -20,7 +20,12 @@ class Exhibition < ApplicationRecord
 
   # include PgSearch
   # pg_search_scope :search_by_title_and_syllabus, against: [ :title, :category, :lead_text, :tags, :description, :date_start]
-
+  def update_average_rating
+    average_rating = self.participations.pluck(:rating).sum / self.participations.size
+    self.average_rating = average_rating
+    self.ratings_count = self.participations.size
+    self.save
+  end
 
 
   # def full_address
