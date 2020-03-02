@@ -14,190 +14,190 @@ require 'faker'
 
 Message.destroy_all
 Participation.destroy_all
-Subscription.destroy_all
-User.destroy_all
-Visit.destroy_all
-Exhibition.destroy_all
+# Subscription.destroy_all
+# User.destroy_all
+# Visit.destroy_all
 # Exhibition.destroy_all
-## Create users
+# # Exhibition.destroy_all
+# ## Create users
 
-if User.count < 15
-  puts 'Creating 10 fake users...'
-  user_array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-
-
-  # Creating USER
-  user_array.each do |i|
-    user_email = "#{i}@test.com"
-    username = Faker::GreekPhilosophers.name+"#{i}"
-    bio = Faker::Hipster.paragraph_by_chars(characters: 256, supplemental: false)
-    user = User.new(email: user_email, password: '123456', phone_number:'+33695141564', bio: bio, username: username)
-    path = "app/assets/images/#{i}.jpg"
-    file = File.open(path)
-    user.avatar.attach(io: file, filename: "avatar#{i}")
-    user.save!
-    end
-end
-
-#####
-
-# Exhibitions
-
-#####
+# if User.count < 15
+#   puts 'Creating 10 fake users...'
+#   user_array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 
-puts "creating 30 exhib"
+#   # Creating USER
+#   user_array.each do |i|
+#     user_email = "#{i}@test.com"
+#     username = Faker::GreekPhilosophers.name+"#{i}"
+#     bio = Faker::Hipster.paragraph_by_chars(characters: 256, supplemental: false)
+#     user = User.new(email: user_email, password: '123456', phone_number:'+33695141564', bio: bio, username: username)
+#     path = "app/assets/images/#{i}.jpg"
+#     file = File.open(path)
+#     user.avatar.attach(io: file, filename: "avatar#{i}")
+#     user.save!
+#     end
+# end
 
-extensive_url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=400&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
-url = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=30&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
+# # #####
 
-exhib_serialized = open(url).read
-exhibitions = JSON.parse(exhib_serialized)
-#puts exhibitions
-exhibitions["records"].each do |exhib|
-  fields = exhib["fields"]
+# # # Exhibitions
 
- latitude = fields["lat_lon"][0].present? ? exhib["fields"]["lat_lon"][0] : nil
- longitude = fields["lat_lon"][1].present? ? exhib["fields"]["lat_lon"][1] : nil
- address_street = fields["address_street"].present? ? fields["address_street"] : "Non précisé"
- category = fields["category"].present? ? fields["category"] : "Non précisé"
- title = fields["title"].present? ? fields["title"] : "Non précisé"
- date_start = fields["date_start"].present? ? fields["date_start"] : nil
- date_end = fields["date_end"].present? ? fields["date_end"] : nil
- occurences = fields["occurrences"].present? ? fields["occurrences"] : "Non précisé" #TBC
- contact_url = fields["contact_url"].present? ? fields["contact_url"] : "Non précisé"
- address_name = fields["address_name"].present? ? fields["address_name"] : "Non précisé"
- contact_twitter = fields["contact_twitter"].present? ? fields["contact_twitter"] : "Non précisé" #TBC
- contact_phone = fields["contact_phone"].present? ? fields["contact_phone"] : "Non précisé" #TBS
- # description = fields["description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["description"]) : "Non précisé"
- description = fields["description"].present? ? fields["description"] : "Non précisé"
- tags = fields["tags"].present? ? fields["tags"] : "Non précisé"
- contact_mail = fields["contact_mail"].present? ? fields["contact_mail"] : "Non précisé" #TBC
- lead_text = fields["lead_text"].present? ? fields["lead_text"] : "Non précisé"
- cover_url = fields["cover_url"].present? ? fields["cover_url"] : "Non précisé"
- contact_facebook = fields["contact_facebook"].present? ? fields["contact_facebook"] : "Non précisé" #TBC
- cover_credit = fields["cover_credit"].present? ? fields["cover_credit"] : "Non précisé"
- address_city = fields["address_city"].present? ? fields["address_city"] : "Non précisé"
- price_detail = fields["price_detail"].present? ? fields["price_detail"] : "Non précisé"
- price_type = fields["price_type"].present? ? fields["price_type"] : "Non précisé"
- # date_description = fields["date_description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["date_description"]) : "Non précisé"
- date_description = fields["date_description"].present? ? fields["date_description"] : "Non précisé"
- address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Non précisé"
- external_id = fields["id"].present? ? fields["id"].to_i : nil
-
-    exhibition_params = {
-      latitude:latitude,
-      longitude: longitude,
-      address_street: address_street,
-      category: category,
-      title: title,
-      date_start: date_start,
-      date_end: date_end,
-      occurences: occurences,
-      contact_url: contact_url,
-      address_name: address_name,
-      contact_twitter: contact_twitter,
-      contact_phone: contact_phone,
-      description: description,
-      tags: tags,
-      contact_mail: contact_mail,
-      lead_text: lead_text,
-      cover_url: cover_url,
-      contact_facebook: contact_facebook,
-      cover_credit: cover_credit,
-      address_city: address_city,
-      price_detail: price_detail,
-      price_type: price_type,
-      date_description: date_description,
-      address_zipcode: address_zipcode,
-      external_id: external_id
-    }
-    Exhibition.find_or_initialize_by(exhibition_params).save
-    exhibition = Exhibition.find_by(external_id: external_id)
-    photo_file = URI.open(cover_url)
-    exhibition.photo.attach(io: photo_file, filename: "#{external_id}_cover")
-    exhibition.save!
-
-end
+# # #####
 
 
+# puts "creating 30 exhib"
 
-#####
+# extensive_url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=400&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
+# url = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=30&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
 
-# Creating visit
+# exhib_serialized = open(url).read
+# exhibitions = JSON.parse(exhib_serialized)
+# #puts exhibitions
+# exhibitions["records"].each do |exhib|
+#   fields = exhib["fields"]
 
-#####
+#  latitude = fields["lat_lon"][0].present? ? exhib["fields"]["lat_lon"][0] : nil
+#  longitude = fields["lat_lon"][1].present? ? exhib["fields"]["lat_lon"][1] : nil
+#  address_street = fields["address_street"].present? ? fields["address_street"] : "Non précisé"
+#  category = fields["category"].present? ? fields["category"] : "Non précisé"
+#  title = fields["title"].present? ? fields["title"] : "Non précisé"
+#  date_start = fields["date_start"].present? ? fields["date_start"] : nil
+#  date_end = fields["date_end"].present? ? fields["date_end"] : nil
+#  occurences = fields["occurrences"].present? ? fields["occurrences"] : "Non précisé" #TBC
+#  contact_url = fields["contact_url"].present? ? fields["contact_url"] : "Non précisé"
+#  address_name = fields["address_name"].present? ? fields["address_name"] : "Non précisé"
+#  contact_twitter = fields["contact_twitter"].present? ? fields["contact_twitter"] : "Non précisé" #TBC
+#  contact_phone = fields["contact_phone"].present? ? fields["contact_phone"] : "Non précisé" #TBS
+#  # description = fields["description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["description"]) : "Non précisé"
+#  description = fields["description"].present? ? fields["description"] : "Non précisé"
+#  tags = fields["tags"].present? ? fields["tags"] : "Non précisé"
+#  contact_mail = fields["contact_mail"].present? ? fields["contact_mail"] : "Non précisé" #TBC
+#  lead_text = fields["lead_text"].present? ? fields["lead_text"] : "Non précisé"
+#  cover_url = fields["cover_url"].present? ? fields["cover_url"] : "Non précisé"
+#  contact_facebook = fields["contact_facebook"].present? ? fields["contact_facebook"] : "Non précisé" #TBC
+#  cover_credit = fields["cover_credit"].present? ? fields["cover_credit"] : "Non précisé"
+#  address_city = fields["address_city"].present? ? fields["address_city"] : "Non précisé"
+#  price_detail = fields["price_detail"].present? ? fields["price_detail"] : "Non précisé"
+#  price_type = fields["price_type"].present? ? fields["price_type"] : "Non précisé"
+#  # date_description = fields["date_description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["date_description"]) : "Non précisé"
+#  date_description = fields["date_description"].present? ? fields["date_description"] : "Non précisé"
+#  address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Non précisé"
+#  external_id = fields["id"].present? ? fields["id"].to_i : nil
 
-puts "creating 2 to 5 visits / exhib"
-exhibs = Exhibition.all
+#     exhibition_params = {
+#       latitude:latitude,
+#       longitude: longitude,
+#       address_street: address_street,
+#       category: category,
+#       title: title,
+#       date_start: date_start,
+#       date_end: date_end,
+#       occurences: occurences,
+#       contact_url: contact_url,
+#       address_name: address_name,
+#       contact_twitter: contact_twitter,
+#       contact_phone: contact_phone,
+#       description: description,
+#       tags: tags,
+#       contact_mail: contact_mail,
+#       lead_text: lead_text,
+#       cover_url: cover_url,
+#       contact_facebook: contact_facebook,
+#       cover_credit: cover_credit,
+#       address_city: address_city,
+#       price_detail: price_detail,
+#       price_type: price_type,
+#       date_description: date_description,
+#       address_zipcode: address_zipcode,
+#       external_id: external_id
+#     }
+#     Exhibition.find_or_initialize_by(exhibition_params).save
+#     exhibition = Exhibition.find_by(external_id: external_id)
+#     photo_file = URI.open(cover_url)
+#     exhibition.photo.attach(io: photo_file, filename: "#{external_id}_cover")
+#     exhibition.save!
 
-exhibs.each do |ex|
-  random_number = [1,2,3,4].sample(1)
-  random_number[0].times do
-    date = Faker::Date.forward(days: 10)
-    information = "Bonjour,
-Amateur de charcuterie je vous propose de vous retrouver pour un apéritif: “Saucissons & exposition”.
-A très vite"
-    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
-    meeting_hour = Time.parse(time.split(" ").last)
-    visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
-    visit.save!
-  end
-
-  1.times do
-    information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
-    date = Faker::Date.backward(days: 10)
-    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
-    meeting_hour = Time.parse(time.split(" ").last)
-    visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
-    visit.save!
-  end
-end
+# end
 
 
 
-#####
+# # #####
 
-# Creating Subscription
+# # # Creating visit
 
-#####
+# # #####
 
-puts "creating 2 subscribers per visit"
+# puts "creating 2 to 5 visits / exhib"
+ exhibs = Exhibition.all
+
+# exhibs.each do |ex|
+#   random_number = [1,2,3,4].sample(1)
+#   random_number[0].times do
+#     date = Faker::Date.forward(days: 10)
+#     information = "Bonjour,
+# Amateur de charcuterie je vous propose de vous retrouver pour un apéritif: “Saucissons & exposition”.
+# A très vite"
+#     time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
+#     meeting_hour = Time.parse(time.split(" ").last)
+#     visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
+#     visit.save!
+#   end
+
+#   1.times do
+#     information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
+#     date = Faker::Date.backward(days: 10)
+#     time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
+#     meeting_hour = Time.parse(time.split(" ").last)
+#     visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
+#     visit.save!
+#   end
+# end
 
 
-visits = Visit.all
-users = User.all
-subscriptions = Subscription.all
-user1 = users.sample(1)
-new_users = users - user1
-user2 = new_users.sample(1)
 
-visits.each do |visit|
+# # #####
 
-user1 = users.sample(1)
-new_users = users - user1
-user2 = new_users.sample(1)
+# # # Creating Subscription
+
+# # #####
+
+# puts "creating 2 subscribers per visit"
 
 
-  # unless subscriptions.where(user_id: user1.first.id, visit_id: visit.id)
-    sub1 = Subscription.new(
-      subscribed: "true",
-      user_id: user1.first.id,
-      visit_id: visit.id
-      )
-    sub1.save!
-  # else
-  #   puts "Subscirption for user 1 already exit"
-  # end
-   # unless subscriptions.where(user_id: user2.first.id, visit_id: visit.id)
-    sub2 = Subscription.new(
-      subscribed: "true",
-      user_id: user2.first.id,
-      visit_id: visit.id
-      )
-    sub2.save!
-  # end
-end
+# visits = Visit.all
+# users = User.all
+# subscriptions = Subscription.all
+# user1 = users.sample(1)
+# new_users = users - user1
+# user2 = new_users.sample(1)
+
+# visits.each do |visit|
+
+# user1 = users.sample(1)
+# new_users = users - user1
+# user2 = new_users.sample(1)
+
+
+#   # unless subscriptions.where(user_id: user1.first.id, visit_id: visit.id)
+#     sub1 = Subscription.new(
+#       subscribed: "true",
+#       user_id: user1.first.id,
+#       visit_id: visit.id
+#       )
+#     sub1.save!
+#   # else
+#   #   puts "Subscirption for user 1 already exit"
+#   # end
+#    # unless subscriptions.where(user_id: user2.first.id, visit_id: visit.id)
+#     sub2 = Subscription.new(
+#       subscribed: "true",
+#       user_id: user2.first.id,
+#       visit_id: visit.id
+#       )
+#     sub2.save!
+#   # end
+# end
 
 #####
 
