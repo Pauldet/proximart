@@ -49,7 +49,4 @@ getLocation();
 //     snap: false
 // });
 
-// // Uncomment it when turbolinks set.
-// document.addEventListener('turbolinks:load', () => {
-//  // Put here your calls methods
-// })
+
