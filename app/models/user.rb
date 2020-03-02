@@ -7,5 +7,6 @@ class User < ApplicationRecord
   has_many :participations
   has_many :messages
   has_many :subscriptions
+  has_many :likes
 
 end

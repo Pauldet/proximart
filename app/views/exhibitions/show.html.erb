@@ -6,7 +6,7 @@
     <% end %>
     <div class="heart-button row">
       <div class="heart">
-        <i class="fas fa-heart"></i>
+         <i class="fas fa-heart"></i>
       </div>
     </div>
   </div>
@@ -120,9 +120,10 @@
       <% end %>
     </div>
   </div>
+
 </div>
+<script>
+  window.exhibition_id = <%= @exhibition.id %>;
 
-
-
-
-
+</script>
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
