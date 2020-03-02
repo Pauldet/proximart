@@ -61,6 +61,21 @@ function getLocation() {
 
 function showPosition(position) {
   initMapbox(position.coords.longitude, position.coords.latitude)
+  console.log(position.coords);
+  var lat = document.getElementById("setlat");
+  var long = document.getElementById("setlong");
+  console.log(lat)
+  console.log(long)
+  lat.value = position.coords.latitude;
+  long.value = position.coords.longitude;
+  console.log(lat.value);
+  console.log(long.value);
+  if (window.location.href.length < 40) {
+  window.onload = function(){
+  document.getElementsByClassName('simple_form search')[0].submit();
+  }
+}
+
 }
 
 export { getLocation };

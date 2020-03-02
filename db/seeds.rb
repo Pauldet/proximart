@@ -57,6 +57,9 @@ exhibitions = JSON.parse(exhib_serialized)
 exhibitions["records"].each do |exhib|
   fields = exhib["fields"]
 
+ address_street = fields["address_street"].present? ? fields["address_street"] : "Non précisé"
+ address_city = fields["address_city"].present? ? fields["address_city"] : "Non précisé"
+ full_address = "#{address_street}, #{address_city}"
  latitude = fields["lat_lon"][0].present? ? exhib["fields"]["lat_lon"][0] : nil
  longitude = fields["lat_lon"][1].present? ? exhib["fields"]["lat_lon"][1] : nil
  address_street = fields["address_street"].present? ? fields["address_street"] : "Non précisé"
@@ -77,7 +80,6 @@ exhibitions["records"].each do |exhib|
  cover_url = fields["cover_url"].present? ? fields["cover_url"] : "Non précisé"
  contact_facebook = fields["contact_facebook"].present? ? fields["contact_facebook"] : "Non précisé" #TBC
  cover_credit = fields["cover_credit"].present? ? fields["cover_credit"] : "Non précisé"
- address_city = fields["address_city"].present? ? fields["address_city"] : "Non précisé"
  price_detail = fields["price_detail"].present? ? fields["price_detail"] : "Non précisé"
  price_type = fields["price_type"].present? ? fields["price_type"] : "Non précisé"
  # date_description = fields["date_description"].present? ? ActionView::Base.full_sanitizer.sanitize(fields["date_description"]) : "Non précisé"
@@ -110,7 +112,8 @@ exhibitions["records"].each do |exhib|
       price_type: price_type,
       date_description: date_description,
       address_zipcode: address_zipcode,
-      external_id: external_id
+      external_id: external_id,
+      full_address: full_address
     }
     Exhibition.find_or_initialize_by(exhibition_params).save
     exhibition = Exhibition.find_by(external_id: external_id)

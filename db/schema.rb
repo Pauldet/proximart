@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_29_191056) do
+
+ActiveRecord::Schema.define(version: 2020_03_02_105037) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_191056) do
     t.integer "external_id"
     t.float "average_rating"
     t.integer "ratings_count"
+    t.string "full_address"
   end
 
   create_table "likes", force: :cascade do |t|
