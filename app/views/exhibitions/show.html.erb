@@ -17,6 +17,7 @@
     <h3 class="text-center"><%= @exhibition.title  %></h3>
     <hr class="card-separator">
     <div class="ratings pl-2">
+      <p class="mb-1"><%= @exhibition.address_name %></p>
       <% @exhibition.average_rating.round.times do  %>
         <i class="fas fa-star" id="stars"></i>
       <% end %>
@@ -34,7 +35,7 @@
         </div>
       </div>
       <div class="section-content d-none" id="infos-pratiques">
-        <p><i class="fas fa-map-marker-alt"></i><%= "#{@exhibition.address_street}, #{@exhibition.address_city}" %></p>
+        <p><i class="fas fa-map-marker-alt"></i><%= "#{@exhibition.address_street}, #{@exhibition.address_city}, #{@exhibition.address_zipcode}" %></p>
         <p><i class="fas fa-euro-sign"></i><%= @exhibition.price_detail %></p>
         <p><i class="far fa-calendar-check"></i><%=@exhibition.date_description.html_safe %></p>
       </div>
