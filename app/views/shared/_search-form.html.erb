@@ -32,12 +32,15 @@
       <input type="hidden" name="post[categories][]" value="">
 
       <div class="tag-choices">
-          <% tags.each do |tag| %>
-            <input hidden type="checkbox" value="<%= tag %>" name="filter[tags][]" id="post_tags_<%= tag %>">
-            <label class="tag-choice" for="post_tags_<%= tag %>">
-              <%= tag %>
-            </label>
-          <% end %>
+        <button type="button" class="btn btn-empty" data-toggle="modal" data-target="#exampleModal">
+          Filtres
+        </button>
+
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        </div>
+
+
 
       </div>
     </div>
@@ -47,3 +50,19 @@
 
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content tag-choices">
+
+      <div class="modal-body tags-menu">
+          <% tags.each_with_index do |tag, index| %>
+            <input type="checkbox" value="<%= tag %>" name="filter[tags][]" id="post_tags_<%= index %>">
+            <label class="tag-choice" for="post_tags_<%= index %>"><%= tag %></label>
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,14 @@
 .moving-letters {
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
   font-weight: 200;
   //font-size: 3.2em;
   height: 40px;
-  color: #402d2d;
+  color: $dark-blue;
   -webkit-appearance: none;
   h1 {
     font-family: $logo-font;
+    color: $dark-blue;
+    font-size: 24px !important;
   }
 
 }
@@ -27,7 +29,7 @@
   left: 0;
   height: 2px;
   width: 100%;
-  background-color: #fff;
+  background-color: $dark-blue;
   transform-origin: 100% 100%;
   bottom: 0;
 }
@@ -38,15 +40,4 @@
 }
 
 
-// .moving-letters .line {
-//   position: absolute;
-//   left: 0;
-//   top: 0;
-//   bottom: 0;
-//   margin: auto;
-//   height: 3px;
-//   width: 100%;
-//   background-color: #402d2d;
-//   transform-origin: 0.5 0;
-// }
 
