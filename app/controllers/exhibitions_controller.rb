@@ -30,8 +30,37 @@ def show
   end
 
   def index
-    @exhibitions = Exhibition.geocoded
+    @exhibitions = Exhibition.all
     @tags = @exhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq
+
+    if params[:search]
+       @current_location = [params[:search][:lat], params[:search][:long]]
+    else
+     @current_location = [48.877932,2.3417265]
+    end
+    @distance = {}
+    @distancewithunit = {}
+
+    @exhibitions.each do |exhibition|
+      dist = Geocoder::Calculations.distance_between(@current_location, exhibition)
+      id = exhibition.id
+      @distance[id] = dist.truncate(2)
+
+      if dist < 1
+        distance = dist.truncate(1)*1000
+        diststring = distance.truncate(0)
+        distancewithunit = "#{diststring} m"
+
+      else
+        disttrunc = dist.truncate(0)
+        if dist - disttrunc < 0.05
+          distancewithunit = "#{dist.truncate(0)} km"
+        else
+          distancewithunit = "#{dist.truncate(1)} km"
+        end
+      end
+      @distancewithunit[id] = distancewithunit
+    end
 
     @markers = @exhibitions.map do |exhibition|
       {
@@ -39,6 +68,8 @@ def show
         lng: exhibition.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
       }
+
+
     end
   end
 

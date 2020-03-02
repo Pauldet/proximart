@@ -1,5 +1,5 @@
 <div class="container-search-bar">
-  <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+  <%= simple_form_for :search, id:"search-form", url: root_path, method: :get do |f| %>
 
     <div class="search-form-control form-group">
       <input class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="Picasso..." />
@@ -19,15 +19,15 @@
         <%#= f.input :distance, collection: [ ['2km', 2], ['5km', 5], ['10km', 10]  ], required: false, label: false, placeholder: 'Distance' %>
         <div class="d-flex justify-content-center my-4">
           <label for="customRange1"></label>
-          <span class="font-weight-bold indigo-text mr-2 mt-1">300m</span>
-          <input type="range" class="custom-range" min="300" max="5000" id="customRange1">
-          <span class="font-weight-bold indigo-text ml-2 mt-1">5km</span>
-
+          <span class="font-weight-bold indigo-text mr-2 mt-1">500m</span>
+          <input type="range" class="custom-range" min="500" max="10000" step="500" id="customRange1" name="distanceRange">
+          <span class="font-weight-bold indigo-text ml-2 mt-1">10km</span>
         </div>
       </div>
-
     </div>
 
+      <%= f.hidden_field :lat, id: "setlat"  %>
+      <%= f.hidden_field :long, id: "setlong"%>
     <div class="select-tags">
       <input type="hidden" name="post[categories][]" value="">
 
