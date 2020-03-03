@@ -39,38 +39,54 @@ end
   end
 
   def index
-    @exhibitions = Exhibition.all
-    @tags = @exhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq.sort
-    @categories = @exhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
+
+    @allExhibitions = Exhibition.all
+    @categories = @allExhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
+
+
+    if params[:distanceRange]
+      @maxdistance = params[:distanceRange].to_i/1000
+    else
+      @maxdistance = 1
+    end
 
     if params[:search]
-       @current_location = [params[:search][:lat], params[:search][:long]]
+      @current_location = [params[:search][:lat], params[:search][:long]]
     else
      @current_location = [48.877932,2.3417265]
-    end
-    @distance = {}
-    @distancewithunit = {}
 
-    @exhibitions.each do |exhibition|
+    end
+
+    @distanceEx = {} #hash of expo id => distance from current position, with only exhibition closer than maxdistance
+    @distanceExWithUnit = {} #hash of expo id => distance from current position, with only exhibition closer than maxdistance + Merters or Kms
+
+    @allExhibitions.each do |exhibition|
       dist = Geocoder::Calculations.distance_between(@current_location, exhibition)
       id = exhibition.id
-      @distance[id] = dist.truncate(2)
+      if dist < @maxdistance
+        @distanceEx[id] = dist.truncate(2)
+        if dist < 1
+          distance = dist.truncate(1)*1000
+          diststring = distance.truncate(0)
+          distancewithunit = "#{diststring} m"
 
-      if dist < 1
-        distance = dist.truncate(1)*1000
-        diststring = distance.truncate(0)
-        distancewithunit = "#{diststring} m"
-
-      else
-        disttrunc = dist.truncate(0)
-        if dist - disttrunc < 0.05
-          distancewithunit = "#{dist.truncate(0)} km"
         else
-          distancewithunit = "#{dist.truncate(1)} km"
+          disttrunc = dist.truncate(0)
+          if dist - disttrunc < 0.05
+            distancewithunit = "#{dist.truncate(0)} km"
+          else
+            distancewithunit = "#{dist.truncate(1)} km"
+          end
         end
+        @distanceExWithUnit[id] = distancewithunit
       end
-      @distancewithunit[id] = distancewithunit
     end
+    #creer un hash avec Exhibition instance et distance en value
+    exhibId = @distanceEx.keys #ExhibId of Exhib closer than max range
+    @exhibitionsUnsorted = Exhibition.all.where(id: exhibId)
+    @exhibitionsArrayWithDistance = @exhibitionsUnsorted.map{|exhib| [exhib, @distanceEx[exhib.id]]}.sort_by{|a| a[1]}
+    @exhibitions = @exhibitionsArrayWithDistance.map{|a| a[0]}
+    # @tags = @allExhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq # --> if we need to search with tags
 
     @markers = @exhibitions.map do |exhibition|
       {
@@ -78,8 +94,6 @@ end
         lng: exhibition.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
       }
-
-
     end
   end
 
