@@ -1,7 +1,10 @@
 <%= render 'shared/map' %>
+<h4>Dernière chance !</h4>
 <%= render 'shared/search-form', filters: @categories %>
 <%#= render 'shared/scrolling-cards' %>
 
+
+<h4>Toutes les expositions</h4>
 <div class="container_card">
   <div class="exhibitions-items">
     <% @exhibitions.each do |exhibition| %>

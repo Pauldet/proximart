@@ -6,23 +6,27 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable"  content="yes">
     <title><%= meta_title %></title>
-<meta name="description" content="<%= meta_description %>">
+    <meta name="description" content="<%= meta_description %>">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
 
-<!-- Facebook Open Graph data -->
-<meta property="og:title" content="<%= meta_title %>" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="<%= request.original_url %>" />
-<meta property="og:image" content="<%= meta_image %>" />
-<meta property="og:description" content="<%= meta_description %>" />
-<meta property="og:site_name" content="<%= meta_title %>" />
+    <!-- icons for PWA -->
+    <%= render 'shared/ios_pwa_links' %>
 
-<!-- Twitter Card data -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="<%= DEFAULT_META["twitter_account"] %>">
-<meta name="twitter:title" content="<%= meta_title %>">
-<meta name="twitter:description" content="<%= meta_description %>">
-<meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
-<meta name="twitter:image:src" content="<%= meta_image %>">
+    <!-- Facebook Open Graph data -->
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="<%= DEFAULT_META["twitter_account"] %>">
+    <meta name="twitter:title" content="<%= meta_title %>">
+    <meta name="twitter:description" content="<%= meta_description %>">
+    <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
+    <meta name="twitter:image:src" content="<%= meta_image %>">
 
     <title>Proximart</title>
     <%= csrf_meta_tags %>
@@ -35,9 +39,8 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
+
     <%= yield %>
-
-
 
     <%= render 'shared/footer' %>
   </body>
