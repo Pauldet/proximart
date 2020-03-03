@@ -214,7 +214,7 @@ exhibs.each do |exhib|
   Random.new.rand(3..10).times do
     date = Faker::Date.backward(days: 20)
     review_content = Faker::Quote.famous_last_words
-    rating = Random.new.rand(0..5)
+    rating = Random.new.rand(2..5)
     interested = Faker::Boolean.boolean
     user = User.all.sample
     participation = Participation.new(date: date, review_content: review_content, rating: rating, interested: interested, exhibition_id: exhib.id, user_id: user.id)
