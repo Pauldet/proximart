@@ -86,7 +86,10 @@ exhibitions["records"].each do |exhib|
  date_description = fields["date_description"].present? ? fields["date_description"] : "Non précisé"
  address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Non précisé"
  external_id = fields["id"].present? ? fields["id"].to_i : nil
-
+ new_occurences = occurences.split(";")
+ new_occurences.map! do |day|
+  day.split("_")
+ end
     exhibition_params = {
       latitude:latitude,
       longitude: longitude,
@@ -95,7 +98,7 @@ exhibitions["records"].each do |exhib|
       title: title,
       date_start: date_start,
       date_end: date_end,
-      occurences: occurences,
+      occurences: new_occurences,
       contact_url: contact_url,
       address_name: address_name,
       contact_twitter: contact_twitter,
@@ -214,7 +217,7 @@ exhibs.each do |exhib|
   Random.new.rand(3..10).times do
     date = Faker::Date.backward(days: 20)
     review_content = Faker::Quote.famous_last_words
-    rating = Random.new.rand(0..5)
+    rating = Random.new.rand(2..5)
     interested = Faker::Boolean.boolean
     user = User.all.sample
     participation = Participation.new(date: date, review_content: review_content, rating: rating, interested: interested, exhibition_id: exhib.id, user_id: user.id)

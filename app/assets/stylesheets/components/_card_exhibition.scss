@@ -4,7 +4,12 @@
   border-radius: 5px;
   width: 350px;
   justify-content: space-around;
-margin: 3vw;
+  margin: 3vw;
+  text-decoration:none;
+  a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+  }
+  position:relative;
 }
 
 .container_card {
@@ -20,6 +25,7 @@ justify-content: center;
   // text-align: justify;
   max-height: 50px;
   overflow: hidden;
+  text-decoration: none;
 }
 
 
@@ -32,7 +38,8 @@ text-align: center;
   // font-style: italic;
   margin-right: 5px;
   margin-left: 5px;
-  font-weight: bold;
+  //font-weight: bold;
+  text-decoration: none;
 
 }
 .exhibitions-items {
@@ -44,11 +51,19 @@ text-align: center;
   width: 100%;
   object-fit: cover;
   overflow: hidden;
+
 }
 
-.carrousel-item {
-  justify-content: center;
-  width: 300px;
+.overlay_tag {
+  z-index: 99;
+  position:absolute;
+  background-color: #f44459;
+  color:white;
+  top:1vh;
+  left: 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  border-radius: 3px;
 }
 
 .container{

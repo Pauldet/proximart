@@ -1,213 +1,54 @@
 
-<div class="card-presentation">
-  <%# Exhibition.all.each do |exhibition| %>
-  <p><%#= exhibition.title %></p>
-  <p><%#= exhibition.tags %></p>
-  <%#= cl_image_path exhibition.photo %>
-
-  <%# end %>
-</div>
-
-
 <div class="scrolling-div">
   <div class="app">
-    <h1>Expo next to me</h1>
 
+    <h3>Expo next to me</h3>
     <ul class="hs full no-scrollbar">
-
       <li class="mbsc-cloak">
-          <div class="mbsc-card-content">
-              <div class="carrousel-items">
-                <% @exhibitions.each do |exhibition| %>
-                  <%= link_to exhibition_path(exhibition) do  %>
-                    <div class="carrousel-item">
-                      <div class="card_exhibition">
-                        <div class="carrousel-img md-img" draggable="false">
-                          <% if exhibition.photo.attached?  %>
-                            <%= cl_image_tag exhibition.photo.key, height: 100, width: 250, crop: :fill %>
-                          <% end %>
+        <div class="container_card">
+          <div class="exhibitions-items">
+            <% @exhibitions.each do |exhibition| %>
+              <%= link_to exhibition_path(exhibition) do  %>
+                  <div class="card_exhibition">
+                    <div class="card-img">
+                      <% if exhibition.photo.attached?  %>
+                        <%= cl_image_tag exhibition.photo.key, height: 180, width: 350, crop: :fill %>
+                      <% end %>
+                    </div>
+                      <h1><%= exhibition.title %></h1>
+                      <div class="container">
+                        <div class="star">
+                        <% exhibition.average_rating.round.times do  %>
+                          <i class="fas fa-star" id="stars"></i>
+                        <% end %>
+                        <% (5 - exhibition.average_rating.round).times do %>
+                          <i class="far fa-star"></i>
+                        <% end %>
                         </div>
-                          <div class="mbsc-card-title">
-                          <P><%= exhibition.title %></p>
+                          <div class="img_marker2">
+                              <i class="fas fa-map-marker-alt"> <%= @distanceExWithUnit[exhibition.id] %></i>
                           </div>
-                            <div class="mbsc-card-subtitle">
-                          <P><%= exhibition.category %></p>
-                            </div>
                       </div>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
+                      <p class="address-name"><%= exhibition.address_name %></p>
+                    <p><%= exhibition.lead_text %></p>
+                  </div>
+                <% end %>
+            <% end %>
           </div>
+        </div>
       </li>
-
-
-      <li class="mbsc-cloak">
-          <div class="mbsc-card-content">
-              <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-              <div class="mbsc-card-title">Title</div>
-              <div class="mbsc-card-subtitle">Sub title</div>
-              <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-          </div>
-      </li>
-
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
     </ul>
 
-    <h1>Best of 🍔</h1>
-
-    <ul class="hs full no-scrollbar">
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
-      <li class="item">card</li>
+    <h3>New & Updated Apps</h3>
+    <ul class="demo-card mbsc-cloak">
+        <li class="mbsc-cloak">
+            <div class="mbsc-card-content">
+                <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
+                <div class="mbsc-card-title">Netflix</div>
+                <div class="mbsc-card-subtitle">Netflix, Inc. </div>
+                <div class="md-rank">4.4<span class="mbsc-ic mbsc-ic-star3"></span></div>
+            </div>
+        </li>
     </ul>
-  </div>
-</div>
-
-
-
-<!-- other scroller -->
-<!-- <div class="md-cards">
-    <div class="md-card-cont">
-        <h3>New & Updated Games</h3>
-        <ul class="demo-card mbsc-cloak">
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-        </ul>
-        <h3>Media & Video Apps</h3>
-        <ul class="demo-card mbsc-cloak">
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Title</div>
-                    <div class="mbsc-card-subtitle">Sub title</div>
-                    <div class="md-rank">4.2<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-
-        </ul>
-
-        <h3>New & Updated Apps</h3>
-        <ul class="demo-card mbsc-cloak">
-            <li class="mbsc-cloak">
-                <div class="mbsc-card-content">
-                    <img class="md-img" src="https://source.unsplash.com/random/400x200" draggable="false">
-                    <div class="mbsc-card-title">Netflix</div>
-                    <div class="mbsc-card-subtitle">Netflix, Inc. </div>
-                    <div class="md-rank">4.4<span class="mbsc-ic mbsc-ic-star3"></span></div>
-                </div>
-            </li>
-        </ul>
     </div>
 </div> -->

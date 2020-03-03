@@ -56,7 +56,7 @@
     <div class="modal-content tag-choices">
 
       <div class="modal-body tags-menu">
-          <% tags.each_with_index do |tag, index| %>
+          <% filters.each_with_index do |tag, index| %>
             <input type="checkbox" value="<%= tag %>" name="filter[tags][]" id="post_tags_<%= index %>">
             <label class="tag-choice" for="post_tags_<%= index %>"><%= tag %></label>
           <% end %>

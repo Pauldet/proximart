@@ -1,3 +1,10 @@
+
+<% content_for :meta_title, "#{@exhibition.title} - #{DEFAULT_META["meta_product_name"]}"  %>
+<% content_for :meta_description, @exhibition.lead_text %>
+
+<% if @exhibition.photo.attached?  %>
+  <% content_for :meta_image, cl_image_path(@exhibition.photo.key, :transformation => { :width => 1200, :height => 630, :fetch_format=>:auto, :crop => :scale }) %>
+<% end %>
 <div>
   <div class="cover-picture">
     <% if @exhibition.photo.attached?  %>
