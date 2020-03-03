@@ -6,12 +6,15 @@
   <div class="exhibitions-items">
     <% @exhibitions.each do |exhibition| %>
       <%= link_to exhibition_path(exhibition) do  %>
-          <div class="card_exhibition">
+        <div class="card_exhibition">
             <div class="card-img">
               <% if exhibition.photo.attached?  %>
                 <%= cl_image_tag exhibition.photo.key, height: 180, width: 350, crop: :fill %>
               <% end %>
             </div>
+            <% if exhibition.last_days? %>
+              <div class="overlay_tag">Derniers jours </div>
+            <% end %>
               <h1><%= exhibition.title %></h1>
               <div class="container">
                 <div class="star">
@@ -29,7 +32,7 @@
               <p class="address-name"><%= exhibition.address_name %></p>
             <p><%= exhibition.lead_text %></p>
           </div>
-        <% end %>
+       <% end %>
     <% end %>
   </div>
 </div>
