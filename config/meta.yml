@@ -1,5 +1,5 @@
 meta_product_name: "Proxim'Art"
 meta_title:  "Proxim'Art - Toutes les expos d'art autour de vous"
-meta_description: "Retrouve facilement toutes les expos autour de vous"
+meta_description: "Retrouvez facilement toutes les expos autour de vous"
 meta_image: "cover.png" # should exist in `app/assets/images/`
 twitter_account: "@Nicoco17726579"   # required for Twitter Cards
