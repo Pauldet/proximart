@@ -44,5 +44,13 @@ class Exhibition < ApplicationRecord
     end
   end
 
+  def upcoming?
+    Date.current < self.date_start
+  end
+
+  def finished?
+    Date.current > self.date_end
+  end
+
 end
 
