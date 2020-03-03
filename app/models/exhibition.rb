@@ -31,8 +31,18 @@ class Exhibition < ApplicationRecord
     (Date.current..Date.current.end_of_week).include?(self.date_end)
   end
 
-  # def full_address
-  #   full_address
-  # end
+  def opened?(time)
+     day = self.occurences.select do |occurence|
+       time.to_date  ==  Date.parse(occurence[0])
+     end
+    if day == []
+      return false
+    else
+      opening_hour = Time.parse(day[0][0])
+      closing_hour = Time.parse(day[0][1])
+      (opening_hour..closing_hour).include?(time)
+    end
+  end
+
 end
 

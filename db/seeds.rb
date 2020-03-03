@@ -86,7 +86,10 @@ exhibitions["records"].each do |exhib|
  date_description = fields["date_description"].present? ? fields["date_description"] : "Non précisé"
  address_zipcode = fields["address_zipcode"].present? ? fields["address_zipcode"] : "Non précisé"
  external_id = fields["id"].present? ? fields["id"].to_i : nil
-
+ new_occurences = occurences.split(";")
+ new_occurences.map! do |day|
+  day.split("_")
+ end
     exhibition_params = {
       latitude:latitude,
       longitude: longitude,
@@ -95,7 +98,7 @@ exhibitions["records"].each do |exhib|
       title: title,
       date_start: date_start,
       date_end: date_end,
-      occurences: occurences,
+      occurences: new_occurences,
       contact_url: contact_url,
       address_name: address_name,
       contact_twitter: contact_twitter,

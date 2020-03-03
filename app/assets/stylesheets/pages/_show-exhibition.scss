@@ -81,3 +81,14 @@ h6 {
 #stars {
  color: #f7bc45;
 }
+
+.open-tag {
+  z-index: 99;
+  background-color: #7adb87;
+  color:white;
+  top:1vh;
+  left: 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  border-radius: 3px;
+}
