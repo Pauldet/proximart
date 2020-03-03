@@ -41,7 +41,6 @@ end
   def index
     @allExhibitions = Exhibition.all
 
-
     if params[:distanceRange]
       @maxdistance = params[:distanceRange].to_i/1000
     else

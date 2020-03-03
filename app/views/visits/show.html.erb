@@ -1,5 +1,4 @@
 <div>
-
   <div class="cover-picture">
     <% if @exhibition.photo.attached?  %>
     <%= cl_image_tag @exhibition.photo.key, :transformation => { :width => 375, :fetch_format=>:auto, :crop => :scale }%>
@@ -13,8 +12,9 @@
       <div class="d-flex mt-2 ">
         <div class = "details-visit flex-column px-2 col-8 share-join-column">
           <div>
-          <p><i class="fa ffar fa-clock"> </i> <%= @visit.date%> 16:00</p>
-          <p><i class="fas fa-map-marker-alt"></i> <%= @exhibition.address_street+"," %> <%= @exhibition.address_city %></p>
+          <p><i class="fa ffar fa-clock"> </i> <%=fr_jour_short(@visit.date.cwday)%> <%= @visit.date.mday%> <%=fr_month_short(@visit.date.mon)%> <%= @visit.meeting_hour.hour %>H<%= @visit.meeting_hour.min%>  </p>
+
+          <%= link_to "http://citymapper.com/directions?startcoord=48.877932,2.3417265&endcoord=#{@lat},#{@long}&endname=#{@exhibition.title}&endaddress=#{@exhibition.full_address}", data: { url:"http://citymapper.com/directions?startcoord={USER_LATLONG}&endcoord=#{@lat},#{@long}&endname=#{@exhibition.title}&endaddress=#{@exhibition.full_address}" } , class: "citymapper-url" do %><i class="fas fa-map-marker-alt"></i> <%= @exhibition.address_street+"," %> <%= @exhibition.address_city %><% end %>
           </div>
           <div class="card-visit-content px-2">
             <div class="mini-avatars">
@@ -34,22 +34,21 @@
         <div class = "share-join-column d-flex flex-column col-4 justify-content-between ">
           <div class = "d-flex justify-content-between">
             <div>
-                <%= link_to visit_path do %>
-                  <i class="fab fa-whatsapp icone-share"> </i>
+                <%= link_to "whatsapp://send?text=#{request.original_url}" do %>
+                  <i class="fab fa-whatsapp icone-share green-whatsapp "> </i>
                 <% end %>
             </div>
             <div>
                <%= link_to "https://www.facebook.com/sharer.php?u=#{request.original_url}" do %>
-                <i class="fab fa-facebook-square icone-share"></i>
+                <i class="fab fa-facebook-square icone-share blue-facebook "></i>
               <% end %>
             </div>
             <div>
               <%= link_to visit_path do %>
-                <i class="fab fa-twitter icone-share"></i>
+                <i class="fab fa-twitter icone-share blue-twitter"></i>
               <% end %>
             </div>
           </div>
-
           <%if @sub %>
             <div class = "text-center btn-primary">
               <%= link_to "Quitter",visit_subscription_path(@visit, @sub), method: :delete %>
@@ -79,20 +78,20 @@
       </div>
     </div>
 
-<%if user_signed_in? && @subscriptions.where(user_id: @current_user.id).first%>
-    <div class= "message-creation sticky-bottom">
-      <%= simple_form_for [ @visit, @message ] do |f| %>
-        <div class='d-flex'>
-          <div class="flex-grow-1 ">
-            <%= f.input :content, label: false, placeholder: "Participer à la conversation..." %>
+  <%if user_signed_in? && @subscriptions.where(user_id: @current_user.id).first%>
+      <div class= "message-creation sticky-bottom">
+        <%= simple_form_for [ @visit, @message ] do |f| %>
+          <div class='d-flex'>
+            <div class="flex-grow-1 ">
+              <%= f.input :content, label: false, placeholder: "Participer à la conversation..." %>
+            </div>
+            <div>
+              <%= f.button :submit, 'Envoyer', class: 'btn-primary py-3' %>
+            </div>
           </div>
-          <div>
-            <%= f.button :submit, 'Envoyer', class: 'btn-primary py-3' %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-<% end %>
+        <% end %>
+      </div>
+  <% end %>
 
 
 </div>
