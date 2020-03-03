@@ -27,6 +27,9 @@ class Exhibition < ApplicationRecord
     self.save
   end
 
+  def last_days?
+    (Date.current..Date.current.end_of_week).include?(self.date_end)
+  end
 
   # def full_address
   #   full_address
