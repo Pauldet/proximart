@@ -7,14 +7,12 @@
         <i class="fas fa-search"></i>
       </button>
     </div>
-
     <div class="d-flex align-items-center">
       <div class="dates-form">
         <div class="mr-1">
           <%= f.input :start_date, as: :string, required: false, label: false, input_html: {class: "datepicker"}, placeholder: 'Aujourd\'hui' %>
         </div>
       </div>
-
       <div class="select-distance">
         <div class="d-flex justify-content-center my-4">
           <label for="customRange1"></label>
@@ -24,29 +22,19 @@
         </div>
       </div>
     </div>
-
       <%= f.hidden_field :lat, id: "setlat"  %>
       <%= f.hidden_field :long, id: "setlong"%>
     <div class="select-tags">
       <input type="hidden" name="post[categories][]" value="">
-
       <div class="tag-choices">
         <button type="button" class="btn btn-empty" data-toggle="modal" data-target="#exampleModal">
           Filtres
         </button>
-
-
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         </div>
-
-
-
       </div>
     </div>
-
   <% end %>
-
-
 </div>
 
 

@@ -2,6 +2,7 @@
 <%= render 'shared/search-form', filters: @categories %>
 <%#= render 'shared/scrolling-cards' %>
 
+
 <hr class="card-separator">
 <div class="container_card">
   <div class="exhibitions-items">
@@ -15,6 +16,9 @@
             </div>
             <% if exhibition.last_days? %>
               <div class="overlay_tag">Derniers jours </div>
+            <% end %>
+            <% if exhibition.upcoming? && !exhibition.last_days? %>
+              <div class="overlay_tag" id="upcoming">Bientôt</div>
             <% end %>
               <h1><%= exhibition.title %></h1>
               <div class="container">
