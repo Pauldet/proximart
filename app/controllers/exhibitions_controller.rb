@@ -39,7 +39,9 @@ end
   end
 
   def index
+
     @allExhibitions = Exhibition.all
+    @categories = @allExhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
 
 
     if params[:distanceRange]
@@ -84,7 +86,7 @@ end
     @exhibitionsUnsorted = Exhibition.all.where(id: exhibId)
     @exhibitionsArrayWithDistance = @exhibitionsUnsorted.map{|exhib| [exhib, @distanceEx[exhib.id]]}.sort_by{|a| a[1]}
     @exhibitions = @exhibitionsArrayWithDistance.map{|a| a[0]}
-    @tags = @exhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq
+    # @tags = @allExhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq # --> if we need to search with tags
 
     @markers = @exhibitions.map do |exhibition|
       {

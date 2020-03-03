@@ -31,7 +31,9 @@ if (document.querySelector('.heart')) {
 }
 
 // if (document.querySelector('#customRange1')) {
-  // initSlider();
+
+//   initSlider();
+
 // }
 
 initBToX();
