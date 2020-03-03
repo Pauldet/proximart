@@ -18,6 +18,9 @@
             <% if exhibition.last_days? %>
               <div class="overlay_tag">Derniers jours </div>
             <% end %>
+            <% if exhibition.upcoming? && !exhibition.last_days? %>
+              <div class="overlay_tag" id="upcoming">Bientôt</div>
+            <% end %>
               <h1><%= exhibition.title %></h1>
               <div class="container">
                 <div class="star">
