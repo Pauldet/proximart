@@ -40,7 +40,8 @@ end
 
   def index
     @exhibitions = Exhibition.all
-    @tags = @exhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq
+    @tags = @exhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq.sort
+    @categories = @exhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
 
     if params[:search]
        @current_location = [params[:search][:lat], params[:search][:long]]
