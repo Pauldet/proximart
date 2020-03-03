@@ -12,13 +12,13 @@ require 'open-uri'
 require 'faker'
 
 
+Like.destroy_all
 Message.destroy_all
 Participation.destroy_all
 Subscription.destroy_all
 User.destroy_all
 Visit.destroy_all
 Exhibition.destroy_all
-Like.destroy_all
 # Exhibition.destroy_all
 ## Create users
 
