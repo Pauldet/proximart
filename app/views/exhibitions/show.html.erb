@@ -5,6 +5,10 @@
     <% if @exhibition.photo.attached?  %>
       <%= cl_image_tag @exhibition.photo.key, :transformation => { :width => 375, :fetch_format=>:auto, :crop => :scale }%>
     <% end %>
+    <% if @exhibition.last_days? %>
+      <div class="overlay_tag m-1">Derniers jours
+      </div>
+    <% end %>
     <div class="heart-button row">
       <div class="heart">
           <%= link_to like_exhibition_path(@exhibition), class: "#{'red' if current_user.likes.find_by(exhibition_id: @exhibition.id)}" do %>
@@ -17,15 +21,23 @@
   <div class="below-cover-picure-container">
     <h3 class="text-center"><%= @exhibition.title  %></h3>
     <hr class="card-separator">
-    <div class="ratings pl-2">
+    <div class="pl-2">
       <p class="mb-1 address-name"><%= @exhibition.address_name %></p>
-      <% @exhibition.average_rating.round.times do  %>
-        <i class="fas fa-star" id="stars"></i>
-      <% end %>
-      <% (5 - @exhibition.average_rating.round).times do %>
-        <i class="far fa-star"></i>
-      <% end %>
-      <span><%= "(#{@exhibition.ratings_count})" %></span>
+    </div>
+    <div class="d-flex justify-content-between mr-2">
+      <div class="ratings pl-2 pr-1">
+        <% @exhibition.average_rating.round.times do  %>
+          <i class="fas fa-star" id="stars"></i>
+        <% end %>
+        <% (5 - @exhibition.average_rating.round).times do %>
+          <i class="far fa-star"></i>
+        <% end %>
+        <span class=""><%= "(#{@exhibition.ratings_count})" %></span>
+      </div>
+        <% if @exhibition.opened?(Time.current) %>
+          <div class="open-tag pl-2"> Ouvert
+          </div>
+        <% end %>
     </div>
     <p id="lead-text"><%= @exhibition.lead_text %></p>
     <div class="show-section">
