@@ -3,17 +3,16 @@ class LikesController < ApplicationController
   before_action :find_like, only: [:show, :destroy]
 
   def show
+
   end
 
   def index
-    @exhibition = Exhibition.find(params[:exhibition_id])
-    @like_id = 0
-    @exhibition.likes.each do |like|
-      if like.user_id == current_user.id
-        @like_id = like.id
-      end
+    @exhibitions = current_user.likes.map do |like|
+      like.exhibition
     end
-    render :layout => nil
+    @visits = current_user.subscriptions.map do |subscription|
+      subscription.visit
+    end
   end
 
   def create

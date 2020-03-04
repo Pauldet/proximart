@@ -1,10 +1,9 @@
 <%= render 'shared/map' %>
 <%= render 'shared/search-form', filters: @categories %>
-<h4>Dernière chance !</h4>
-<%= render 'shared/scrolling-cards' %>
+<%#= render 'shared/scrolling-cards' %>
 
 
-<h4>Toutes les expositions</h4>
+<hr class="card-separator">
 <div class="container_card">
   <div class="exhibitions-items">
     <% @exhibitions.each do |exhibition| %>
@@ -17,6 +16,9 @@
             </div>
             <% if exhibition.last_days? %>
               <div class="overlay_tag">Derniers jours </div>
+            <% end %>
+            <% if exhibition.upcoming? && !exhibition.last_days? %>
+              <div class="overlay_tag" id="upcoming">Bientôt</div>
             <% end %>
               <h1><%= exhibition.title %></h1>
               <div class="container">

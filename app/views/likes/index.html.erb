@@ -1,1 +1,37 @@
-{"like_id":<%= @like_id %>}
+
+<h5>Mes expos enregistrées</h5>
+<% @exhibitions.each do |exhibition| %>
+ <div class="card_exhibition">
+            <div class="card-img">
+              <% if exhibition.photo.attached?  %>
+                <%= cl_image_tag exhibition.photo.key, height: 180, width: 350, crop: :fill %>
+              <% end %>
+            </div>
+            <% if exhibition.last_days? %>
+              <div class="overlay_tag">Derniers jours </div>
+            <% end %>
+            <% if exhibition.upcoming? && !exhibition.last_days? %>
+              <div class="overlay_tag" id="upcoming">Bientôt</div>
+            <% end %>
+            <h1><%= exhibition.title %></h1>
+            <div class="container">
+             <div class="star">
+              <% exhibition.average_rating.round.times do  %>
+               <i class="fas fa-star" id="stars"></i>
+              <% end %>
+              <% (5 - exhibition.average_rating.round).times do %>
+               <i class="far fa-star"></i>
+              <% end %>
+             </div>
+            </div>
+            <p class="address-name"><%= exhibition.address_name %></p>
+            <p><%= exhibition.lead_text %></p>
+ </div>
+<% end %>
+
+<h5>Mes visites</h5>
+<% @visits.each do |visit| %>
+ <%= visit.date %>
+ <%= visit.information %>
+<% end %>
+

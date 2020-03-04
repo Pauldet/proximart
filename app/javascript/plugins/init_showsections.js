@@ -28,5 +28,6 @@ const description = document.querySelector('.description')
 if (extend !== null) {
   extend.addEventListener('click', (event)=> {
     description.classList.toggle('out');
+    extend.classList.toggle('d-none');
   });
 }

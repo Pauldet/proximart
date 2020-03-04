@@ -6,14 +6,16 @@
   <% content_for :meta_image, cl_image_path(@exhibition.photo.key, :transformation => { :width => 1200, :height => 630, :fetch_format=>:auto, :crop => :scale }) %>
 <% end %>
 <div>
-  <div class="cover-picture">
-    <% if @exhibition.photo.attached?  %>
-    <%= cl_image_tag @exhibition.photo.key, :transformation => { :width => 375, :fetch_format=>:auto, :crop => :scale }%>
-    <% end %>
-  </div>
+  <%= link_to exhibition_path(@exhibition) do  %>
+    <div class="cover-picture">
+      <% if @exhibition.photo.attached?  %>
+      <%= cl_image_tag @exhibition.photo.key, :transformation => { :width => 375, :fetch_format=>:auto, :crop => :scale }%>
+      <% end %>
+    </div>
     <div class="main-card-visit background-white" >
       <div class=" text-center title-visit">
         <h3><%= @exhibition.title %></h3>
+  <% end %>
          <hr class="card-separator">
       </div>
       <div class="d-flex mt-2 ">

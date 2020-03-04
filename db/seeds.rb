@@ -12,6 +12,7 @@ require 'open-uri'
 require 'faker'
 
 
+Like.destroy_all
 Message.destroy_all
 Participation.destroy_all
 Subscription.destroy_all
