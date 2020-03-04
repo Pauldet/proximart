@@ -33,6 +33,10 @@
     }
 }
 
+#customRange1 {
+        opacity: 1 !important;
+    }
+
 .search-form-control .form-control:focus {
   border: 1px solid #1EDD88;
   outline: none !important;
@@ -60,6 +64,7 @@
 .select-distance {
   color: $blue;
   width: 65%;
+  background-color: rgba(150,150,150,0.6);
 }
 
 #customRange1 .slider-selection {
