@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:create, :new, :update, :edit, :destroy]
     resources :messages, only: :create
   end
-  # resources :likes, only: [:index]
+  resources :likes, only: [:index]
   resources :participations, only: [:show]
   resources :likes, only: :index
 end
