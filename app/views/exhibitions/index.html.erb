@@ -26,11 +26,17 @@
               <h1><%= exhibition.title %></h1>
               <div class="container">
                 <div class="star">
-                <% exhibition.average_rating.round.times do  %>
-                  <i class="fas fa-star" id="stars"></i>
-                <% end %>
-                <% (5 - exhibition.average_rating.round).times do %>
-                  <i class="far fa-star"></i>
+                <% if exhibition.average_rating %>
+                  <% exhibition.average_rating.round.times do  %>
+                    <i class="fas fa-star" id="stars"></i>
+                  <% end %>
+                  <% (5 - exhibition.average_rating.round).times do %>
+                    <i class="far fa-star"></i>
+                    <% end %>
+                <% else %>
+                    <% 5.times do %>
+                      <i class="far fa-star"></i>
+                    <% end %>
                 <% end %>
                 </div>
                   <div class="img_marker2">
