@@ -12,16 +12,7 @@
           <%= f.input :start_date, as: :string, required: false, label: false, input_html: {class: "datepicker"}, placeholder: 'Aujourd\'hui' %>
         </div>
       </div>
-     <!--  <div class="select-distance d-none">
-        <div class="d-flex justify-content-center my-4 ">
-          <label for="customRange1"></label>
-          <span class="font-weight-bold indigo-text mr-2 mt-1 ">1km</span>
-          <input type="range" class="custom-range" min="1" max="10" step="1" id="customRange1"  name="distanceRange"  list="tickmarks" value= <%= @maxdistance %>>
-          <span class="font-weight-bold indigo-text ml-2 mt-1">10km</span>
-
-        </div>
-      </div> -->
-
+ 
       <div style="position:relative; ; width:90%">
         <span style="position:absolute">
         <span id="myValue"></span>
@@ -50,16 +41,34 @@
     </div>
       <%= f.hidden_field :lat, id: "setlat"  %>
       <%= f.hidden_field :long, id: "setlong"%>
-    <div class="select-tags">
-      <input type="hidden" name="post[categories][]" value="">
-      <div class="tag-choices">
-        <button type="button" class="btn btn-empty" data-toggle="modal" data-target="#exampleModal">
-          Filtres
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="search-middle">
+        <div class="btn btn-empty">
+          <!-- <input type="checkbox" name="Ouvert maintenant" id="select_now" checked> -->
+          <% if params[:search] %>
+            <%= f.input :opened,
+                        as: :boolean,
+                        input_html: { checked: params[:search][:opened] == '1' ? true : false },
+                        label: params[:search][:opened] == '1' ? 'Ouvert maintenant' : 'Toutes les expositions' %>
+          <% else %>
+            <%= f.input :opened, as: :boolean, input_html: { checked: true }, label: 'Ouvert maintenant' %>
+          <% end %>
+ <!--          <label for="select_now">Ouvert maintenant</label> -->
+        </div>
+
+
+      </div>
+      <div class="search-bottom">
+        <div class="select-tags">
+          <input type="hidden" name="post[categories][]" value="">
+          <div class="tag-choices">
+            <button type="button" class="btn btn-empty" data-toggle="modal" data-target="#exampleModal">
+              Catégories
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   <% end %>
 </div>
 

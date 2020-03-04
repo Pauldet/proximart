@@ -13,7 +13,7 @@ import { show } from '../plugins/init_showsections';
 import { getLocation } from '../plugins/init_mapbox';
 import { initLetters } from "../plugins/init_letters";
 import { initBToX} from "../plugins/init_btox";
-import { initFlatpickr } from "../plugins/init_flatpickr";
+// import { initFlatpickr } from "../plugins/init_flatpickr";
 import { initHearting } from '../plugins/init_hearting';
 import { initSlider } from '../plugins/init_sliderValue';
 // import { initDistanceEx } from '../plugins/init_distanceEx';
@@ -22,9 +22,9 @@ if (document.querySelector('.moving-letters')) {
   initLetters();
 }
 
-if (document.querySelector('.datepicker')) {
-  initFlatpickr();
-}
+// if (document.querySelector('.datepicker')) {
+//   initFlatpickr();
+// }
 
 if (document.querySelector('.heart')) {
   initHearting();
