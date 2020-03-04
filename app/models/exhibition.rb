@@ -33,16 +33,53 @@ class Exhibition < ApplicationRecord
 
   def opened?(time)
      day = self.occurences.select do |occurence|
-       time.to_date  ==  Date.parse(occurence[0])
+       time.localtime.to_date  ==  Date.parse(occurence[0])
      end
     if day == []
       return false
     else
       opening_hour = Time.parse(day[0][0])
       closing_hour = Time.parse(day[0][1])
-      (opening_hour..closing_hour).include?(time)
+      (opening_hour..closing_hour).include?(time.localtime)
     end
   end
+
+  def time_to_opening(time)
+    if self.opened?(time) == true
+      day = self.occurences.select do |occurence|
+        time.localtime.to_date  ==  Date.parse(occurence[0])
+      end
+      closing_hour = Time.parse(day[0][1])
+      opening_hour = Time.parse(day[0][0])
+      time_to_closing = Time.at(closing_hour-time.localtime).utc.strftime("%H:%M")
+      return "Ferme dans<br> <div id='time' class='text-center'>#{time_to_closing}</div>"
+    elsif self.opens_today?(time) == true
+      day = self.occurences.select do |occurence|
+        time.localtime.to_date  ==  Date.parse(occurence[0])
+      end
+      closing_hour = Time.parse(day[0][1])
+      opening_hour = Time.parse(day[0][0])
+      if opening_hour >= time.localtime
+        time_to_opening = Time.at(opening_hour-time.localtime).utc.strftime("%H:%M")
+      return "Ouvre dans<br> <div id='time' class='text-center'>#{time_to_opening}</div>"
+      end
+    end
+  end
+
+  def opens_today?(time)
+    day = self.occurences.select do |occurence|
+      time.localtime.to_date == Date.parse(occurence[0])
+    end
+    if day == []
+      return false
+    else
+      return true
+    end
+  end
+
+
+
+
 
   def upcoming?
     Date.current < self.date_start
