@@ -46,7 +46,7 @@ end
     @categories = @allExhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
 
     if params[:distanceRange]
-      @maxdistance = params[:distanceRange].to_i/1000
+      @maxdistance = params[:distanceRange].to_i
     else
       @maxdistance = 1
     end
