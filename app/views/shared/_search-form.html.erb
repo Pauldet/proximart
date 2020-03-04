@@ -1,26 +1,21 @@
 <div class="container-search-bar">
   <%= simple_form_for :search, id:"search-form", url: root_path, method: :get do |f| %>
-    <div class="search-form-control form-group simple_form search">
+    <div class="search-form-control form-group simple_form search d-none">
       <input class="form-control string required hidden " type="text" name="search[query]" id="search_query" placeholder="Picasso..." />
       <button name="button" type="submit" class="btn btn-full">
         <i class="fas fa-search"></i>
       </button>
     </div>
-    <div class="d-flex align-items-center">
-      <div class="dates-form">
-        <div class="mr-1">
-          <%= f.input :start_date, as: :string, required: false, label: false, input_html: {class: "datepicker"}, placeholder: 'Aujourd\'hui' %>
-        </div>
-      </div>
- 
-      <div style="position:relative; ; width:90%">
+    <div class="text-center"> Expositions à moins de:</div>
+    <div style="position:relative;width:50%; margin: 0 auto ">
         <span style="position:absolute">
         <span id="myValue"></span>
         </span>
-        <div class="slide-distance-container">
-            <input type="range" min="1" class="slider" max="10" name="distanceRange" id="distanceRange" value= <%= @maxdistance %> >
+        <div class="slide-distance-container" style="">
+            <input type="range" min="1" class="slider text-center" max="10" name="distanceRange" id="distanceRange" value= <%= @maxdistance %> >
         </div>
      </div>
+    </div>
         <script type="text/javascript" charset="utf-8">
       var myRange = document.querySelector('#distanceRange');
       var myValue = document.querySelector('#myValue');
@@ -41,6 +36,7 @@
     </div>
       <%= f.hidden_field :lat, id: "setlat"  %>
       <%= f.hidden_field :long, id: "setlong"%>
+      <br>
       <div class="search-middle">
         <div class="btn btn-empty">
           <!-- <input type="checkbox" name="Ouvert maintenant" id="select_now" checked> -->
