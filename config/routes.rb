@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   end
   resources :likes, only: [:index]
   resources :participations, only: [:show]
+  resources :likes, only: :index
 end
