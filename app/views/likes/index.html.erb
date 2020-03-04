@@ -36,16 +36,13 @@
   <% @visits.each do |visit|%>
     <%= link_to visit_path(id: visit.id) do %>
       <div class="card-visit-likes">
-        <div class="card-visit-date-likes">
-          <span class="day-of-month"><%= visit.date.mday %></span>
-          <span class="month"><%= fr_month_short(visit.date.mon) %></span>
-          <span class="day-of-week"><%= fr_jour_short(visit.date.cwday) %></span>
-
-          <div class="card-visit-hour">
-            <p class="visit-hour"><%= visit.meeting_hour.hour %>H<%= visit.meeting_hour.min %></p>
+          <div class="card-visit-img">
+            <% if visit.exhibition.photo.attached?  %>
+              <%= cl_image_tag visit.exhibition.photo.key %>
+            <% end %>
           </div>
-        </div>
-            <div class="card-visit-content">
+          <div class="card-visit-content">
+            <span><%= "#{visit.date.mday} #{fr_month_short(visit.date.mon)} #{visit.meeting_hour.hour}h" %></span>
               <div class="mini-avatars-likes">
                 <% if visit.subscriptions.count <= 3 %>
                   <% visit.subscriptions.each do |subscription| %>
@@ -59,7 +56,7 @@
               </div>
             </div>
               <div class="card-exhibition-visit">
-                  <%= visit.exhibition.title %>
+                  <p><%= visit.exhibition.title %></p>
               </div>
       </div>
 </div>
