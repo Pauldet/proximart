@@ -146,7 +146,7 @@ exhibs.each do |ex|
 je suis spécialiste du thème abordé dans cette exposition et me ferai une joie de partager mes connaissances avec ceux qui le désirent”.
 A très vite"
     time = rand(ex.date_start..ex.date_end)
-    meeting_hour = Time.parse(time.split(" ").last)
+    meeting_hour = Time.parse(rand(11..19).to_s +"h" , time)
     visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end
@@ -155,7 +155,7 @@ A très vite"
     information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
     date = Faker::Date.backward(days: 10)
     time = rand(ex.date_start..ex.date_end)
-    meeting_hour = Time.parse(time.split(" ").last)
+    meeting_hour = Time.parse(rand(11..19).to_s +"h" , time)
     visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end
