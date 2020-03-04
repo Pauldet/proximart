@@ -15,6 +15,7 @@ import { initLetters } from "../plugins/init_letters";
 import { initBToX} from "../plugins/init_btox";
 // import { initFlatpickr } from "../plugins/init_flatpickr";
 import { initHearting } from '../plugins/init_hearting';
+import { initOpenButton } from '../plugins/init_openButton';
 // import { initSlider } from '../plugins/init_sliderValue';
 // import { initDistanceEx } from '../plugins/init_distanceEx';
 // Calls methods
@@ -35,6 +36,10 @@ if (document.querySelector('.heart')) {
 //   initSlider();
 
 // }
+
+if (document.querySelector('')) {
+  initOpenButton();
+}
 
 initBToX();
 show();
