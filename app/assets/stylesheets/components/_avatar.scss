@@ -34,6 +34,12 @@
   padding-left:2vw;
 }
 
+.mini-avatars-likes {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  padding-left:8vw;
+}
+
 .mini-avatar {
   margin-left: -5vw;
   position: relative;
