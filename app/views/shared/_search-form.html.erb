@@ -8,11 +8,6 @@
       </button>
     </div>
     <div class="d-flex align-items-center">
-      <div class="dates-form">
-        <div class="mr-1">
-          <%= f.input :start_date, as: :string, required: false, label: false, input_html: {class: "datepicker"}, placeholder: 'Aujourd\'hui' %>
-        </div>
-      </div>
       <div class="select-distance">
         <div class="d-flex justify-content-center my-4">
           <label for="customRange1"></label>
@@ -24,16 +19,34 @@
     </div>
       <%= f.hidden_field :lat, id: "setlat"  %>
       <%= f.hidden_field :long, id: "setlong"%>
-    <div class="select-tags">
-      <input type="hidden" name="post[categories][]" value="">
-      <div class="tag-choices">
-        <button type="button" class="btn btn-empty" data-toggle="modal" data-target="#exampleModal">
-          Filtres
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="search-middle">
+        <div class="btn btn-empty">
+          <!-- <input type="checkbox" name="Ouvert maintenant" id="select_now" checked> -->
+          <% if params[:search] %>
+            <%= f.input :opened,
+                        as: :boolean,
+                        input_html: { checked: params[:search][:opened] == '1' ? true : false },
+                        label: params[:search][:opened] == '1' ? 'Ouvert maintenant' : 'Toutes les expositions' %>
+          <% else %>
+            <%= f.input :opened, as: :boolean, input_html: { checked: true }, label: 'Ouvert maintenant' %>
+          <% end %>
+ <!--          <label for="select_now">Ouvert maintenant</label> -->
+        </div>
+
+
+      </div>
+      <div class="search-bottom">
+        <div class="select-tags">
+          <input type="hidden" name="post[categories][]" value="">
+          <div class="tag-choices">
+            <button type="button" class="btn btn-empty" data-toggle="modal" data-target="#exampleModal">
+              Catégories
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   <% end %>
 </div>
 
