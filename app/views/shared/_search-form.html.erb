@@ -2,7 +2,7 @@
   <%= simple_form_for :search, id:"search-form", url: root_path, method: :get do |f| %>
 
     <div class="search-form-control form-group simple_form search d-none">
-      <input class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="Picasso..." />
+      <input class="form-control string required hidden d-none" type="text" name="search[query]" id="search_query" placeholder="Picasso..." />
       <button name="button" type="submit" class="btn btn-full">
         <i class="fas fa-search"></i>
       </button>
@@ -16,8 +16,8 @@
       <div class="select-distance">
         <div class="d-flex justify-content-center my-4">
           <label for="customRange1"></label>
-          <span class="font-weight-bold indigo-text mr-2 mt-1">500m</span>
-          <input type="range" class="custom-range" min="500" max="10000" step="500" id="customRange1" name="distanceRange" value= <%= @maxdistance*1000 %>>
+          <span class="font-weight-bold indigo-text mr-2 mt-1 ">500m</span>
+          <input type="range" class="custom-range" min="500" max="10000" step="500" id="customRange1" slider-tooltip ="always" range-orientation="vertical" tooltip_position="bottom" name="distanceRange" value= <%= @maxdistance*1000 %>>
           <span class="font-weight-bold indigo-text ml-2 mt-1">10km</span>
         </div>
       </div>
