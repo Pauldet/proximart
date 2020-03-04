@@ -8,6 +8,7 @@
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%= favicon_link_tag %>
 
     <!-- icons for PWA -->
     <%= render 'shared/ios_pwa_links' %>
