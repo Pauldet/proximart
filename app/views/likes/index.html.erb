@@ -16,6 +16,7 @@
             <% end %>
             <h1><%= exhibition.title %></h1>
             <div class="container">
+              <% if exhibition.average_rating %>
              <div class="star">
               <% exhibition.average_rating.round.times do  %>
                <i class="fas fa-star" id="stars"></i>
@@ -24,6 +25,7 @@
                <i class="far fa-star"></i>
               <% end %>
              </div>
+             <% end %>
             </div>
             <p class="address-name"><%= exhibition.address_name %></p>
             <p><%= exhibition.lead_text %></p>
