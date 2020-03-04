@@ -181,7 +181,13 @@ user2 = new_users.sample(1)
 
 visits.each do |visit|
 
-user1 = users.sample(1)
+
+#je prends un nombre de 1 à 6
+random_number = [1,2,3,4,5,6].sample(1)
+
+  random_number[0].times do
+   user_selected = users.sample(1)
+  users = users - user_selected
 new_users = users - user1
 user2 = new_users.sample(1)
 
@@ -193,16 +199,17 @@ user2 = new_users.sample(1)
       visit_id: visit.id
       )
     sub1.save!
+
   # else
   #   puts "Subscirption for user 1 already exit"
   # end
    # unless subscriptions.where(user_id: user2.first.id, visit_id: visit.id)
-    sub2 = Subscription.new(
-      subscribed: "true",
-      user_id: user2.first.id,
-      visit_id: visit.id
-      )
-    sub2.save!
+    # sub2 = Subscription.new(
+    #   subscribed: "true",
+    #   user_id: user2.first.id,
+    #   visit_id: visit.id
+    #   )
+    # sub2.save!
   # end
 end
 

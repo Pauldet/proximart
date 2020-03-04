@@ -55,7 +55,12 @@
       </div>
       <div class="search-bottom">
         <div class="select-tags">
-          <input type="hidden" name="post[categories][]" value="">
+          <% if @selected_categories.present? %>
+            <% @selected_categories.each do |category| %>
+              <%= hidden_field_tag 'categories[]', category %>
+            <% end %>
+          <% end %>
+
           <div class="tag-choices">
             <button type="button" class="btn btn-empty" data-toggle="modal" data-target="#exampleModal">
               Catégories
@@ -74,13 +79,31 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content tag-choices">
 
-      <div class="modal-body tags-menu">
-          <% filters.each_with_index do |tag, index| %>
-            <input type="checkbox" value="<%= tag %>" name="filter[tags][]" id="post_tags_<%= index %>">
-            <label class="tag-choice" for="post_tags_<%= index %>"><%= tag %></label>
-          <% end %>
+      <%= simple_form_for :search, url: root_path, method: :get, html: { id:"search-form-modal" } do |f| %>
+        <%= hidden_field_tag :last_days, params[:last_days] %>
+        <%= hidden_field_tag :distanceRange, params[:distanceRange] %>
 
-      </div>
+        <%= hidden_field_tag "search[lat]", params.dig(:search, :lat) %>
+        <%= hidden_field_tag "search[long]", params.dig(:search, :long) %>
+        <%= hidden_field_tag "search[opened]", params.dig(:search, :opened) %>
+
+        <div class="modal-body tags-menu">
+          <% filters.each_with_index do |tag, index| %>
+            <% if params[:categories]%>
+              <% if params[:categories].include?(tag)%>
+                <input type="checkbox" value="<%= tag %>" name="categories[]" id="post_tags_<%= index %>" checked>
+                <label class="tag-input" for="post_tags_<%= index %>"><%= tag %></label>
+              <% else %>
+                <input type="checkbox" value="<%= tag %>" name="categories[]" id="post_tags_<%= index %>">
+                <label class="tag-choice" for="post_tags_<%= index %>"><%= tag %></label>
+              <% end %>
+            <% else %>
+            <input type="checkbox" value="<%= tag %>" name="categories[]" id="post_tags_<%= index %>">
+                <label class="tag-choice" for="post_tags_<%= index %>"><%= tag %></label>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -14,14 +14,12 @@ const initSlider = () => {
   document.getElementsByClassName('simple_form search')[0].submit();
   });
 
-  const selectE3 = document.getElementsByClassName('search-bottom')[0]
-  selectE3.addEventListener('change', (event) => {
-    // document.getElementsByClassName('slider')[0].value;
-  document.getElementsByClassName('simple_form search')[0].submit();
+  $('#exampleModal').on('hidden.bs.modal', function (e) {console.log("coucou")
+    document.getElementById('search-form-modal').submit();
   });
 };
 
 
+export { initSlider };
 
 
-export {initSlider};

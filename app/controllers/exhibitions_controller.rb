@@ -43,7 +43,16 @@ end
     # if params[:last_days] == '1'
     #   @allExhibitions = @allExhibitions.where("XXXXXX BETWEEN XXXX ?  ?", Date.current, Date.current.end_of_week)
     # end
-    @categories = @allExhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
+    # @categories = @allExhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
+
+    @selected_categories = params[:categories].presence
+
+    @categories = Exhibition.select('distinct category').
+      where.not(category: 'Expositions -> Autre expo').
+      order('category').
+      pluck(:category).
+      uniq.
+      map { |category| category.gsub('Expositions -> ', '') }
 
     if params[:distanceRange]
       @maxdistance = params[:distanceRange].to_i
@@ -92,6 +101,11 @@ end
       @exhibitions = @exhibitions.select { |ex| ex.opened?(Time.now) }
     end
 
+    if @selected_categories
+      @allExhibitionsWithCat = @exhibitions.map{|ex| [ex,ex.category.gsub('Expositions -> ', '')]}
+      @exhibitionsWithCat = @allExhibitionsWithCat.select{ |exWithCat| @selected_categories.include?(exWithCat[1])}
+      @exhibitions = @exhibitionsWithCat.map{|a| a[0]}
+    end
 
     @markers = @exhibitions.map do |exhibition|
       {
