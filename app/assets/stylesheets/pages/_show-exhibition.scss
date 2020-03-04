@@ -95,6 +95,13 @@ h6 {
   background-image: linear-gradient(rgba(240,240,240,0.2), rgba(240,240,240,0.2));
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
+#open-tag-index {
+  position:absolute;
+  left: auto;
+  bottom: 1vh;
+  top: auto;
+  right: 2vw;
+}
 #time{
   font-weight:bold;
 }
