@@ -143,10 +143,10 @@ exhibs.each do |ex|
   random_number[0].times do
     date = Faker::Date.forward(days: 10)
     information = "Bonjour,
-Amateur de charcuterie je vous propose de vous retrouver pour un apéritif: “Saucissons & exposition”.
+je suis spécialiste du thème abordé dans cette exposition et me ferai une joie de partager mes connaissances avec ceux qui le désirent”.
 A très vite"
-    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
-    meeting_hour = Time.parse(time.split(" ").last)
+    time = rand(ex.date_start..ex.date_end)
+    meeting_hour = Time.parse(rand(11..19).to_s+"h" , time)
     visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end
@@ -154,8 +154,8 @@ A très vite"
   1.times do
     information = Faker::Hipster.paragraph_by_chars(characters: 128, supplemental: false)
     date = Faker::Date.backward(days: 10)
-    time = Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short)
-    meeting_hour = Time.parse(time.split(" ").last)
+    time = rand(ex.date_start..ex.date_end)
+    meeting_hour = Time.parse(rand(11..19).to_s+"h" , time)
     visit = Visit.new(date: date, information: information, exhibition_id: ex.id, meeting_hour: meeting_hour)
     visit.save!
   end

@@ -1,3 +1,41 @@
+////////////
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: $blue;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+#myValue {
+  color:rgba(150,150,150,0.8);
+  min-width:100px;
+  white-space: nowrap;
+}
+//////////
 
 .container-search-bar {
   background-color: $white;
@@ -28,38 +66,63 @@
     }
 }
 
+
 .search-form-control .form-control:focus {
   border: 1px solid #1EDD88;
   outline: none !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-.dates-form {
-  width: 33%;
-  margin: 2px;
+.search-bottom {
+  display: flex;
+  align-items: center;
+}
+
+
+//------ date form --------//
+// .dates-form {
+//   width: 33%;
+//   margin: 2px;
+//     .form-group {
+//       margin: 0;
+//     }
+// }
+
+// .form-control[readonly] {
+//   background-color: $white;
+//       color: $blue;
+//       text-align: center;
+//       border-radius: 4px;
+//       border-color: $blue;
+//     &::placeholder {
+//       color: $blue;
+//       // font-size: 12px;
+//     }
+// }
+
+
+//----------- check opened ----------//
+.open-all {
+    input[type="checkbox"] {
+      display: none;
+    }
+    .form-check {
+      padding-left: 0;
+
+    }
     .form-group {
-      margin: 0;
+      margin-bottom: 0;
     }
+
 }
 
-.form-control[readonly] {
-  background-color: $blue;
-      color: $white;
-      text-align: center;
-    &::placeholder {
-      color: $white;
-      // font-size: 12px;
-    }
-}
-
+//----------- slider ----------//
 .select-distance {
   color: $blue;
   width: 65%;
 }
 
-#customRange1 .slider-selection {
-  background: red;
-}
+//------ categories filter --------//
 
 .tag-choices {
   // width: 100vh;
@@ -75,7 +138,7 @@
     }
 
     .btn {
-      padding: 6px 80px;
+      padding: 6px 12px;
     }
 
     label {
@@ -154,6 +217,7 @@
     }
 }
 
+// -------- modal ---------- //
 .modal {
   margin-top: 60px;
 

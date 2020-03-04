@@ -46,7 +46,7 @@ end
     @categories = @allExhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
 
     if params[:distanceRange]
-      @maxdistance = params[:distanceRange].to_i/1000
+      @maxdistance = params[:distanceRange].to_i
     else
       @maxdistance = 1
     end
@@ -55,7 +55,6 @@ end
       @current_location = [params[:search][:lat], params[:search][:long]]
     else
      @current_location = [48.877932,2.3417265]
-
     end
 
     @distanceEx = {} #hash of expo id => distance from current position, with only exhibition closer than maxdistance
@@ -88,6 +87,11 @@ end
     @exhibitionsArrayWithDistance = @exhibitionsUnsorted.map{|exhib| [exhib, @distanceEx[exhib.id]]}.sort_by{|a| a[1]}
     @exhibitions = @exhibitionsArrayWithDistance.map{|a| a[0]}
     # @tags = @allExhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq # --> if we need to search with tags
+
+    if params[:search] && params[:search][:opened] != '0'
+      @exhibitions = @exhibitions.select { |ex| ex.opened?(Time.now) }
+    end
+
 
     @markers = @exhibitions.map do |exhibition|
       {
