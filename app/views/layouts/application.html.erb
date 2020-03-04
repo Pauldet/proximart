@@ -8,6 +8,7 @@
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%= favicon_link_tag %>
 
     <!-- icons for PWA -->
     <%= render 'shared/ios_pwa_links' %>
@@ -34,7 +35,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
     <%= javascript_pack_tag 'application', defer: true, 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
     <%= render 'shared/navbar' %>

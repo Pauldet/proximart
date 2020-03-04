@@ -29,13 +29,19 @@
     </div>
     <div class="d-flex justify-content-between mr-2 main-info">
       <div class="ratings pl-2 pr-1">
-        <% @exhibition.average_rating.round.times do  %>
-          <i class="fas fa-star" id="stars"></i>
+        <% if @exhibition.average_rating %>
+          <% @exhibition.average_rating.round.times do  %>
+            <i class="fas fa-star" id="stars"></i>
+          <% end %>
+          <% (5 - @exhibition.average_rating.round).times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+          <span class=""><%= "(#{@exhibition.ratings_count})" %></span>
+        <% else %>
+          <% 5.times do %>
+            <i class="far fa-star"></i>
+          <% end %>
         <% end %>
-        <% (5 - @exhibition.average_rating.round).times do %>
-          <i class="far fa-star"></i>
-        <% end %>
-        <span class=""><%= "(#{@exhibition.ratings_count})" %></span>
       </div>
         <% if @exhibition.opened?(Time.current) %>
           <div class="open-tag pl-2"> Ouvert
