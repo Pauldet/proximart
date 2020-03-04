@@ -28,9 +28,6 @@
     }
 }
 
-#customRange1 {
-        opacity: 1 !important;
-    }
 
 .search-form-control .form-control:focus {
   border: 1px solid #1EDD88;
@@ -43,35 +40,56 @@
   align-items: center;
 }
 
-.dates-form {
-  width: 33%;
-  margin: 2px;
-    .form-group {
-      margin: 0;
+
+//------ date form --------//
+// .dates-form {
+//   width: 33%;
+//   margin: 2px;
+//     .form-group {
+//       margin: 0;
+//     }
+// }
+
+// .form-control[readonly] {
+//   background-color: $white;
+//       color: $blue;
+//       text-align: center;
+//       border-radius: 4px;
+//       border-color: $blue;
+//     &::placeholder {
+//       color: $blue;
+//       // font-size: 12px;
+//     }
+// }
+
+
+//----------- check opened ----------//
+.open-all {
+    input[type="checkbox"] {
+      display: none;
     }
+    .form-check {
+      padding-left: 0;
+
+    }
+
 }
 
-.form-control[readonly] {
-  background-color: $white;
-      color: $blue;
-      text-align: center;
-      border-radius: 4px;
-      border-color: $blue;
-    &::placeholder {
-      color: $blue;
-      // font-size: 12px;
-    }
-}
-
+//----------- slider ----------//
 .select-distance {
   color: $blue;
   width: 65%;
   background-color: rgba(150,150,150,0.6);
 }
 
+#customRange1 {
+        opacity: 1 !important;
+    }
 #customRange1 .slider-selection {
   background: red;
 }
+
+//------ categories filter --------//
 
 .tag-choices {
   // width: 100vh;
@@ -166,6 +184,7 @@
     }
 }
 
+// -------- modal ---------- //
 .modal {
   margin-top: 60px;
 
