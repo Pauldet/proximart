@@ -78,31 +78,51 @@
   align-items: center;
 }
 
-.dates-form {
-  width: 33%;
-  margin: 2px;
+
+//------ date form --------//
+// .dates-form {
+//   width: 33%;
+//   margin: 2px;
+//     .form-group {
+//       margin: 0;
+//     }
+// }
+
+// .form-control[readonly] {
+//   background-color: $white;
+//       color: $blue;
+//       text-align: center;
+//       border-radius: 4px;
+//       border-color: $blue;
+//     &::placeholder {
+//       color: $blue;
+//       // font-size: 12px;
+//     }
+// }
+
+
+//----------- check opened ----------//
+.open-all {
+    input[type="checkbox"] {
+      display: none;
+    }
+    .form-check {
+      padding-left: 0;
+
+    }
     .form-group {
-      margin: 0;
+      margin-bottom: 0;
     }
+
 }
 
-.form-control[readonly] {
-  background-color: $white;
-      color: $blue;
-      text-align: center;
-      border-radius: 4px;
-      border-color: $blue;
-    &::placeholder {
-      color: $blue;
-      // font-size: 12px;
-    }
-}
-
+//----------- slider ----------//
 .select-distance {
   color: $blue;
   width: 65%;
-
 }
+
+//------ categories filter --------//
 
 .tag-choices {
   // width: 100vh;
@@ -197,6 +217,7 @@
     }
 }
 
+// -------- modal ---------- //
 .modal {
   margin-top: 60px;
 

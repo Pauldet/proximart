@@ -26,12 +26,12 @@ const description = document.querySelector('.description')
 
 
 if (extend !== null) {
-  extend.addEventListener('click', (event)=> {
+  extend.addEventListener('click', (event) => {
     description.classList.toggle('out');
     if (description.classList.contains('out')) {
-      extend.innerHTML = 'Lire Moins <i class="fas fa-chevron-up"></i>';
+      extend.innerHTML = 'Lire moins <i class="fas fa-chevron-up"></i>';
     } else {
-      extend.innerHTML = 'Lire Plus <i class="fas fa-chevron-right"></i>'
+      extend.innerHTML = 'Lire plus <i class="fas fa-chevron-right"></i>'
     }
   });
 }
