@@ -1,21 +1,43 @@
 <div class="container-search-bar">
   <%= simple_form_for :search, id:"search-form", url: root_path, method: :get do |f| %>
-
-    <div class="search-form-control form-group simple_form search d-none">
-      <input class="form-control string required hidden d-none" type="text" name="search[query]" id="search_query" placeholder="Picasso..." />
+    <div class="search-form-control form-group simple_form search">
+      <input class="form-control string required hidden " type="text" name="search[query]" id="search_query" placeholder="Picasso..." />
       <button name="button" type="submit" class="btn btn-full">
         <i class="fas fa-search"></i>
       </button>
     </div>
     <div class="d-flex align-items-center">
-      <div class="select-distance">
-        <div class="d-flex justify-content-center my-4">
-          <label for="customRange1"></label>
-          <span class="font-weight-bold indigo-text mr-2 mt-1 ">500m</span>
-          <input type="range" class="custom-range" min="500" max="10000" step="500" id="customRange1" slider-tooltip ="always" range-orientation="vertical" tooltip_position="bottom" name="distanceRange" value= <%= @maxdistance*1000 %>>
-          <span class="font-weight-bold indigo-text ml-2 mt-1">10km</span>
+      <div class="dates-form">
+        <div class="mr-1">
+          <%= f.input :start_date, as: :string, required: false, label: false, input_html: {class: "datepicker"}, placeholder: 'Aujourd\'hui' %>
         </div>
       </div>
+ 
+      <div style="position:relative; ; width:90%">
+        <span style="position:absolute">
+        <span id="myValue"></span>
+        </span>
+        <div class="slide-distance-container">
+            <input type="range" min="1" class="slider" max="10" name="distanceRange" id="distanceRange" value= <%= @maxdistance %> >
+        </div>
+     </div>
+        <script type="text/javascript" charset="utf-8">
+      var myRange = document.querySelector('#distanceRange');
+      var myValue = document.querySelector('#myValue');
+      var myUnits = 'km';
+      var off = myRange.offsetWidth / (parseInt(myRange.max) - parseInt(myRange.min));
+      var px =  ((myRange.valueAsNumber - parseInt(myRange.min)) * off) - (myValue.offsetParent.offsetWidth / 2);
+
+        myValue.parentElement.style.left = px + 'px';
+        myValue.parentElement.style.top = myRange.offsetHeight*1.8 + 'px';
+        myValue.innerHTML = myRange.value + ' ' + myUnits;
+
+        myRange.oninput =function(){
+          let px = ((myRange.valueAsNumber - parseInt(myRange.min)) * off) - (myValue.offsetWidth / 2);
+          myValue.innerHTML = myRange.value + ' ' + myUnits;
+          myValue.parentElement.style.left = px + 'px';
+        };
+        </script>
     </div>
       <%= f.hidden_field :lat, id: "setlat"  %>
       <%= f.hidden_field :long, id: "setlong"%>
