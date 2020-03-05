@@ -6,6 +6,8 @@
         <i class="fas fa-search"></i>
       </button>
     </div>
+
+    <% if params[:search] && params[:search][:opened] != '0' %>
     <div class="text-center range-text">
       <div class="text-search">
         <p>Expositions</p>
@@ -13,6 +15,7 @@
       </div>
       <p>à moins de</p>
     </div>
+
     <div style="position:relative;width:50%; margin: 0 auto ">
         <span style="position:absolute">
         <span id="myValue"></span>
@@ -40,6 +43,8 @@
         };
         </script>
     </div>
+
+    <% end %>
       <%= f.hidden_field :lat, id: "setlat"  %>
       <%= f.hidden_field :long, id: "setlong"%>
       <br>
