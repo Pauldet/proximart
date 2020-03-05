@@ -13,9 +13,10 @@ def create
         @visit,
         render_to_string(partial: "messages/message", locals: { message: message })
         )
-      redirect_to visit_path(@visit)
+      redirect_to visit_path(@visit, anchor: 'messcre')
+      # redirect_to visit_path(@visit)
     else
-    redirect_to visit_path(@visit) #render "chatrooms/show"
+    redirect_to visit_path(@visit, anchor: 'messcre') #render "chatrooms/show"
     end
 
 end
@@ -27,3 +28,4 @@ def message_params
 end
 
 end
+#
