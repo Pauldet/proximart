@@ -14,6 +14,8 @@
         <hr class="card-separator">
       </div>
     </div>
+
+ <!----------- switch range selector ------------------------->
     <% if params[:search] && params[:search][:opened] != '0' %>
      <div class="text-center range-text">
       <p>à moins de</p>
@@ -49,8 +51,9 @@
 
     <% end %>
       <%= f.hidden_field :lat, id: "setlat"  %>
-      <%= f.hidden_field :long, id: "setlong"%>
-      <br>
+      <%= f.hidden_field :long, id: "setlong" %>
+
+ <!----------- switch open/all button ------------------------->
       <div class="search-middle">
         <div class="open-all btn btn-empty">
           <!-- <input type="checkbox" name="Ouvert maintenant" id="select_now" checked> -->
@@ -64,11 +67,12 @@
           <% else %>
             <%= f.input :opened, as: :boolean, input_html: { checked: true }, label: open_now %>
           <% end %>
- <!--          <label for="select_now">Ouvert maintenant</label> -->
         </div>
-
-
       </div>
+
+
+
+ <!----------- switch categories button ------------------------->
       <div class="search-bottom">
         <div class="select-tags">
           <% if @selected_categories.present? %>

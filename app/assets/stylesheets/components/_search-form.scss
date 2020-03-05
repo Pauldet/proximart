@@ -87,9 +87,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 16px;
+  margin-top: 8px;
    p {
-    font-size: 24px;
+    font-size: 32px;
    }
 }
 
@@ -126,6 +126,7 @@
 
 .open-all {
   border: none;
+
     input[type="checkbox"] {
       display: none;
     }
@@ -137,8 +138,8 @@
       margin-bottom: 0;
     }
     .card-separator {
-      width: 40vw;
-      margin: 0;
+      width: 20vw;
+      margin: 0 40px;
 
     }
     .main-tex {
