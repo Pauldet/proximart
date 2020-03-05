@@ -53,7 +53,7 @@
             <% end %>
           </div>
           <div class="card-visit-content">
-            <span><%= "#{visit.date.mday} #{fr_month_short(visit.date.mon)} #{visit.meeting_hour.hour}h" %></span>
+            <span class="full-date-visits"><%= "#{visit.date.mday} #{fr_month_short(visit.date.mon)} #{visit.meeting_hour.hour}h" %></span>
               <div class="mini-avatars-likes">
                 <% if visit.subscriptions.count <= 3 %>
                   <% visit.subscriptions.each do |subscription| %>
@@ -86,7 +86,7 @@
             <% end %>
           </div>
           <div class="card-visit-content">
-            <span><%= "#{visit.date.mday} #{fr_month_short(visit.date.mon)} #{visit.meeting_hour.hour}h" %></span>
+            <span class="full-date-visits"><%= "#{visit.date.mday} #{fr_month_short(visit.date.mon)} #{visit.meeting_hour.hour}h" %></span>
               <div class="mini-avatars-likes">
                 <% if visit.subscriptions.count <= 3 %>
                   <% visit.subscriptions.each do |subscription| %>
