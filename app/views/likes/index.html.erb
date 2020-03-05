@@ -40,11 +40,13 @@
 <% end %>
 <% end %>
 
-<h5>Mes visites</h5>
+<% @visits.sort_by!{|visit| visit.date} %>
 <div class= "cards-visit">
+  <h5>Mes visites à venir</h5>
   <% @visits.each do |visit|%>
-    <%= link_to visit_path(id: visit.id) do %>
-      <div class="card-visit-likes">
+    <% if visit.date >= Date.current %>
+      <%= link_to visit_path(id: visit.id) do %>
+        <div class="card-visit-likes">
           <div class="card-visit-img">
             <% if visit.exhibition.photo.attached?  %>
               <%= cl_image_tag visit.exhibition.photo.key %>
@@ -63,11 +65,46 @@
                   <% end %>
                 <% end %>
               </div>
-            </div>
+          </div>
               <div class="card-exhibition-visit">
                   <p><%= visit.exhibition.title.truncate(40) %></p>
               </div>
-      </div>
-</div>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+<div class= "cards-visit">
+  <h5>Mes visites passées </h5>
+  <% @visits.each do |visit|%>
+    <% if visit.date < Date.current %>
+      <%= link_to visit_path(id: visit.id) do %>
+        <div class="card-visit-likes">
+          <div class="card-visit-img">
+            <% if visit.exhibition.photo.attached?  %>
+              <%= cl_image_tag visit.exhibition.photo.key %>
+            <% end %>
+          </div>
+          <div class="card-visit-content">
+            <span><%= "#{visit.date.mday} #{fr_month_short(visit.date.mon)} #{visit.meeting_hour.hour}h" %></span>
+              <div class="mini-avatars-likes">
+                <% if visit.subscriptions.count <= 3 %>
+                  <% visit.subscriptions.each do |subscription| %>
+                    <span class="mini-avatar"><%=  image_tag(subscription.user.avatar) %></span>
+                  <% end %>
+                <% else %>
+                  <% visit.subscriptions.sample(3).each do |subscription| %>
+                    <span class="mini-avatar"><%=  image_tag(subscription.user.avatar) %></span>
+                  <% end %>
+                <% end %>
+              </div>
+          </div>
+              <div class="card-exhibition-visit">
+                  <p><%= visit.exhibition.title.truncate(40) %></p>
+              </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
