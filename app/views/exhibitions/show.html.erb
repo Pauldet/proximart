@@ -44,7 +44,7 @@
         <% end %>
       </div>
         <% if @exhibition.opened?(Time.current) %>
-          <div class="open-tag pl-2"> Ouvert
+          <div class="open-tag"> Ouvert
           </div>
         <% end %>
         <div class="">
@@ -154,9 +154,9 @@
 
 
     <p>Vous êtes allez à l'expo ? Partagez votre avis avec la communauté</p>
-    <div class="text-center">
+    <div class="text-center opinion">
       <%= link_to new_exhibition_participation_path(@exhibition) do  %>
-        <button class="btn-primary">Laisser un avis</button>
+        <button class="btn-full">Laisser un avis</button>
       <% end %>
     </div>
   </div>

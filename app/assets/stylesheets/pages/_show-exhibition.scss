@@ -87,13 +87,12 @@ h6 {
 
 .open-tag {
   z-index: 99;
-  background-color: #7adb87;
+  background-color: $green;
   color:white;
   top:1vh;
   left: 1vw;
-  padding-left: 1vw;
-  padding-right: 1vw;
-  border-radius: 3px;
+  padding: 0px 6px;
+  border-radius: 2px;
   font-weight:bold;
   background-image: linear-gradient(rgba(240,240,240,0.2), rgba(240,240,240,0.2));
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);

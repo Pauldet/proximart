@@ -3,7 +3,7 @@
 <%#= render 'shared/scrolling-cards' %>
 
 
-<hr class="card-separator">
+<hr class="card-separator mt-0">
 <div class="container_card">
   <div class="exhibitions-items">
     <% @exhibitions.each do |exhibition| %>
@@ -14,7 +14,7 @@
                 <%= cl_image_tag exhibition.photo.key, height: 180, width: 350, crop: :fill %>
               <% end %>
               <% if exhibition.opened?(Time.current) %>
-                <div class="open-tag pl-2" id="open-tag-index"> Ouvert</div>
+                <div class="open-tag" id="open-tag-index"> Ouvert</div>
               <% end %>
             </div>
             <% if exhibition.last_days? %>
