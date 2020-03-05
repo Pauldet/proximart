@@ -24,25 +24,21 @@
               <div class="overlay_tag" id="upcoming">Bientôt</div>
             <% end %>
               <h1><%= exhibition.title %></h1>
-              <div class="container">
+              <div class="d-flex justify-content-between align-items-center pr-3">
                 <% if exhibition.average_rating %>
                   <div class="star">
-                <div class="star">
-                <% if exhibition.average_rating %>
-                  <% exhibition.average_rating.round.times do  %>
-                    <i class="fas fa-star" id="stars"></i>
-                  <% end %>
-                  <% (5 - exhibition.average_rating.round).times do %>
-                  <i class="far fa-star"></i>
-                  <% end %>
-                  </div>
+                    <% exhibition.average_rating.round.times do  %>
+                      <i class="fas fa-star" id="stars"></i>
+                    <% end %>
+                    <% (5 - exhibition.average_rating.round).times do %>
+                      <i class="far fa-star"></i>
                     <% end %>
                 <% else %>
                     <% 5.times do %>
                       <i class="far fa-star"></i>
                     <% end %>
-
                 <% end %>
+                  </div>
                   <div class="img_marker2">
                       <i class="fas fa-map-marker-alt"> <%= @distanceExWithUnit[exhibition.id] %></i>
                   </div>
