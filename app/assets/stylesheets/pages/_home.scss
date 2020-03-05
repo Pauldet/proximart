@@ -1,22 +1,17 @@
 // Specific CSS for your home-page
 
-.container-home{
-  // display:flex;
-  // text-align: center;
-}
 .home-img {
-  position:relative;
-  background:linear-gradient(rgba(240, 240, 240, 0.1),rgba(240, 240, 240, 0.1));
+  position: relative;
   // display:flex;
   // justify-content:space-around;
-  a{
+  a {
     text-decoration:none;
   }
 }
 .logo-home {
   position:absolute;
   top:30vh;
-  // right: 19vw;
+  right: 19vw;
   *{
   font-size:6vh;
   }
@@ -30,10 +25,10 @@
 
 .subheader-home {
   position:absolute;
-  // bottom: 14vh;
+  bottom: 14vh;
   h4{font-family:"Spartan";
     text-decoration: none;
-    color: $white;
+    color: black;
 
   }
   a{
