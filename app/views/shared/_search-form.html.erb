@@ -1,5 +1,5 @@
 <div class="container-search-bar">
-  <%= simple_form_for :search, id:"search-form", url: root_path, method: :get do |f| %>
+  <%= simple_form_for :search, id:"search-form", url: exhibitions_path, method: :get do |f| %>
     <div class="search-form-control form-group simple_form search d-none">
       <input class="form-control string required hidden " type="text" name="search[query]" id="search_query" placeholder="Picasso..." />
       <button name="button" type="submit" class="btn btn-full">
@@ -92,7 +92,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content tag-choices">
 
-      <%= simple_form_for :search, url: root_path, method: :get, html: { id:"search-form-modal" } do |f| %>
+      <%= simple_form_for :search, url: exhibitions_path, method: :get, html: { id:"search-form-modal" } do |f| %>
         <%= hidden_field_tag :last_days, params[:last_days] %>
         <%= hidden_field_tag :distanceRange, params[:distanceRange] %>
 
