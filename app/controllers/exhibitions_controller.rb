@@ -97,9 +97,7 @@ end
     @exhibitions = @exhibitionsArrayWithDistance.map{|a| a[0]}
     # @tags = @allExhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq # --> if we need to search with tags
 
-    if params[:search] && params[:search][:opened] != '0'
-      @exhibitions = @exhibitions.select { |ex| ex.opened?(Time.now) }
-    end
+
 
     if @selected_categories
       @allExhibitionsWithCat = @exhibitions.map{|ex| [ex,ex.category.gsub('Expositions -> ', '')]}
@@ -107,12 +105,37 @@ end
       @exhibitions = @exhibitionsWithCat.map{|a| a[0]}
     end
 
+    if params[:search] && params[:search][:opened] != '0'
+      @exhibitions = @exhibitions.select { |ex| ex.opens_today?(Time.now) }
+
+      @markers = @exhibitions.map do |exhibition|
+      {
+        lat: exhibition.latitude,
+        lng: exhibition.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
+      }
+      end
+
+    elsif params[:search] && params[:search][:opened] = '0'
+      @exhibitions = Exhibition.all
+
+      @exhibinParis = Exhibition.all.where(latitude:(48.79..48.94), longitude:(2.21..2.48) )
+       @markers = @exhibinParis.map do |exhibition|
+      {
+        lat: exhibition.latitude,
+        lng: exhibition.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
+      }
+      end
+    else
     @markers = @exhibitions.map do |exhibition|
       {
         lat: exhibition.latitude,
         lng: exhibition.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
       }
+      end
+
     end
   end
 
