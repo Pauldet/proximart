@@ -97,9 +97,7 @@ end
     @exhibitions = @exhibitionsArrayWithDistance.map{|a| a[0]}
     # @tags = @allExhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq # --> if we need to search with tags
 
-    if params[:search] && params[:search][:opened] != '0'
-      @exhibitions = @exhibitions.select { |ex| ex.opened?(Time.now) }
-    end
+
 
     if @selected_categories
       @allExhibitionsWithCat = @exhibitions.map{|ex| [ex,ex.category.gsub('Expositions -> ', '')]}
@@ -107,47 +105,43 @@ end
       @exhibitions = @exhibitionsWithCat.map{|a| a[0]}
     end
 
+    if params[:search] && params[:search][:opened] != '0'
+      @exhibitions = @exhibitions.select { |ex| ex.opens_today?(Time.now) }
+
+      @markers = @exhibitions.map do |exhibition|
+      {
+        lat: exhibition.latitude,
+        lng: exhibition.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
+      }
+      end
+
+    elsif params[:search] && params[:search][:opened] = '0'
+      @exhibitions = Exhibition.all
+
+      @exhibinParis = Exhibition.all.where(latitude:(48.79..48.94), longitude:(2.21..2.48) )
+       @markers = @exhibinParis.map do |exhibition|
+      {
+        lat: exhibition.latitude,
+        lng: exhibition.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
+      }
+      end
+    else
     @markers = @exhibitions.map do |exhibition|
       {
         lat: exhibition.latitude,
         lng: exhibition.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
       }
+      end
+
     end
   end
 
   def update
     @exhibition_array = Exhibition.where(external_id: external_id)
   #   @exhibition = @exhibition_array[0]
-  #   @exhibition.update(
-  #   latitude:latitude,
-  #   longitude: longitude,
-  #   address_street: address_street,
-  #   category: category,
-  #   title: title,
-  #   date_start: date_start,
-  #   date_end: date_end,
-  #   occurences: occurences,
-  #   contact_url: contact_url,
-  #   address_name: address_name,
-  #   contact_twitter: contact_twitter,
-  #   contact_phone: contact_phone,
-  #   description: description,
-  #   tags: tags,
-  #   contact_mail: contact_mail,
-  #   lead_text: lead_text,
-  #   cover_url: cover_url,
-  #   contact_facebook: contact_facebook,
-  #   cover_credit: cover_credit,
-  #   address_city: address_city,
-  #   price_detail: price_detail,
-  #   price_type: price_type,
-  #   date_description: date_description,
-  #   address_zipcode: address_zipcode)
-  #   puts @exhibition
-  #   puts @exhibition.valid?
-  #   puts "test true"
-
   end
 
 private

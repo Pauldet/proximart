@@ -87,6 +87,7 @@ const mapElement = document.getElementById('map');
       console.log(long.value);
 
       if (window.location.href.length < 40) {
+        console.log(window.location.href.length)
         window.onload = function(){
         document.getElementsByClassName('simple_form search')[0].submit();
       }
