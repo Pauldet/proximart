@@ -3,33 +3,40 @@
 <% @exhibitions.each do |exhibition| %>
 <%= link_to exhibition_path(exhibition) do  %>
   <div class="card_exhibition">
-            <div class="card-img">
-              <% if exhibition.photo.attached?  %>
-                <%= cl_image_tag exhibition.photo.key, height: 180, width: 350, crop: :fill %>
-              <% end %>
-            </div>
-            <% if exhibition.last_days? %>
-              <div class="overlay_tag">Derniers jours </div>
-            <% end %>
-            <% if exhibition.upcoming? && !exhibition.last_days? %>
-              <div class="overlay_tag" id="upcoming">Bientôt</div>
-            <% end %>
-            <h1><%= exhibition.title %></h1>
-            <div class="container">
-              <% if exhibition.average_rating %>
-             <div class="star">
-              <% exhibition.average_rating.round.times do  %>
-               <i class="fas fa-star" id="stars"></i>
-              <% end %>
+    <div class="card-img">
+      <% if exhibition.photo.attached?  %>
+        <%= cl_image_tag exhibition.photo.key, height: 180, width: 350, crop: :fill %>
+      <% end %>
+    </div>
+    <div class="heart-button row">
+      <div class="heart">
+        <%= link_to like_exhibition_path(exhibition), class: "#{'red' if current_user.likes.find_by(exhibition_id: exhibition.id)}" do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      </div>
+    </div>
+        <% if exhibition.last_days? %>
+          <div class="overlay_tag">Derniers jours </div>
+        <% end %>
+        <% if exhibition.upcoming? && !exhibition.last_days? %>
+          <div class="overlay_tag" id="upcoming">Bientôt</div>
+        <% end %>
+        <h1><%= exhibition.title %></h1>
+          <div class="container">
+            <% if exhibition.average_rating %>
+              <div class="star">
+                <% exhibition.average_rating.round.times do  %>
+                  <i class="fas fa-star" id="stars"></i>
+                <% end %>
               <% (5 - exhibition.average_rating.round).times do %>
-               <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
               <% end %>
              </div>
-             <% end %>
-            </div>
-            <p class="address-name"><%= exhibition.address_name %></p>
-            <p><%= exhibition.lead_text %></p>
- </div>
+            <% end %>
+          </div>
+          <p class="address-name"><%= exhibition.address_name %></p>
+          <p><%= exhibition.lead_text %></p>
+    </div>
 <% end %>
 <% end %>
 
