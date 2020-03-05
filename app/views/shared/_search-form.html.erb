@@ -41,10 +41,11 @@
         <div class="open-all btn btn-empty">
           <!-- <input type="checkbox" name="Ouvert maintenant" id="select_now" checked> -->
           <% if params[:search] %>
+            <% all = render 'shared/open-all' %>
             <%= f.input :opened,
                         as: :boolean,
                         input_html: { checked: params[:search][:opened] == '1' ? true : false },
-                        label: params[:search][:opened] == '1' ? 'Ouvert maintenant' : 'Toutes les expositions' %>
+                        label: params[:search][:opened] == '1' ? 'Ouvert maintenant' : all %>
           <% else %>
             <%= f.input :opened, as: :boolean, input_html: { checked: true }, label: 'Ouvert maintenant' %>
           <% end %>
