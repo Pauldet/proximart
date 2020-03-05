@@ -41,7 +41,6 @@
   background-color: $white;
   padding: 8px;
   width: 100vw;
-  margin-top: 16px;
     #myValue {
       color: $blue;
     }
@@ -88,6 +87,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 16px;
    p {
     font-size: 24px;
    }
@@ -112,7 +112,7 @@
 //----------- check opened ----------//
 .search-middle {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
    .btn-empty {
      &:hover {
          color: $white;
