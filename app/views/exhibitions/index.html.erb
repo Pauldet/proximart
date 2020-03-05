@@ -14,7 +14,7 @@
                 <%= cl_image_tag exhibition.photo.key, height: 180, width: 350, crop: :fill %>
               <% end %>
               <% if exhibition.opened?(Time.current) %>
-                <div class="open-tag pl-2" id="open-tag-index"> Ouvert</div>
+                <div class="open-tag" id="open-tag-index"> Ouvert</div>
               <% end %>
             </div>
             <% if exhibition.last_days? %>
