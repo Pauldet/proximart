@@ -7,8 +7,15 @@
       </button>
     </div>
 
-  <% if params[:search] && params[:search][:opened] != '0' %>
-    <div class="text-center"> Expositions à moins de:</div>
+    <% if params[:search] && params[:search][:opened] != '0' %>
+    <div class="text-center range-text">
+      <div class="text-search">
+        <p>Expositions</p>
+        <hr class="card-separator">
+      </div>
+      <p>à moins de</p>
+    </div>
+
     <div style="position:relative;width:50%; margin: 0 auto ">
         <span style="position:absolute">
         <span id="myValue"></span>
@@ -26,7 +33,7 @@
       var px =  ((myRange.valueAsNumber - parseInt(myRange.min)) * off) - (myValue.offsetParent.offsetWidth / 2);
 
         myValue.parentElement.style.left = px + 'px';
-        myValue.parentElement.style.top = myRange.offsetHeight*1.8 + 'px';
+        myValue.parentElement.style.top = myRange.offsetHeight*2 + 'px';
         myValue.innerHTML = myRange.value + ' ' + myUnits;
 
         myRange.oninput =function(){
@@ -46,12 +53,13 @@
           <!-- <input type="checkbox" name="Ouvert maintenant" id="select_now" checked> -->
           <% if params[:search] %>
             <% all = render 'shared/open-all' %>
+            <% open_now = render 'shared/open-now' %>
             <%= f.input :opened,
                         as: :boolean,
                         input_html: { checked: params[:search][:opened] == '1' ? true : false },
-                        label: params[:search][:opened] == '1' ? 'Ouvert maintenant' : all %>
+                        label: params[:search][:opened] == '1' ? open_now : all %>
           <% else %>
-            <%= f.input :opened, as: :boolean, input_html: { checked: true }, label: 'Ouvert maintenant' %>
+            <%= f.input :opened, as: :boolean, input_html: { checked: true }, label: open_now %>
           <% end %>
  <!--          <label for="select_now">Ouvert maintenant</label> -->
         </div>

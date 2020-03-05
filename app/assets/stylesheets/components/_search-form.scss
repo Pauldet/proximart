@@ -41,6 +41,11 @@
   background-color: $white;
   padding: 8px;
   width: 100vw;
+  margin-top: 16px;
+    #myValue {
+      color: $blue;
+    }
+
 }
 
 
@@ -75,38 +80,52 @@
 
 .search-bottom {
   display: flex;
-  align-items: center;
+  justify-content: center;
+
 }
 
+.text-search {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+   p {
+    font-size: 24px;
+   }
+}
 
-//------ date form --------//
-// .dates-form {
-//   width: 33%;
-//   margin: 2px;
-//     .form-group {
-//       margin: 0;
-//     }
-// }
+.range-text {
+    p {
+      color: $blue;
+      margin-bottom: 0;
+    }
+    .card-separator {
+      justify-content:center;
+      width: 40vw;
+      margin: 0;
+      margin-bottom: 8px;
 
-// .form-control[readonly] {
-//   background-color: $white;
-//       color: $blue;
-//       text-align: center;
-//       border-radius: 4px;
-//       border-color: $blue;
-//     &::placeholder {
-//       color: $blue;
-//       // font-size: 12px;
-//     }
-// }
+
+    }
+}
 
 
 //----------- check opened ----------//
 .search-middle {
   text-align: center;
+  margin-bottom: 16px;
+   .btn-empty {
+     &:hover {
+         color: $white;
+         background-color: $white;
+         border-color: #4B88A2;
+     }
+
+   }
+
 }
 
 .open-all {
+  border: none;
     input[type="checkbox"] {
       display: none;
     }
@@ -117,8 +136,26 @@
     .form-group {
       margin-bottom: 0;
     }
+    .card-separator {
+      width: 40vw;
+      margin: 0;
+
+    }
+    .main-tex {
+        p {
+          color: $blue;
+        }
+    }
+
+    .blur-text {
+        p {
+          color: rgba(100, 100, 100, .4);
+        }
+    }
 
 }
+
+
 
 //----------- slider ----------//
 .select-distance {
