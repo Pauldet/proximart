@@ -39,13 +39,10 @@ end
   end
 
   def index
+    #Selecting all existing Exhib
     @allExhibitions = Exhibition.all
-    # if params[:last_days] == '1'
-    #   @allExhibitions = @allExhibitions.where("XXXXXX BETWEEN XXXX ?  ?", Date.current, Date.current.end_of_week)
-    # end
-    # @categories = @allExhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
 
-    @selected_categories = params[:categories].presence
+    #looking for all categories except "Other"
 
     @categories = Exhibition.select('distinct category').
       where.not(category: 'Expositions -> Autre expo').
@@ -53,6 +50,14 @@ end
       pluck(:category).
       uniq.
       map { |category| category.gsub('Expositions -> ', '') }
+
+    #Selecting categories submited by the modal, or taking them all
+    if params[:categories].presence
+      @selected_categories = params[:categories].presence
+    else
+     @selected_categories = @categories
+    end
+
 
     if params[:distanceRange]
       @maxdistance = params[:distanceRange].to_i
