@@ -62,6 +62,8 @@ class Exhibition < ApplicationRecord
       if opening_hour >= time.localtime
         time_to_opening = Time.at(opening_hour-time.localtime).utc.strftime("%H:%M")
       return "Ouvre dans<br> <div id='time' class='text-center'>#{time_to_opening}</div>"
+    elsif closing_hour <= time.localtime
+      return "<div style='font-weight:bold'>Déjà fermée</div>"
       end
     end
   end

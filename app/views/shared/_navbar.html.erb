@@ -26,10 +26,12 @@
     </div>
   </div>
 
+
+
 <!-- logo start -->
   <div class="navbar navbar-center navbar-expand-sm d-flex flex-column justify-content-around">
     <div class="moving-letters pt-1 flex-start" type="submit">
-      <%= link_to exhibitions_path do %>
+      <%= link_to exhibitions_path(params: { search: {  lat: '48.87' ,long:'2.34', opened: '0' }}) do %>
         <h1 class="pb-4" style="font-size: 32px">
           <span class="text-wrapper">
             <span class="letters">Proxim'Art</span>
@@ -39,6 +41,7 @@
       <% end %>
     </div>
   </div>
+
 
 <!-- avatar -->
   <div class="navbar-right avatar">

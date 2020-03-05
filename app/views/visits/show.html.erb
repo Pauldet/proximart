@@ -77,8 +77,6 @@
     </div>
 
 
-
-
   <div class= "past-messages ">
       <div id="messages" data-visit-id="<%= @visit.id %>">
         <% @visit.messages.each do |message| %>
@@ -88,15 +86,13 @@
     </div>
 
   <%if user_signed_in? && @subscriptions.where(user_id: @current_user.id).first%>
-      <div class= "message-creation sticky-bottom">
+      <div class= "message-creation sticky-bottom mb-0" id="messcre">
         <%= simple_form_for [ @visit, @message ] do |f| %>
           <div class='d-flex'>
-            <div class="flex-grow-1 ">
+            <div class="flex-grow-1" id="newmessage1">
               <%= f.input :content, label: false, placeholder: "Participer à la conversation..." %>
             </div>
-            <div>
               <%= f.button :submit, 'Envoyer', class: 'btn-primary py-3' %>
-            </div>
           </div>
         <% end %>
       </div>

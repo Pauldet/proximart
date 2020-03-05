@@ -49,6 +49,16 @@
   }
 }
 
+.form-group {
+
+  margin-bottom: 0em;
+}
+
+
+.textoptional {
+    height: 58px !important;
+}
+
 .main-card-visit {
     padding-top: 2vh;
     margin-bottom: 1em;
@@ -71,4 +81,11 @@
 
 .share-join-column {
   margin-bottom: 1em;
+}
+
+.full-date-visits{
+  color: black;
+  font-family: spartan;
+  font-weight: bold;
+  font-size: 14px;
 }

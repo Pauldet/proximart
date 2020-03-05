@@ -39,13 +39,10 @@ end
   end
 
   def index
+    #Selecting all existing Exhib
     @allExhibitions = Exhibition.all
-    # if params[:last_days] == '1'
-    #   @allExhibitions = @allExhibitions.where("XXXXXX BETWEEN XXXX ?  ?", Date.current, Date.current.end_of_week)
-    # end
-    # @categories = @allExhibitions.map{|e| e.category.split[2]}.compact.uniq.reject{|s| s == "Autre"}.sort
 
-    @selected_categories = params[:categories].presence
+    #looking for all categories except "Other"
 
     @categories = Exhibition.select('distinct category').
       where.not(category: 'Expositions -> Autre expo').
@@ -54,11 +51,23 @@ end
       uniq.
       map { |category| category.gsub('Expositions -> ', '') }
 
+    #Selecting categories submited by the modal, or taking them all
+    if params[:categories].presence
+      @selected_categories = params[:categories].presence
+    else
+     @selected_categories = @categories
+    end
+
+
+
     if params[:distanceRange]
       @maxdistance = params[:distanceRange].to_i
     else
       @maxdistance = 3
     end
+
+
+## Ils chargent les cartes et après ils les display. Si tu fais toutes ils ne montrent pas la distance de celle qu'ils n(avait pas préalablement)
 
     if params[:search]
       @current_location = [params[:search][:lat], params[:search][:long]]
@@ -72,7 +81,7 @@ end
     @allExhibitions.each do |exhibition|
       dist = Geocoder::Calculations.distance_between(@current_location, exhibition)
       id = exhibition.id
-      if dist < @maxdistance
+      # if dist < @maxdistance
         @distanceEx[id] = dist.truncate(2)
         if dist < 1
           distance = dist.truncate(1)*1000
@@ -88,13 +97,16 @@ end
           end
         end
         @distanceExWithUnit[id] = distancewithunit
-      end
+      # end
     end
     #creer un hash avec Exhibition instance et distance en value
     exhibId = @distanceEx.keys #ExhibId of Exhib closer than max range
     @exhibitionsUnsorted = Exhibition.all.where(id: exhibId)
     @exhibitionsArrayWithDistance = @exhibitionsUnsorted.map{|exhib| [exhib, @distanceEx[exhib.id]]}.sort_by{|a| a[1]}
     @exhibitions = @exhibitionsArrayWithDistance.map{|a| a[0]}
+
+
+    #remettre une logique de filtre distance la ou il faut.
     # @tags = @allExhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq # --> if we need to search with tags
 
 
@@ -103,10 +115,17 @@ end
       @allExhibitionsWithCat = @exhibitions.map{|ex| [ex,ex.category.gsub('Expositions -> ', '')]}
       @exhibitionsWithCat = @allExhibitionsWithCat.select{ |exWithCat| @selected_categories.include?(exWithCat[1])}
       @exhibitions = @exhibitionsWithCat.map{|a| a[0]}
+
+      #remettre filtre distance
+
+
     end
 
     if params[:search] && params[:search][:opened] != '0'
       @exhibitions = @exhibitions.select { |ex| ex.opens_today?(Time.now) }
+      distanceExFiltered = @distanceEx.select {|k,v| v < @maxdistance}
+      idFiltered = distanceExFiltered.keys
+      @exhibitions = @exhibitions.select {|ex| idFiltered.include?(ex.id)}
 
       @markers = @exhibitions.map do |exhibition|
       {
@@ -117,9 +136,9 @@ end
       end
 
     elsif params[:search] && params[:search][:opened] = '0'
-      @exhibitions = Exhibition.all
 
-      @exhibinParis = Exhibition.all.where(latitude:(48.79..48.94), longitude:(2.21..2.48) )
+      @exhibinParis = @exhibitions #rajouter la logique de filtrer que dans lat long dans paris
+
        @markers = @exhibinParis.map do |exhibition|
       {
         lat: exhibition.latitude,
