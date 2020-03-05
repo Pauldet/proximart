@@ -6,7 +6,13 @@
         <i class="fas fa-search"></i>
       </button>
     </div>
-    <div class="text-center range-text"><p>Expositions à moins de</p></div>
+    <div class="text-center range-text">
+      <div class="text-search">
+        <p>Expositions</p>
+        <hr class="card-separator">
+      </div>
+      <p>à moins de</p>
+    </div>
     <div style="position:relative;width:50%; margin: 0 auto ">
         <span style="position:absolute">
         <span id="myValue"></span>
@@ -24,7 +30,7 @@
       var px =  ((myRange.valueAsNumber - parseInt(myRange.min)) * off) - (myValue.offsetParent.offsetWidth / 2);
 
         myValue.parentElement.style.left = px + 'px';
-        myValue.parentElement.style.top = myRange.offsetHeight*1.8 + 'px';
+        myValue.parentElement.style.top = myRange.offsetHeight*2 + 'px';
         myValue.innerHTML = myRange.value + ' ' + myUnits;
 
         myRange.oninput =function(){

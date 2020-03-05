@@ -84,11 +84,27 @@
 
 }
 
+.text-search {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+   p {
+    font-size: 24px;
+   }
+}
 
 .range-text {
     p {
       color: $blue;
       margin-bottom: 0;
+    }
+    .card-separator {
+      justify-content:center;
+      width: 40vw;
+      margin: 0;
+      margin-bottom: 8px;
+
+
     }
 }
 
