@@ -60,6 +60,9 @@ end
       @maxdistance = 3
     end
 
+
+## Ils chargent les cartes et après ils les display. Si tu fais toutes ils ne montrent pas la distance de celle qu'ils n(avait pas préalablement)
+
     if params[:search]
       @current_location = [params[:search][:lat], params[:search][:long]]
     else
