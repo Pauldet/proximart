@@ -29,7 +29,9 @@
         myValue.parentElement.style.top = myRange.offsetHeight*1.8 + 'px';
         myValue.innerHTML = myRange.value + ' ' + myUnits;
 
-
+        myRange.oninput =function(){
+          let px = ((myRange.valueAsNumber - parseInt(myRange.min)) * off) - (myValue.offsetWidth / 2);
+          myValue.innerHTML = myRange.value + ' ' + myUnits;
           myValue.parentElement.style.left = px + 'px';
         };
         </script>
