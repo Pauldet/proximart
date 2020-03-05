@@ -38,11 +38,11 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' unless params[:action]== "home" %>
+    <%= render 'shared/flashes' unless params[:action]== "home" %>
 
     <%= yield %>
 
-    <%= render 'shared/footer' %>
+    <%= render 'shared/footer' unless params[:action]== "home"%>
   </body>
 </html>
