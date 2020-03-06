@@ -3,10 +3,12 @@ ruby '2.6.5'
 
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'devise-i18n'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
 gem 'rails', '6.0.2.1'
+gem 'rails-i18n'
 gem 'redis'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
@@ -19,6 +21,7 @@ gem 'webpacker'
 gem 'cloudinary', '~> 1.12.0'
 gem 'pg_search'
 gem 'geocoder'
+
 # gem 'turbolinks', '~> 5.2.0'
 
 group :development do
