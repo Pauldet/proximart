@@ -4,7 +4,7 @@
   border-radius: 5px;
   width: 350px;
   justify-content: space-around;
-  margin: 3vw;
+  margin: 3vw auto;
   text-decoration:none;
   a:hover, a:visited, a:link, a:active {
     text-decoration: none;
@@ -48,6 +48,12 @@ text-align: center;
 }
 .exhibitions-items {
   justify-content: center;
+  display:flex;
+  flex-direction:column;
+  a {
+  justify-content: center;
+  display:flex;
+  }
 }
 
 .card-img {
