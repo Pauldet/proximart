@@ -63,7 +63,7 @@ end
     if params[:distanceRange]
       @maxdistance = params[:distanceRange].to_i
     else
-      @maxdistance = 3
+      @maxdistance = 5
     end
 
 
