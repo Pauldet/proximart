@@ -45,10 +45,11 @@
 
 <!-- avatar -->
   <div class="navbar-right avatar">
-    <% #raise %>
+      <a href="/"></a>
     <% if user_signed_in?  %>
       <%= image_tag current_user.avatar , class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
     <% end %>
+      <%# link_to root_path %>
   </div>
 <!--  -->
 
