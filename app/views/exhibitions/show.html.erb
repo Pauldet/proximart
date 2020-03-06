@@ -100,11 +100,14 @@
                         <% end %>
                       <% end %>
                     </div>
+                    <div class='number-of-user'>
                       <% if visit.subscriptions.count == 1 %>
                         <span style ="font-family: Poppins"><%= visit.subscriptions.count %> utilisateur y va</span>
                       <% else %>
                         <span style ="font-family: Poppins"><%= visit.subscriptions.count %> utilisateurs y vont</span>
                       <% end %>
+
+                    </div>
               <% end %>
                   </div>
                 </div>
