@@ -20,7 +20,7 @@
       </div>
       <div class="d-flex mt-2 ">
         <div class = "details-visit flex-column px-2 col-8 share-join-column">
-          <div>
+          <div class="mb-2">
           <p><i class="fa ffar fa-clock"> </i> <%=fr_jour_short(@visit.date.cwday)%> <%= @visit.date.mday%> <%=fr_month_short(@visit.date.mon)%> <%= @visit.meeting_hour.hour %>H<%= @visit.meeting_hour.min%>  </p>
 
           <%= link_to "http://citymapper.com/directions?startcoord=48.877932,2.3417265&endcoord=#{@lat},#{@long}&endname=#{@exhibition.title}&endaddress=#{@exhibition.full_address}", data: { url:"https://citymapper.com/directions?startcoord={USER_LATLONG}&endcoord=#{@lat},#{@long}&endname=#{@exhibition.title}&endaddress=#{@exhibition.full_address}" } , class: "citymapper-url" do %><i class="fas fa-map-marker-alt"></i> <%= @exhibition.address_street+"," %> <%= @exhibition.address_city %><% end %>
@@ -35,6 +35,13 @@
                 <% @visit.subscriptions.sample(3).each do |subscription| %>
                   <span class="mini-avatar"><%=  image_tag(User.find(subscription.user_id).avatar)%> +<%= @visit.subscriptions.count - 3%> </span>
                 <% end %>
+              <% end %>
+            </div>
+            <div class='number-of-user'>
+              <% if @visit.subscriptions.count == 1 %>
+                <span style ="font-family: Poppins"><%= @visit.subscriptions.count %> participe</span>
+              <% else %>
+                <span style ="font-family: Poppins"><%= @visit.subscriptions.count %> participent</span>
               <% end %>
             </div>
           </div>
