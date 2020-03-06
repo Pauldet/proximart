@@ -1,7 +1,16 @@
 // Specific CSS for your home-page
 
-.home-img {
+.home {
   position: relative;
+  display: flex;
+   .img {
+    background-image: linear-gradient(180deg, rgba(229, 245, 249, 0.84), transparent 70%), url(/images/home.jpg);
+    width: 100vw;
+    height: 100vh;
+    margin:auto;
+    background-size: cover;
+    background-position: center;
+   }
   // display:flex;
   // justify-content:space-around;
   a {
@@ -9,26 +18,31 @@
   }
 }
 .logo-home {
-  position:absolute;
-  top:30vh;
-  right: 19vw;
-  *{
-  font-size:6vh;
-  }
-}
+  // position:absolute;
+  // top:30vh;
+  // right: 19vw;
+  text-align: center;
+  color: black;
+  padding-top: 20vh;
+    *{
+    font-size:8vh;
+    font-family: "Cinzel", "Helvetica", "sans-serif";
+    text-shadow: 0px 0px 7px white;
 
-.logo-container{
-  background-color: rgba(250, 250, 250, 0.1);
-  box-shadow: 0px 0px 7px 4px rgba(240, 240, 240, 0.1);
-  border-radius: 4px;
+    }
 }
 
 .subheader-home {
-  position:absolute;
-  bottom: 14vh;
+  // position:absolute;
+  // bottom: 14vh;
+  padding: 20px 50px;
   h4{font-family:"Spartan";
     text-decoration: none;
-    color: black;
+    // color: black;
+    padding-top: 44vh;
+    color: white;
+    font-weight: 100;
+    font-size: 22px;
 
   }
   a{
