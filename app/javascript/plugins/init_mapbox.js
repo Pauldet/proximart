@@ -8,7 +8,7 @@ const mapElement = document.getElementById('map');
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10',
       zoom: 11,
-      // attributionControl: false
+       // attributionControl: false
 
       // antialias: true,
       center: [lon, lat]
@@ -30,7 +30,7 @@ const mapElement = document.getElementById('map');
   const fitMapToMarkers = (map, markers) => {
     const bounds = new mapboxgl.LngLatBounds();
     markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-    map.fitBounds(bounds, { padding: 70, maxZoom: 25 });
+    map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
   };
 
   const initMapbox = (lon, lat) => {
