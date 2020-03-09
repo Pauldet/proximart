@@ -21,6 +21,8 @@ gem 'webpacker'
 gem 'cloudinary', '~> 1.12.0'
 gem 'pg_search'
 gem 'geocoder'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
 
 # gem 'turbolinks', '~> 5.2.0'
 
