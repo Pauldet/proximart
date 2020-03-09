@@ -91,41 +91,41 @@ exhibitions["records"].each do |exhib|
      new_occurences.map! do |day|
       day.split("_")
      end
-        exhibition_params = {
-          latitude:latitude,
-          longitude: longitude,
-          address_street: address_street,
-          category: category,
-          title: title,
-          date_start: date_start,
-          date_end: date_end,
-          occurences: new_occurences,
-          contact_url: contact_url,
-          address_name: address_name,
-          contact_twitter: contact_twitter,
-          contact_phone: contact_phone,
-          description: description,
-          tags: tags,
-          contact_mail: contact_mail,
-          lead_text: lead_text,
-          cover_url: cover_url,
-          contact_facebook: contact_facebook,
-          cover_credit: cover_credit,
-          address_city: address_city,
-          price_detail: price_detail,
-          price_type: price_type,
-          date_description: date_description,
-          address_zipcode: address_zipcode,
-          external_id: external_id,
-          full_address: full_address
-        }
-        Exhibition.find_or_initialize_by(exhibition_params).save
-        exhibition = Exhibition.find_by(external_id: external_id)
-        photo_file = URI.open(cover_url)
-        puts cover_url
-        puts photo_file
-        exhibition.photo.attach(io: photo_file, filename: "#{external_id}_cover")
-        exhibition.save!
+    exhibition_params = {
+      latitude:latitude,
+      longitude: longitude,
+      address_street: address_street,
+      category: category,
+      title: title,
+      date_start: date_start,
+      date_end: date_end,
+      occurences: new_occurences,
+      contact_url: contact_url,
+      address_name: address_name,
+      contact_twitter: contact_twitter,
+      contact_phone: contact_phone,
+      description: description,
+      tags: tags,
+      contact_mail: contact_mail,
+      lead_text: lead_text,
+      cover_url: cover_url,
+      contact_facebook: contact_facebook,
+      cover_credit: cover_credit,
+      address_city: address_city,
+      price_detail: price_detail,
+      price_type: price_type,
+      date_description: date_description,
+      address_zipcode: address_zipcode,
+      external_id: external_id,
+      full_address: full_address
+    }
+    Exhibition.find_or_initialize_by(exhibition_params).save
+    exhibition = Exhibition.find_by(external_id: external_id)
+    photo_file = URI.open(cover_url)
+    puts cover_url
+    puts photo_file
+    exhibition.photo.attach(io: photo_file, filename: "#{external_id}_cover")
+    exhibition.save!
     puts "Exhib created"
     end
   end
