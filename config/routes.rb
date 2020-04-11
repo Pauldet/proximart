@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
   resources :likes, only: [:index]
-  resources :participations, only: [:show]
+  resources :participations, only: [:show ]
   resources :likes, only: :index
 
 

@@ -1,1 +1,20 @@
-<h1>not ready yet...</h1>
+
+
+<div class="container">
+  <div class="col">
+    <div class="row justify-content-center">
+      <h1>
+        <%= @exhibition.title %>
+      </h1>
+    </div>
+    <div class="row justify-content-center">
+      <%= simple_form_for [@exhibition, @participation] do |f| %>
+        <%= f.input :review_content, label: "Votre avis sur l'exposition:" %>
+        <%= f.input :rating, as: :select, collection: 0..5, label: "Note" %>
+        <%= f.input :date %>
+        <%= f.button :submit, 'Postez votre avis', class: 'btn-full m-2' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
