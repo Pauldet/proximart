@@ -4,10 +4,13 @@ class ParticipationsController < ApplicationController
     @participation = Participation.new(participation_params)
     @exhibition = Exhibition.find(params[:exhibition_id])
     @participation.exhibition_id = params[:exhibition_id]
+    @participation.user = current_user
     @participation.save
+    redirect_to exhibition_path(@exhibition)
   end
 
   def new
+    @exhibition = Exhibition.find(params[:exhibition_id])
     @participation = Participation.new
   end
 
