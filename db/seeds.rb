@@ -17,7 +17,7 @@ Exhibition.destroy_all if Exhibition.count > 0
 # Create users
 if User.count < 15
   puts 'Creating 15 fake users...'
-  user_array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+  user_array =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
 
   # Creating USER
