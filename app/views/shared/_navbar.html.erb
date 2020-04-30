@@ -26,8 +26,6 @@
     </div>
   </div>
 
-
-
 <!-- logo start -->
   <div class="navbar navbar-center navbar-expand-sm d-flex flex-column justify-content-around">
     <div class="moving-letters pt-1 flex-start" type="submit">
@@ -47,8 +45,11 @@
   <div class="navbar-right avatar">
     <%= link_to root_path do %>
       <% if user_signed_in?  %>
-
-        <%= image_tag current_user.avatar %>
+        <% if current_user.avatar.nil? %>
+          <%= image_tag current_user.avatar %>
+        <% else %>
+          <%= image_tag "NicoM.jpg" %>
+        <% end %>
 
       <% end %>
     <% end %>
