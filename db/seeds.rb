@@ -8,12 +8,13 @@ Like.destroy_all
 Message.destroy_all
 Participation.destroy_all
 Subscription.destroy_all
-User.destroy_all
+User.destroy_all if User.count > 0
 Visit.destroy_all
-Exhibition.destroy_all
+Exhibition.destroy_all if Exhibition.count > 0
 # Exhibition.destroy_all
-## Create users
 
+
+# Create users
 if User.count < 15
   puts 'Creating 15 fake users...'
   user_array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
@@ -38,7 +39,9 @@ end
 
 # #####
 
-
+puts ""
+puts "----------------------------"
+puts ""
 puts "creating 30 exhib"
 
 # extensive_url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=400&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
