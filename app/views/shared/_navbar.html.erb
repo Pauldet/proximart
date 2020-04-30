@@ -45,13 +45,17 @@
 
 <!-- avatar -->
   <div class="navbar-right avatar">
-    <%= link_to root_path do %>
+    <%#= link_to root_path do %>
       <% if user_signed_in?  %>
 
         <%= image_tag current_user.avatar %>
 
+        <% else %>
+
+        <%= image_tag "NicoM.jpg", class: "far fa-user" %>
+
       <% end %>
-    <% end %>
+    <%# end %>
   </div>
 <!--  -->
 
