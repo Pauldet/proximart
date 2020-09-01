@@ -130,6 +130,7 @@ exhibitions["records"].each do |exhib|
     exhibition.photo.attach(io: photo_file, filename: "#{external_id}_cover")
     exhibition.save!
     puts "Exhib created"
+    puts "-------------"
     end
   end
 end
