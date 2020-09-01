@@ -46,9 +46,9 @@
     <%#= link_to root_path do %>
       <% if user_signed_in?  %>
         <% if current_user.avatar.nil? %>
-          <%= image_tag current_user.avatar %>
-        <% else %>
           <%= image_tag "NicoM.jpg" %>
+        <% else %>
+          <%= image_tag current_user.avatar %>
         <% end %>
 
         <% else %>
