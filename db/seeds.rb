@@ -4,13 +4,13 @@ require 'faker'
 OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
 OpenURI::Buffer.const_set 'StringMax', 0
 
-Like.destroy_all
-Message.destroy_all
-Participation.destroy_all
-Subscription.destroy_all
-User.destroy_all if User.count > 0
-Visit.destroy_all
-Exhibition.destroy_all if Exhibition.count > 0
+# Like.destroy_all
+# Message.destroy_all
+# Participation.destroy_all
+# Subscription.destroy_all
+# User.destroy_all if User.count > 0
+# Visit.destroy_all
+# Exhibition.destroy_all if Exhibition.count > 0
 # Exhibition.destroy_all
 
 
@@ -33,11 +33,11 @@ if User.count < 15
     end
 end
 
-# #####
+#####
 
-# # Exhibitions
+# Exhibitions
 
-# #####
+#####
 
 puts ""
 puts "----------------------------"
