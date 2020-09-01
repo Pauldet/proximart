@@ -1,13 +1,12 @@
 
 <%= link_to exhibition_path(exhibition) do  %>
-<div class="img_marker"> <%= cl_image_tag exhibition.photo.key, height: 90, width: 200, crop: :fill %>
-</div>
-  <div class="container_marker">
-    <div>
-      <p><%= exhibition.title %></p>
+  <div class="card_marker">
+    <div class="img_marker"> <%= cl_image_tag exhibition.photo.key, height: 80, width: 200, crop: :fill %>
+    </div>
+    <div class="container_marker">
+      <div>
+        <p><%= exhibition.title %></p>
+      </div>
     </div>
   </div>
 <% end %>
-
-
-
