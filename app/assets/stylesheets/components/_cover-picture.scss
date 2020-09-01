@@ -1,8 +1,8 @@
 .cover-picture {
   // background-color: #f2e0b0;
   position:relative;
-  display: flex
-
+  display: flex;
+  place-content: center;
 }
 
 .cover-picture img {
