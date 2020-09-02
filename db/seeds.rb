@@ -17,9 +17,7 @@ OpenURI::Buffer.const_set 'StringMax', 0
 # Create users
 if User.count < 15
   puts 'Creating 15 fake users...'
-  user_array =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-
-
+  user_array =  (1..15).to_a
   # Creating USER
   user_array.each do |i|
     user_email = "#{i}@test.com"
@@ -44,12 +42,7 @@ puts "----------------------------"
 puts ""
 puts "creating 30 exhib"
 
-# extensive_url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=400&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
-
 url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=300&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
-
-
-# durl = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=40&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
 
 exhib_serialized = open(url).read
 exhibitions = JSON.parse(exhib_serialized)
