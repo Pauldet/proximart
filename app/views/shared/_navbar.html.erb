@@ -45,13 +45,11 @@
   <div class="navbar-right avatar">
       <% if user_signed_in?  %>
         <% if current_user.avatar.nil? %>
-          <%#= image_tag "NicoM.jpg" %>
-          <i class="fas fa-user-circle"></i>
+          <i class="fas fa-user-circle fa-2x"></i>
         <% else %>
           <%= image_tag current_user.avatar %>
         <% end %>
       <% else %>
-        <%#= image_tag "NicoM.jpg", class: "far fa-user" %>
         <i class="fas fa-user-circle fa-2x"></i>
       <% end %>
   </div>
