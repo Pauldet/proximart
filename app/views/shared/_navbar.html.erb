@@ -41,15 +41,15 @@
   </div>
 
 
-<!-- avatar -->
+  <!-- avatar -->
   <div class="navbar-right avatar">
-      <% if user_signed_in? && !current_user.avatar.nil? %>
+      <% if user_signed_in? && current_user.avatar.attached? %>
         <%= image_tag current_user.avatar %>
       <% else %>
         <i class="fas fa-user-circle fa-2x"></i>
       <% end %>
   </div>
-<!--  -->
+  <!--  -->
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
