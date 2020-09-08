@@ -1,8 +1,6 @@
 class ExhibitionsController < ApplicationController
   before_action :find_exhibition, only: [:show, :like, :update_average_rating]
 
-
-
   def show
       @visits = @exhibition.visits
       # @futur_visits = Visit.where(exhibition_id: @exhibition.id AND DateTime.now =< :date) We need to add the logic of future and past events
@@ -67,7 +65,7 @@ class ExhibitionsController < ApplicationController
       end
 
 
-  ## Ils chargent les cartes et après ils les display. Si tu fais toutes ils ne montrent pas la distance de celle qu'ils n(avait pas préalablement)
+      ## Ils chargent les cartes et après ils les display. Si tu fais toutes ils ne montrent pas la distance de celle qu'ils n(avait pas préalablement)
 
       if params[:search]
         @current_location = [params[:search][:lat], params[:search][:long]]
@@ -99,17 +97,15 @@ class ExhibitionsController < ApplicationController
           @distanceExWithUnit[id] = distancewithunit
         # end
       end
+
       #creer un hash avec Exhibition instance et distance en value
       exhibId = @distanceEx.keys #ExhibId of Exhib closer than max range
       @exhibitionsUnsorted = Exhibition.all.where(id: exhibId)
       @exhibitionsArrayWithDistance = @exhibitionsUnsorted.map{|exhib| [exhib, @distanceEx[exhib.id]]}.sort_by{|a| a[1]}
       @exhibitions = @exhibitionsArrayWithDistance.map{|a| a[0]}
 
-
       #remettre une logique de filtre distance la ou il faut.
       # @tags = @allExhibitions.map{|e| e.tags.split(';')}.flatten.compact.uniq # --> if we need to search with tags
-
-
 
       if @selected_categories
         @allExhibitionsWithCat = @exhibitions.map{|ex| [ex,ex.category.gsub('Expositions -> ', '')]}
@@ -117,8 +113,6 @@ class ExhibitionsController < ApplicationController
         @exhibitions = @exhibitionsWithCat.map{|a| a[0]}
 
         #remettre filtre distance
-
-
       end
 
       if params[:search] && params[:search][:opened] != '0'
@@ -134,7 +128,6 @@ class ExhibitionsController < ApplicationController
           infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
         }
         end
-
       elsif params[:search] && params[:search][:opened] = '0'
 
         @exhibinParis = @exhibitions #rajouter la logique de filtrer que dans lat long dans paris
@@ -154,7 +147,6 @@ class ExhibitionsController < ApplicationController
           infoWindow: render_to_string(partial: "info_window", locals: { exhibition: exhibition })
         }
         end
-
       end
     end
 
@@ -172,5 +164,4 @@ class ExhibitionsController < ApplicationController
     def exhibition_params
       params.require(:exhibition).permit(:address_street, :latitude, :longitude, :category, :title, :date_start, :date_end, :occurences, :contact_url, :address_name, :contact_twitter, :contact_phone, :description, :tags, :contact_mail, :lead_text, :contact_facebook, :cover_credit, :address_city, :price_detail, :price_type, :date_description, :address_zipcode, :external_id,:average_rating, :ratings_count)
     end
-
 end

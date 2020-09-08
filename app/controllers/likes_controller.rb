@@ -3,7 +3,7 @@ class LikesController < ApplicationController
   before_action :find_like, only: [:show, :destroy]
 
   def show
-
+    #there is nothing inthere DO WE REALY NEED IT ?
   end
 
   def index
