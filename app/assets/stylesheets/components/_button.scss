@@ -20,6 +20,9 @@
   text-decoration: none;
 }
 
+.search-middle .btn-empty:hover {
+  color: $btn-full !important;
+}
 .btn-empty {
     color: $btn-full;
     border-color: $btn-full;

@@ -41,24 +41,15 @@
   </div>
 
 
-<!-- avatar -->
+  <!-- avatar -->
   <div class="navbar-right avatar">
-    <%#= link_to root_path do %>
-      <% if user_signed_in?  %>
-        <% if current_user.avatar.nil? %>
-          <%= image_tag current_user.avatar %>
-        <% else %>
-          <%= image_tag "NicoM.jpg" %>
-        <% end %>
-
-        <% else %>
-
-        <%= image_tag "NicoM.jpg", class: "far fa-user" %>
-
+      <% if user_signed_in? && current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar %>
+      <% else %>
+        <i class="fas fa-user-circle fa-2x"></i>
       <% end %>
-    <%# end %>
   </div>
-<!--  -->
+  <!--  -->
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -89,4 +80,3 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-

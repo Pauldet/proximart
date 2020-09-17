@@ -4,22 +4,20 @@ require 'faker'
 OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
 OpenURI::Buffer.const_set 'StringMax', 0
 
-Like.destroy_all
-Message.destroy_all
-Participation.destroy_all
-Subscription.destroy_all
-User.destroy_all if User.count > 0
-Visit.destroy_all
-Exhibition.destroy_all if Exhibition.count > 0
+# Like.destroy_all
+# Message.destroy_all
+# Participation.destroy_all
+# Subscription.destroy_all
+# User.destroy_all if User.count > 0
+# Visit.destroy_all
+# Exhibition.destroy_all if Exhibition.count > 0
 # Exhibition.destroy_all
 
 
 # Create users
 if User.count < 15
   puts 'Creating 15 fake users...'
-  user_array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-
-
+  user_array =  (1..15).to_a
   # Creating USER
   user_array.each do |i|
     user_email = "#{i}@test.com"
@@ -33,23 +31,18 @@ if User.count < 15
     end
 end
 
-# #####
+#####
 
-# # Exhibitions
+# Exhibitions
 
-# #####
+#####
 
 puts ""
 puts "----------------------------"
 puts ""
 puts "creating 30 exhib"
 
-# extensive_url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=400&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
-
 url ='https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=300&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
-
-
-# durl = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&rows=40&facet=category&facet=tags&facet=address_zipcode&facet=address_city&facet=pmr&facet=access_type&facet=price_type&refine.category=Expositions+'
 
 exhib_serialized = open(url).read
 exhibitions = JSON.parse(exhib_serialized)
@@ -130,6 +123,7 @@ exhibitions["records"].each do |exhib|
     exhibition.photo.attach(io: photo_file, filename: "#{external_id}_cover")
     exhibition.save!
     puts "Exhib created"
+    puts "-------------"
     end
   end
 end
