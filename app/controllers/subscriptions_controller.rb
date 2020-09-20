@@ -1,6 +1,5 @@
 class SubscriptionsController < ApplicationController
-
-def create
+  def create
     @visit = Visit.find(params[:visit_id])
     @current_user_id = current_user.id
     @subscription = Subscription.new(visit_id: @visit.id, user_id:@current_user_id)
@@ -12,7 +11,7 @@ def create
     @participation = Participation.new
   end
 
-def destroy
+  def destroy
     @visit = Visit.find(params[:visit_id])
     @current_user_id = current_user.id
     @sub = Subscription.where(user_id: @current_user.id, visit_id: @visit.id).first

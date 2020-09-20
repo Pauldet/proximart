@@ -1,5 +1,4 @@
 class ParticipationsController < ApplicationController
-
   def create
     @participation = Participation.new(participation_params)
     @exhibition = Exhibition.find(params[:exhibition_id])
